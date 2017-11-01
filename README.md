@@ -1,6 +1,6 @@
 # Objective-C Binance API
 
-BinanceAPI is a comprehensive Objective-C library for iOS and macOS. It can be used to interact with the various endpoints of the [Binance API](https://www.binance.com/restapipub.html). Both synchronous and asynchronous requests are supported. A rudimentary WebSocket implementation for event streaming is also provided. BinanceAPI is available as a pod for easy installation via CocoaPods.
+BinanceAPI is a comprehensive Objective-C library for iOS and macOS. It can be used to interact with the various endpoints of the [Binance API](https://www.binance.com/restapipub.html). Both synchronous and asynchronous requests are supported. A rudimentary WebSocket implementation for event streaming is also provided. BinanceAPI is available as a [pod](https://cocoapods.org/pods/BinanceAPI) for easy installation via CocoaPods.
 
 ## API Endpoints
 The [Binance REST API](https://www.binance.com/restapipub.html) is made up of four distinct endpoint types
@@ -207,3 +207,7 @@ BNBWebSocketClient *client = [BNBWebSocketClient webSocketClientWithURLString:@"
 ```
 
 Please refer to the respective tests for a more in depth treatment of the [Binance API](https://www.binance.com/restapipub.html) endpoints.
+
+### ToDos
+* Withdraw/getDepositHistory/getTradeHistory endpoint implementations
+* Refactoring
