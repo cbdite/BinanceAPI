@@ -22,7 +22,7 @@
 #import "BNBSynchronousRESTClient.h"
 
 #import "BNBHTTPSessionManager.h"
-#import "AFHTTPSessionManager+Synchronous.h"
+#import <AFHTTPSessionManager+Synchronous.h>
 
 @interface BNBSynchronousRESTClient ()
 
