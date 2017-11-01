@@ -1,0 +1,667 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1B627F0B1FA9F22200E44A24 /* BNBJSONResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */; };
+		1B627F0D1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */; };
+		1B627F0F1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0E1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m */; };
+		1B627F121FAA0B3300E44A24 /* BNBWebSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F111FAA0B3300E44A24 /* BNBWebSocketClient.m */; };
+		1B627F151FAA170D00E44A24 /* WebSocketEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F141FAA170D00E44A24 /* WebSocketEndpointTests.m */; };
+		1B6720891FA7641A007D86BA /* BNBUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6720881FA7641A007D86BA /* BNBUtilities.m */; };
+		1B67208B1FA78773007D86BA /* BNBEnums.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B67208A1FA78773007D86BA /* BNBEnums.m */; };
+		1B6720901FA8BAA0007D86BA /* BNBNumberFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B67208F1FA8BAA0007D86BA /* BNBNumberFormatters.m */; };
+		1B895B101FA36128005D6169 /* BNBHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B895B0F1FA36128005D6169 /* BNBHTTPSessionManager.m */; };
+		1B895B131FA36599005D6169 /* AsynchronousGeneralEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B895B121FA36599005D6169 /* AsynchronousGeneralEndpointTests.m */; };
+		1B895B191FA37E8B005D6169 /* BNBAsynchronousXCTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B895B181FA37E8B005D6169 /* BNBAsynchronousXCTestCase.m */; };
+		1B895B1D1FA3A90E005D6169 /* BNBSynchronousRESTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B895B1C1FA3A90E005D6169 /* BNBSynchronousRESTClient.m */; };
+		1B895B201FA3A924005D6169 /* BNBAsynchronousRESTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B895B1F1FA3A924005D6169 /* BNBAsynchronousRESTClient.m */; };
+		1B895B281FA49CD2005D6169 /* BNBXCTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B895B271FA49CD2005D6169 /* BNBXCTestCase.m */; };
+		1B8BCFB01FAA2E1700EDA14F /* AsynchronousUserStreamEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8BCFAF1FAA2E1700EDA14F /* AsynchronousUserStreamEndpointTests.m */; };
+		1B8BCFB21FAA326A00EDA14F /* SynchronousUserStreamEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8BCFB11FAA326A00EDA14F /* SynchronousUserStreamEndpointTests.m */; };
+		1B9B3D961FA4A2C3004693D5 /* SynchronousGeneralEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9B3D951FA4A2C3004693D5 /* SynchronousGeneralEndpointTests.m */; };
+		1B9B3D981FA4B708004693D5 /* AsynchronousMarketDataEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9B3D971FA4B708004693D5 /* AsynchronousMarketDataEndpointTests.m */; };
+		1BCE02D31FA748A300CDDF31 /* AsynchronousAccountEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE02D21FA748A300CDDF31 /* AsynchronousAccountEndpointTests.m */; };
+		1BCE02D71FA759FC00CDDF31 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE02D61FA759FC00CDDF31 /* NSDate+Utilities.m */; };
+		B2A3F8F67E156C69CF3CABAF /* libPods-BinanceAPITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FD999DE0B84D766819E855 /* libPods-BinanceAPITests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1B627F091FA9F22200E44A24 /* BNBJSONResponseSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBJSONResponseSerializer.h; sourceTree = "<group>"; };
+		1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBJSONResponseSerializer.m; sourceTree = "<group>"; };
+		1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynchronousMarketDataEndpointTests.m; sourceTree = "<group>"; };
+		1B627F0E1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynchronousAccountEndpointTests.m; sourceTree = "<group>"; };
+		1B627F101FAA0B3300E44A24 /* BNBWebSocketClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBWebSocketClient.h; sourceTree = "<group>"; };
+		1B627F111FAA0B3300E44A24 /* BNBWebSocketClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBWebSocketClient.m; sourceTree = "<group>"; };
+		1B627F141FAA170D00E44A24 /* WebSocketEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebSocketEndpointTests.m; sourceTree = "<group>"; };
+		1B6720871FA7641A007D86BA /* BNBUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBUtilities.h; sourceTree = "<group>"; };
+		1B6720881FA7641A007D86BA /* BNBUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBUtilities.m; sourceTree = "<group>"; };
+		1B67208A1FA78773007D86BA /* BNBEnums.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBEnums.m; sourceTree = "<group>"; };
+		1B67208E1FA8BAA0007D86BA /* BNBNumberFormatters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBNumberFormatters.h; sourceTree = "<group>"; };
+		1B67208F1FA8BAA0007D86BA /* BNBNumberFormatters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBNumberFormatters.m; sourceTree = "<group>"; };
+		1B895B041FA21EB2005D6169 /* BinanceAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BinanceAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B895B091FA21EB2005D6169 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B895B0E1FA36128005D6169 /* BNBHTTPSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBHTTPSessionManager.h; sourceTree = "<group>"; };
+		1B895B0F1FA36128005D6169 /* BNBHTTPSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBHTTPSessionManager.m; sourceTree = "<group>"; };
+		1B895B121FA36599005D6169 /* AsynchronousGeneralEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsynchronousGeneralEndpointTests.m; sourceTree = "<group>"; };
+		1B895B181FA37E8B005D6169 /* BNBAsynchronousXCTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBAsynchronousXCTestCase.m; sourceTree = "<group>"; };
+		1B895B1A1FA37FF6005D6169 /* BNBAsynchronousXCTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBAsynchronousXCTestCase.h; sourceTree = "<group>"; };
+		1B895B1B1FA3A90E005D6169 /* BNBSynchronousRESTClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBSynchronousRESTClient.h; sourceTree = "<group>"; };
+		1B895B1C1FA3A90E005D6169 /* BNBSynchronousRESTClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBSynchronousRESTClient.m; sourceTree = "<group>"; };
+		1B895B1E1FA3A924005D6169 /* BNBAsynchronousRESTClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBAsynchronousRESTClient.h; sourceTree = "<group>"; };
+		1B895B1F1FA3A924005D6169 /* BNBAsynchronousRESTClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBAsynchronousRESTClient.m; sourceTree = "<group>"; };
+		1B895B221FA3A990005D6169 /* BNBGeneralEndpointProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBGeneralEndpointProtocol.h; sourceTree = "<group>"; };
+		1B895B231FA3A9EE005D6169 /* BNBMarketDataEndpointProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBMarketDataEndpointProtocol.h; sourceTree = "<group>"; };
+		1B895B241FA3AA03005D6169 /* BNBAccountEndpointProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBAccountEndpointProtocol.h; sourceTree = "<group>"; };
+		1B895B251FA3ABBF005D6169 /* BNBEndpointProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBEndpointProtocol.h; sourceTree = "<group>"; };
+		1B895B261FA49CD2005D6169 /* BNBXCTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBXCTestCase.h; sourceTree = "<group>"; };
+		1B895B271FA49CD2005D6169 /* BNBXCTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBXCTestCase.m; sourceTree = "<group>"; };
+		1B8BCFAB1FAA2C5A00EDA14F /* BNBUserStreamEndpointProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBUserStreamEndpointProtocol.h; sourceTree = "<group>"; };
+		1B8BCFAF1FAA2E1700EDA14F /* AsynchronousUserStreamEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsynchronousUserStreamEndpointTests.m; sourceTree = "<group>"; };
+		1B8BCFB11FAA326A00EDA14F /* SynchronousUserStreamEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynchronousUserStreamEndpointTests.m; sourceTree = "<group>"; };
+		1B9B3D951FA4A2C3004693D5 /* SynchronousGeneralEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynchronousGeneralEndpointTests.m; sourceTree = "<group>"; };
+		1B9B3D971FA4B708004693D5 /* AsynchronousMarketDataEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsynchronousMarketDataEndpointTests.m; sourceTree = "<group>"; };
+		1B9B3D991FA4CCED004693D5 /* BNBEnums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBEnums.h; sourceTree = "<group>"; };
+		1BCE02D21FA748A300CDDF31 /* AsynchronousAccountEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsynchronousAccountEndpointTests.m; sourceTree = "<group>"; };
+		1BCE02D51FA759FC00CDDF31 /* NSDate+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		1BCE02D61FA759FC00CDDF31 /* NSDate+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		26B94EFEA0AD3D71D71B52FD /* Pods-BinanceAPITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceAPITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BinanceAPITests/Pods-BinanceAPITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9A2C1BEA423E9769325E869B /* Pods-BinanceAPITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceAPITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BinanceAPITests/Pods-BinanceAPITests.release.xcconfig"; sourceTree = "<group>"; };
+		B0FD999DE0B84D766819E855 /* libPods-BinanceAPITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BinanceAPITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1B895B011FA21EB2005D6169 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2A3F8F67E156C69CF3CABAF /* libPods-BinanceAPITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1B627F081FA9F1D300E44A24 /* Serializers */ = {
+			isa = PBXGroup;
+			children = (
+				1B627F091FA9F22200E44A24 /* BNBJSONResponseSerializer.h */,
+				1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */,
+			);
+			path = Serializers;
+			sourceTree = "<group>";
+		};
+		1B627F131FAA16CC00E44A24 /* WebSocket Endpoint Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B627F141FAA170D00E44A24 /* WebSocketEndpointTests.m */,
+			);
+			path = "WebSocket Endpoint Tests";
+			sourceTree = "<group>";
+		};
+		1B67208D1FA8988E007D86BA /* NSURLSession */ = {
+			isa = PBXGroup;
+			children = (
+				1B895B0E1FA36128005D6169 /* BNBHTTPSessionManager.h */,
+				1B895B0F1FA36128005D6169 /* BNBHTTPSessionManager.m */,
+			);
+			path = NSURLSession;
+			sourceTree = "<group>";
+		};
+		1B895AF91FA21E2E005D6169 = {
+			isa = PBXGroup;
+			children = (
+				1B895B0D1FA22339005D6169 /* Classes */,
+				1B895B061FA21EB2005D6169 /* BinanceAPITests */,
+				1B895B051FA21EB2005D6169 /* Products */,
+				C13F09B364403671DDB752F2 /* Pods */,
+				BB7B5EAFCA83577E90205874 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1B895B051FA21EB2005D6169 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1B895B041FA21EB2005D6169 /* BinanceAPITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1B895B061FA21EB2005D6169 /* BinanceAPITests */ = {
+			isa = PBXGroup;
+			children = (
+				1B67208E1FA8BAA0007D86BA /* BNBNumberFormatters.h */,
+				1B67208F1FA8BAA0007D86BA /* BNBNumberFormatters.m */,
+				1B895B261FA49CD2005D6169 /* BNBXCTestCase.h */,
+				1B895B271FA49CD2005D6169 /* BNBXCTestCase.m */,
+				1B895B1A1FA37FF6005D6169 /* BNBAsynchronousXCTestCase.h */,
+				1B895B181FA37E8B005D6169 /* BNBAsynchronousXCTestCase.m */,
+				1B895B111FA36570005D6169 /* General Endpoint Tests */,
+				1B895B291FA49DCA005D6169 /* Market Data Endpoint Tests */,
+				1B895B2A1FA49DD4005D6169 /* Account Endpoint Tests */,
+				1B8BCFAC1FAA2DC700EDA14F /* User Stream Endpoint Tests */,
+				1B627F131FAA16CC00E44A24 /* WebSocket Endpoint Tests */,
+				1B895B091FA21EB2005D6169 /* Info.plist */,
+			);
+			path = BinanceAPITests;
+			sourceTree = "<group>";
+		};
+		1B895B0D1FA22339005D6169 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1B9B3D991FA4CCED004693D5 /* BNBEnums.h */,
+				1B67208A1FA78773007D86BA /* BNBEnums.m */,
+				1B6720871FA7641A007D86BA /* BNBUtilities.h */,
+				1B6720881FA7641A007D86BA /* BNBUtilities.m */,
+				1BCE02D41FA759C700CDDF31 /* Categories */,
+				1B895B141FA366EB005D6169 /* Clients */,
+				1B67208D1FA8988E007D86BA /* NSURLSession */,
+				1B895B211FA3A92F005D6169 /* Protocols */,
+				1B627F081FA9F1D300E44A24 /* Serializers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1B895B111FA36570005D6169 /* General Endpoint Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B895B2B1FA49E29005D6169 /* Synchronous Tests */,
+				1B895B2C1FA49E38005D6169 /* Asynchronous Tests */,
+			);
+			path = "General Endpoint Tests";
+			sourceTree = "<group>";
+		};
+		1B895B141FA366EB005D6169 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				1B895B1B1FA3A90E005D6169 /* BNBSynchronousRESTClient.h */,
+				1B895B1C1FA3A90E005D6169 /* BNBSynchronousRESTClient.m */,
+				1B895B1E1FA3A924005D6169 /* BNBAsynchronousRESTClient.h */,
+				1B895B1F1FA3A924005D6169 /* BNBAsynchronousRESTClient.m */,
+				1B627F101FAA0B3300E44A24 /* BNBWebSocketClient.h */,
+				1B627F111FAA0B3300E44A24 /* BNBWebSocketClient.m */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		1B895B211FA3A92F005D6169 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1B895B251FA3ABBF005D6169 /* BNBEndpointProtocol.h */,
+				1B895B221FA3A990005D6169 /* BNBGeneralEndpointProtocol.h */,
+				1B895B231FA3A9EE005D6169 /* BNBMarketDataEndpointProtocol.h */,
+				1B895B241FA3AA03005D6169 /* BNBAccountEndpointProtocol.h */,
+				1B8BCFAB1FAA2C5A00EDA14F /* BNBUserStreamEndpointProtocol.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1B895B291FA49DCA005D6169 /* Market Data Endpoint Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B895B2D1FA49E4E005D6169 /* Synchronous Tests */,
+				1B895B2E1FA49E5F005D6169 /* Asynchronous Tests */,
+			);
+			path = "Market Data Endpoint Tests";
+			sourceTree = "<group>";
+		};
+		1B895B2A1FA49DD4005D6169 /* Account Endpoint Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B895B2F1FA49E81005D6169 /* Synchronous Tests */,
+				1B895B301FA49E8B005D6169 /* Asynchronous Tests */,
+			);
+			path = "Account Endpoint Tests";
+			sourceTree = "<group>";
+		};
+		1B895B2B1FA49E29005D6169 /* Synchronous Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B9B3D951FA4A2C3004693D5 /* SynchronousGeneralEndpointTests.m */,
+			);
+			path = "Synchronous Tests";
+			sourceTree = "<group>";
+		};
+		1B895B2C1FA49E38005D6169 /* Asynchronous Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B895B121FA36599005D6169 /* AsynchronousGeneralEndpointTests.m */,
+			);
+			path = "Asynchronous Tests";
+			sourceTree = "<group>";
+		};
+		1B895B2D1FA49E4E005D6169 /* Synchronous Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */,
+			);
+			path = "Synchronous Tests";
+			sourceTree = "<group>";
+		};
+		1B895B2E1FA49E5F005D6169 /* Asynchronous Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B9B3D971FA4B708004693D5 /* AsynchronousMarketDataEndpointTests.m */,
+			);
+			path = "Asynchronous Tests";
+			sourceTree = "<group>";
+		};
+		1B895B2F1FA49E81005D6169 /* Synchronous Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B627F0E1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m */,
+			);
+			path = "Synchronous Tests";
+			sourceTree = "<group>";
+		};
+		1B895B301FA49E8B005D6169 /* Asynchronous Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1BCE02D21FA748A300CDDF31 /* AsynchronousAccountEndpointTests.m */,
+			);
+			path = "Asynchronous Tests";
+			sourceTree = "<group>";
+		};
+		1B8BCFAC1FAA2DC700EDA14F /* User Stream Endpoint Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B8BCFAD1FAA2DE000EDA14F /* Synchronous Tests */,
+				1B8BCFAE1FAA2DEB00EDA14F /* Asynchronous Tests */,
+			);
+			path = "User Stream Endpoint Tests";
+			sourceTree = "<group>";
+		};
+		1B8BCFAD1FAA2DE000EDA14F /* Synchronous Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B8BCFB11FAA326A00EDA14F /* SynchronousUserStreamEndpointTests.m */,
+			);
+			path = "Synchronous Tests";
+			sourceTree = "<group>";
+		};
+		1B8BCFAE1FAA2DEB00EDA14F /* Asynchronous Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B8BCFAF1FAA2E1700EDA14F /* AsynchronousUserStreamEndpointTests.m */,
+			);
+			path = "Asynchronous Tests";
+			sourceTree = "<group>";
+		};
+		1BCE02D41FA759C700CDDF31 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1BCE02D51FA759FC00CDDF31 /* NSDate+Utilities.h */,
+				1BCE02D61FA759FC00CDDF31 /* NSDate+Utilities.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		BB7B5EAFCA83577E90205874 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B0FD999DE0B84D766819E855 /* libPods-BinanceAPITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C13F09B364403671DDB752F2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				26B94EFEA0AD3D71D71B52FD /* Pods-BinanceAPITests.debug.xcconfig */,
+				9A2C1BEA423E9769325E869B /* Pods-BinanceAPITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1B895B031FA21EB2005D6169 /* BinanceAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B895B0C1FA21EB2005D6169 /* Build configuration list for PBXNativeTarget "BinanceAPITests" */;
+			buildPhases = (
+				31D71A5CFD77330A5819E1ED /* [CP] Check Pods Manifest.lock */,
+				1B895B001FA21EB2005D6169 /* Sources */,
+				1B895B011FA21EB2005D6169 /* Frameworks */,
+				1B895B021FA21EB2005D6169 /* Resources */,
+				BF093D2472764D561EDF7DA1 /* [CP] Embed Pods Frameworks */,
+				37A9CF0760E84FCCC5E95C95 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BinanceAPITests;
+			productName = BinanceAPITests;
+			productReference = 1B895B041FA21EB2005D6169 /* BinanceAPITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1B895AFA1FA21E2E005D6169 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				TargetAttributes = {
+					1B895B031FA21EB2005D6169 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1B895AFD1FA21E2E005D6169 /* Build configuration list for PBXProject "BinanceAPI" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1B895AF91FA21E2E005D6169;
+			productRefGroup = 1B895B051FA21EB2005D6169 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1B895B031FA21EB2005D6169 /* BinanceAPITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1B895B021FA21EB2005D6169 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31D71A5CFD77330A5819E1ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BinanceAPITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		37A9CF0760E84FCCC5E95C95 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BinanceAPITests/Pods-BinanceAPITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF093D2472764D561EDF7DA1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BinanceAPITests/Pods-BinanceAPITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1B895B001FA21EB2005D6169 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B895B131FA36599005D6169 /* AsynchronousGeneralEndpointTests.m in Sources */,
+				1B627F0D1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m in Sources */,
+				1B895B101FA36128005D6169 /* BNBHTTPSessionManager.m in Sources */,
+				1B6720891FA7641A007D86BA /* BNBUtilities.m in Sources */,
+				1B627F0B1FA9F22200E44A24 /* BNBJSONResponseSerializer.m in Sources */,
+				1B8BCFB21FAA326A00EDA14F /* SynchronousUserStreamEndpointTests.m in Sources */,
+				1B627F121FAA0B3300E44A24 /* BNBWebSocketClient.m in Sources */,
+				1B895B191FA37E8B005D6169 /* BNBAsynchronousXCTestCase.m in Sources */,
+				1B895B1D1FA3A90E005D6169 /* BNBSynchronousRESTClient.m in Sources */,
+				1BCE02D31FA748A300CDDF31 /* AsynchronousAccountEndpointTests.m in Sources */,
+				1B627F0F1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m in Sources */,
+				1B9B3D961FA4A2C3004693D5 /* SynchronousGeneralEndpointTests.m in Sources */,
+				1B67208B1FA78773007D86BA /* BNBEnums.m in Sources */,
+				1B627F151FAA170D00E44A24 /* WebSocketEndpointTests.m in Sources */,
+				1B895B201FA3A924005D6169 /* BNBAsynchronousRESTClient.m in Sources */,
+				1B8BCFB01FAA2E1700EDA14F /* AsynchronousUserStreamEndpointTests.m in Sources */,
+				1B9B3D981FA4B708004693D5 /* AsynchronousMarketDataEndpointTests.m in Sources */,
+				1B895B281FA49CD2005D6169 /* BNBXCTestCase.m in Sources */,
+				1B6720901FA8BAA0007D86BA /* BNBNumberFormatters.m in Sources */,
+				1BCE02D71FA759FC00CDDF31 /* NSDate+Utilities.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1B895AFE1FA21E2E005D6169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		1B895AFF1FA21E2E005D6169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Release;
+		};
+		1B895B0A1FA21EB2005D6169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26B94EFEA0AD3D71D71B52FD /* Pods-BinanceAPITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = BinanceAPITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.binance.BinanceAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1B895B0B1FA21EB2005D6169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A2C1BEA423E9769325E869B /* Pods-BinanceAPITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = BinanceAPITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.binance.BinanceAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1B895AFD1FA21E2E005D6169 /* Build configuration list for PBXProject "BinanceAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B895AFE1FA21E2E005D6169 /* Debug */,
+				1B895AFF1FA21E2E005D6169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B895B0C1FA21EB2005D6169 /* Build configuration list for PBXNativeTarget "BinanceAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B895B0A1FA21EB2005D6169 /* Debug */,
+				1B895B0B1FA21EB2005D6169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1B895AFA1FA21E2E005D6169 /* Project object */;
+}
