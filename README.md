@@ -1,6 +1,6 @@
 # Objective-C Binance API
 
-BinanceAPI is a comprehensive Objective-C library for iOS and macOS. It can be used to interact with the various endpoints of the [Binance API](https://www.binance.com/restapipub.html). Both synchronous and asynchronous requests are supported. A rudimentary WebSocket implementation for event streaming is also provided. BinanceAPI is available as a [pod](https://www.binance.com/restapipub.html) for easy installation via CocoaPods.
+BinanceAPI is a comprehensive Objective-C library for iOS and macOS. It can be used to interact with the various endpoints of the [Binance API](https://www.binance.com/restapipub.html). Both synchronous and asynchronous requests are supported. A rudimentary WebSocket implementation for event streaming is also provided. BinanceAPI is available as a pod for easy installation via CocoaPods.
 
 ## API Endpoints
 The [Binance REST API](https://www.binance.com/restapipub.html) is made up of four distinct endpoint types
@@ -38,9 +38,9 @@ In order to be able to interact with certain [Binance API](https://www.binance.c
 
 The [Binance API](https://www.binance.com/restapipub.html) library contains three client classes: 
 
-1. [`BNBSynchronousRESTClient`]() (blocking/not recommended)
-2. [`BNBAsynchronousRESTClient`]() (non-blocking)
-3. [`BNBWebSocketClient`]() (event streaming)
+1. [`BNBSynchronousRESTClient`](https://github.com/cbdite/BinanceAPI/blob/master/Classes/Clients/BNBSynchronousRESTClient.h) (blocking/not recommended)
+2. [`BNBAsynchronousRESTClient`](https://github.com/cbdite/BinanceAPI/blob/master/Classes/Clients/BNBAsynchronousRESTClient.h) (non-blocking)
+3. [`BNBWebSocketClient`](https://github.com/cbdite/BinanceAPI/blob/master/Classes/Clients/BNBWebSocketClient.h) (event streaming)
 
 Instantiate the desired client with your API and secret key. Depending on the specific endpoint requirements specified at [Binance API](https://www.binance.com/restapipub.html), it may be necessary to add further endpoint paths to the respective `BNBHTTPSessionManager` class's signing or API collections. Only when contained within one of these collections will endpoint security be handled automatically.
 

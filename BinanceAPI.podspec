@@ -3,9 +3,9 @@ Pod::Spec.new do |s|
   s.version  = '0.0.1'
   s.license  = 'MIT'
   s.summary  = 'An Objective-C based implementation of the Binance API for iOS and macOS.'
-  s.homepage = 'https://github.com/AFNetworking/AFNetworking'
+  s.homepage = 'https://github.com/cbdite/BinanceAPI'
   s.author  = 'Chris Dite'
-  s.source   = { :git => 'https://github.com/AFNetworking/AFNetworking.git', :tag => s.version }
+  s.source   = { :git => 'https://github.com/cbdite/BinanceAPI.git', :tag => s.version }
   s.requires_arc = true
   s.ios.deployment_target = '10.0'
   s.osx.deployment_target = '10.13'
