@@ -208,6 +208,7 @@ BNBWebSocketClient *client = [BNBWebSocketClient webSocketClientWithURLString:@"
 
 Please refer to the respective tests for a more in depth treatment of the [Binance API](https://www.binance.com/restapipub.html) endpoints.
 
-### ToDos
+### ToDo
 * Withdraw/getDepositHistory/getTradeHistory endpoint implementations
 * Refactoring
+* Documenting/Commenting
