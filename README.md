@@ -48,6 +48,12 @@ Instantiate the desired client with your API and secret key. Depending on the sp
 BNBAsynchronousRESTClient *client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:@"YOUR-SECRET-KEY"];
 ```
 
+Alternatively, when dealing with an open endpoint you can simply instantiate the desired client as follows:
+
+```
+BNBAsynchronousRESTClient *client = [BNBAsynchronousRESTClient new];
+```
+ 
 With the client instantiated, you are ready to fire requests at the API.
 
 ### General Endpoints
