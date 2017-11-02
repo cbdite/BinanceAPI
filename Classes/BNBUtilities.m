@@ -25,7 +25,8 @@
 
 @implementation BNBUtilities
 
-+ (NSData *)HMACDataForKey:(NSString *)key dataString:(NSString *)dataString
++ (NSData *)HMACDataForKey:(NSString *)key
+                dataString:(NSString *)dataString
 {
     const char *cKey  = [key cStringUsingEncoding:NSUTF8StringEncoding];
     const char *cData = [dataString cStringUsingEncoding:NSUTF8StringEncoding];
@@ -37,7 +38,8 @@
     return [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
 }
 
-+ (NSString *)HMACStringForKey:(NSString *)key dataString:(NSString *)dataString
++ (NSString *)HMACStringForKey:(NSString *)key
+                    dataString:(NSString *)dataString
 {    
     NSData *HMACData = [self HMACDataForKey:key dataString:dataString];
 

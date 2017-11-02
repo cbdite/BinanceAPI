@@ -27,13 +27,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol BNBMarketDataEndpointProtocol <BNBEndpointProtocol>
 
-- (void)orderBookForSymbol:(NSString *)symbol limit:(NSUInteger)limit result:(nullable ResultBlock)result;
+- (void)orderBookForSymbol:(NSString *)symbol
+                     limit:(NSUInteger)limit
+                    result:(nullable ResultBlock)result;
 
-- (void)aggregateTradesListForSymbol:(NSString *)symbol fromId:(NSUInteger)fromId startTime:(NSTimeInterval)startTime endTime:(NSTimeInterval)endTime limit:(NSUInteger)limit result:(nullable ResultBlock)result;
+- (void)aggregateTradesListForSymbol:(NSString *)symbol
+                              fromId:(NSUInteger)fromId
+                           startTime:(NSTimeInterval)startTime
+                             endTime:(NSTimeInterval)endTime
+                               limit:(NSUInteger)limit
+                              result:(nullable ResultBlock)result;
 
-- (void)klineDataForSymbol:(NSString *)symbol interval:(Interval)interval startTime:(NSTimeInterval)startTime endTime:(NSTimeInterval)endTime limit:(NSUInteger)limit  result:(nullable ResultBlock)result;
+- (void)klineDataForSymbol:(NSString *)symbol
+                  interval:(Interval)interval
+                 startTime:(NSTimeInterval)startTime
+                   endTime:(NSTimeInterval)endTime
+                     limit:(NSUInteger)limit
+                    result:(nullable ResultBlock)result;
 
-- (void)priceChangeStatisticsTickerForSymbol:(NSString *)symbol interval:(Interval)interval result:(nullable ResultBlock)result;
+- (void)priceChangeStatisticsTickerForSymbol:(NSString *)symbol
+                                    interval:(Interval)interval
+                                      result:(nullable ResultBlock)result;
 
 - (void)priceTickersResult:(nullable ResultBlock)result;
 

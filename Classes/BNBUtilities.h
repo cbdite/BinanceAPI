@@ -25,9 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BNBUtilities : NSObject
 
-+ (NSData *)HMACDataForKey:(NSString *)key dataString:(NSString *)dataString;
++ (NSData *)HMACDataForKey:(NSString *)key
+                dataString:(NSString *)dataString;
 
-+ (nullable NSString *)HMACStringForKey:(NSString *)key dataString:(NSString *)dataString;
++ (nullable NSString *)HMACStringForKey:(NSString *)key
+                             dataString:(NSString *)dataString;
 
 @end
 

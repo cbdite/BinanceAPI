@@ -36,7 +36,8 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithAPIKey:(NSString *)APIKey secretKey:(NSString *)secretKey
+- (instancetype)initWithAPIKey:(NSString *)APIKey
+                     secretKey:(NSString *)secretKey
 {
     if (self = [super init])
     {

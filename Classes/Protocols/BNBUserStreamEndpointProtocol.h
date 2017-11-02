@@ -27,9 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)createUserStream:(nullable ResultBlock)result;
 
-- (void)updateUserStreamForListenKey:(NSString *)listenKey result:(nullable ResultBlock)result;
+- (void)updateUserStreamForListenKey:(NSString *)listenKey
+                              result:(nullable ResultBlock)result;
 
-- (void)deleteUserStreamForListenKey:(NSString *)listenKey result:(nullable ResultBlock)result;
+- (void)deleteUserStreamForListenKey:(NSString *)listenKey
+                              result:(nullable ResultBlock)result;
 
 @end
 

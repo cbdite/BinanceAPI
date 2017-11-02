@@ -34,13 +34,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, readonly, copy, nonatomic) NSString *secretKey;
 
-- (instancetype)initWithAPIKey:(nullable NSString *)APIKey secretKey:(nullable NSString *)secretKey;
+- (instancetype)initWithAPIKey:(nullable NSString *)APIKey
+                     secretKey:(nullable NSString *)secretKey;
 
-- (void)orderBookForSymbol:(NSString *)symbol result:(nullable ResultBlock)result;
+- (void)orderBookForSymbol:(NSString *)symbol
+                    result:(nullable ResultBlock)result;
 
-- (void)aggregateTradesListForSymbol:(NSString *)symbol result:(nullable ResultBlock)result;
+- (void)aggregateTradesListForSymbol:(NSString *)symbol
+                              result:(nullable ResultBlock)result;
 
-- (void)klineDataForSymbol:(NSString *)symbol interval:(Interval)interval result:(nullable ResultBlock)result;
+- (void)klineDataForSymbol:(NSString *)symbol interval:(Interval)interval
+                    result:(nullable ResultBlock)result;
 
 - (void)testCreateOrderWithSymbol:(NSString *)symbol
                              side:(OrderSide)side
