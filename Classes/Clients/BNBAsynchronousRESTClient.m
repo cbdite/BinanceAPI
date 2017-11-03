@@ -59,19 +59,19 @@
              parameters:nil
                progress:nil
                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-    {
-        if (result)
-        {
-            result(responseObject, nil);
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-    {
-        if (result)
-        {
-            result(nil, error);
-        }
-    }];                                                                         
+     {
+         if (result)
+         {
+             result(responseObject, nil);
+         }
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         if (result)
+         {
+             result(nil, error);
+         }
+     }];
 }
 
 // GET /api/v1/time
@@ -83,19 +83,19 @@
              parameters:nil
                progress:nil
                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-    {
-        if (result)
-        {
-            result(responseObject, nil);
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-    {
-        if (result)
-        {
-            result(nil, error);
-        }
-    }];
+     {
+         if (result)
+         {
+             result(responseObject, nil);
+         }
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         if (result)
+         {
+             result(nil, error);
+         }
+     }];
 }
 
 #pragma mark - Market Data Endpoint Methods
@@ -123,7 +123,7 @@
     if (limit != NSNotFound)
     {
         NSUInteger canonicalLimit = MIN(limit, 100);
-
+        
         parameters[@"limit"] = @(canonicalLimit);
     }
     
@@ -236,29 +236,29 @@
 
 // GET /api/v1/klines
 - (void)klineDataForSymbol:(NSString *)symbol
-                     interval:(Interval)interval
-                       result:(nullable ResultBlock)result
+                  interval:(Interval)interval
+                    result:(nullable ResultBlock)result
 {
     [self klineDataForSymbol:symbol
-                       interval:interval
-                      startTime:-1.0
-                        endTime:-1.0
-                          limit:NSNotFound
-                         result:result];
+                    interval:interval
+                   startTime:-1.0
+                     endTime:-1.0
+                       limit:NSNotFound
+                      result:result];
 }
 
 // GET /api/v1/klines
 - (void)klineDataForSymbol:(NSString *)symbol
-                     interval:(Interval)interval
-                    startTime:(NSTimeInterval)startTime
-                      endTime:(NSTimeInterval)endTime
-                        limit:(NSUInteger)limit
-                       result:(nullable ResultBlock)result
+                  interval:(Interval)interval
+                 startTime:(NSTimeInterval)startTime
+                   endTime:(NSTimeInterval)endTime
+                     limit:(NSUInteger)limit
+                    result:(nullable ResultBlock)result
 {
     NSParameterAssert(symbol);
     
     NSString *intervalString = Interval_toString[interval];
-
+    
     NSParameterAssert(intervalString);
     
     NSMutableDictionary *parameters = [NSMutableDictionary new];
@@ -390,76 +390,76 @@
 
 // POST /api/v3/order/test
 - (void)testCreateOrderWithSymbol:(NSString *)symbol
-                  side:(OrderSide)side
-                  type:(OrderType)type
-           timeInForce:(TimeInForce)timeInForce
-              quantity:(CGFloat)quantity
-       icebergQuantity:(CGFloat)icebergQuantity
-                 price:(CGFloat)price
-             stopPrice:(CGFloat)stopPrice
-      newClientOrderId:(nullable NSString *)newClientOrderId
-             timestamp:(NSTimeInterval)timestamp
-            timeToLive:(NSTimeInterval)timeToLive
-                result:(nullable ResultBlock)result
+                             side:(OrderSide)side
+                             type:(OrderType)type
+                      timeInForce:(TimeInForce)timeInForce
+                         quantity:(CGFloat)quantity
+                  icebergQuantity:(CGFloat)icebergQuantity
+                            price:(CGFloat)price
+                        stopPrice:(CGFloat)stopPrice
+                 newClientOrderId:(nullable NSString *)newClientOrderId
+                        timestamp:(NSTimeInterval)timestamp
+                       timeToLive:(NSTimeInterval)timeToLive
+                           result:(nullable ResultBlock)result
 {
     [self createOrderWithSymbol:symbol
-                    side:side
-                    type:type
-             timeInForce:timeInForce
-                quantity:quantity
-         icebergQuantity:icebergQuantity
-                   price:price
-               stopPrice:stopPrice
-        newClientOrderId:newClientOrderId
-               timestamp:timestamp
-              timeToLive:timeToLive
-                  result:result
-               URLString:@"/api/v3/order/test"];
+                           side:side
+                           type:type
+                    timeInForce:timeInForce
+                       quantity:quantity
+                icebergQuantity:icebergQuantity
+                          price:price
+                      stopPrice:stopPrice
+               newClientOrderId:newClientOrderId
+                      timestamp:timestamp
+                     timeToLive:timeToLive
+                         result:result
+                      URLString:@"/api/v3/order/test"];
 }
 
 // POST /api/v3/order
 - (void)createOrderWithSymbol:(NSString *)symbol
-                  side:(OrderSide)side
-                  type:(OrderType)type
-           timeInForce:(TimeInForce)timeInForce
-              quantity:(CGFloat)quantity
-       icebergQuantity:(CGFloat)icebergQuantity
-                 price:(CGFloat)price
-             stopPrice:(CGFloat)stopPrice
-      newClientOrderId:(nullable NSString *)newClientOrderId
-             timestamp:(NSTimeInterval)timestamp
-            timeToLive:(NSTimeInterval)timeToLive
-                result:(nullable ResultBlock)result
+                         side:(OrderSide)side
+                         type:(OrderType)type
+                  timeInForce:(TimeInForce)timeInForce
+                     quantity:(CGFloat)quantity
+              icebergQuantity:(CGFloat)icebergQuantity
+                        price:(CGFloat)price
+                    stopPrice:(CGFloat)stopPrice
+             newClientOrderId:(nullable NSString *)newClientOrderId
+                    timestamp:(NSTimeInterval)timestamp
+                   timeToLive:(NSTimeInterval)timeToLive
+                       result:(nullable ResultBlock)result
 {
     [self createOrderWithSymbol:symbol
-                    side:side
-                    type:type
-             timeInForce:timeInForce
-                quantity:quantity
-         icebergQuantity:icebergQuantity
-                   price:price
-               stopPrice:stopPrice
-        newClientOrderId:newClientOrderId
-               timestamp:timestamp
-              timeToLive:timeToLive
-                  result:result
-               URLString:@"api/v3/order"];
+                           side:side
+                           type:type
+                    timeInForce:timeInForce
+                       quantity:quantity
+                icebergQuantity:icebergQuantity
+                          price:price
+                      stopPrice:stopPrice
+               newClientOrderId:newClientOrderId
+                      timestamp:timestamp
+                     timeToLive:timeToLive
+                         result:result
+                      URLString:@"api/v3/order"];
 }
 
 // POST /api/v3/order
 - (void)createOrderWithSymbol:(NSString *)symbol
-                  side:(OrderSide)side
-                  type:(OrderType)type
-           timeInForce:(TimeInForce)timeInForce
-              quantity:(CGFloat)quantity
-       icebergQuantity:(CGFloat)icebergQuantity
-                 price:(CGFloat)price
-             stopPrice:(CGFloat)stopPrice
-      newClientOrderId:(nullable NSString *)newClientOrderId
-             timestamp:(NSTimeInterval)timestamp
-            timeToLive:(NSTimeInterval)timeToLive
-                result:(nullable ResultBlock)result
-             URLString:(NSString *)URLString
+                         side:(OrderSide)side
+                         type:(OrderType)type
+                  timeInForce:(TimeInForce)timeInForce
+                     quantity:(CGFloat)quantity
+              icebergQuantity:(CGFloat)icebergQuantity
+                        price:(CGFloat)price
+                    stopPrice:(CGFloat)stopPrice
+             newClientOrderId:(nullable NSString *)newClientOrderId
+                    timestamp:(NSTimeInterval)timestamp
+                   timeToLive:(NSTimeInterval)timeToLive
+                       result:(nullable ResultBlock)result
+                    URLString:(NSString *)URLString
 {
     NSParameterAssert(symbol);
     
@@ -476,13 +476,13 @@
     NSString *typeString = OrderType_toString[type];
     
     NSParameterAssert(typeString);
-
+    
     parameters[@"type"] = typeString;
     
     NSString *timeInForceString = TimeInForce_toString[timeInForce];
     
     NSParameterAssert(timeInForceString);
-
+    
     parameters[@"timeInForce"] = timeInForceString;
     
     parameters[@"quantity"] = @(quantity);
@@ -505,7 +505,7 @@
     }
     
     parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-
+    
     if (timeToLive > 0.0)
     {
         parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
@@ -539,11 +539,11 @@
 
 // GET /api/v3/order
 - (void)queryOrderWithSymbol:(NSString *)symbol
-               orderId:(NSUInteger)orderId
- originalClientOrderId:(nullable NSString *)originalClientOrderId
-             timestamp:(NSTimeInterval)timestamp
-            timeToLive:(NSTimeInterval)timeToLive
-                result:(nullable ResultBlock)result
+                     orderId:(NSUInteger)orderId
+       originalClientOrderId:(nullable NSString *)originalClientOrderId
+                   timestamp:(NSTimeInterval)timestamp
+                  timeToLive:(NSTimeInterval)timeToLive
+                      result:(nullable ResultBlock)result
 {
     NSParameterAssert(symbol);
     
@@ -558,7 +558,7 @@
     else
     {
         NSParameterAssert(originalClientOrderId);
-
+        
         parameters[@"origClientOrderId"] = originalClientOrderId;
     }
     
@@ -577,19 +577,19 @@
              parameters:parameters
                progress:nil
                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-    {
-        if (result)
-        {
-            result(responseObject, nil);
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-    {
-        if (result)
-        {
-            result(nil, error);
-        }
-    }];
+     {
+         if (result)
+         {
+             result(responseObject, nil);
+         }
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         if (result)
+         {
+             result(nil, error);
+         }
+     }];
     
     sessionManager.APIKey = nil;
     sessionManager.secretKey = nil;
@@ -597,12 +597,12 @@
 
 // DELETE /api/v3/order
 - (void)deleteOrderWithSymbol:(NSString *)symbol
-                orderId:(NSUInteger)orderId
-  originalClientOrderId:(nullable NSString *)originalClientOrderId
-    newClientOrderId:(nullable NSString *)newClientOrderId
-              timestamp:(NSTimeInterval)timestamp
-             timeToLive:(NSTimeInterval)timeToLive
-                 result:(nullable ResultBlock)result
+                      orderId:(NSUInteger)orderId
+        originalClientOrderId:(nullable NSString *)originalClientOrderId
+             newClientOrderId:(nullable NSString *)newClientOrderId
+                    timestamp:(NSTimeInterval)timestamp
+                   timeToLive:(NSTimeInterval)timeToLive
+                       result:(nullable ResultBlock)result
 {
     NSParameterAssert(symbol);
     
@@ -640,19 +640,19 @@
     [sessionManager DELETE:@"/api/v3/order"
                 parameters:parameters
                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-    {
-        if (result)
-        {
-            result(responseObject, nil);
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-    {
-        if (result)
-        {
-            result(nil, error);
-        }
-    }];
+     {
+         if (result)
+         {
+             result(responseObject, nil);
+         }
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         if (result)
+         {
+             result(nil, error);
+         }
+     }];
     
     sessionManager.APIKey = nil;
     sessionManager.secretKey = nil;
@@ -660,9 +660,9 @@
 
 // GET /api/v3/openOrders
 - (void)openOrdersWithSymbol:(NSString *)symbol
-              timestamp:(NSTimeInterval)timestamp
-             timeToLive:(NSTimeInterval)timeToLive
-                 result:(nullable ResultBlock)result
+                   timestamp:(NSTimeInterval)timestamp
+                  timeToLive:(NSTimeInterval)timeToLive
+                      result:(nullable ResultBlock)result
 {
     NSParameterAssert(symbol);
     
@@ -685,19 +685,19 @@
              parameters:parameters
                progress:nil
                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-    {
-        if (result)
-        {
-            result(responseObject, nil);
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-    {
-        if (result)
-        {
-            result(nil, error);
-        }
-    }];
+     {
+         if (result)
+         {
+             result(responseObject, nil);
+         }
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         if (result)
+         {
+             result(nil, error);
+         }
+     }];
     
     sessionManager.APIKey = nil;
     sessionManager.secretKey = nil;
@@ -707,9 +707,9 @@
 - (void)allOrdersWithSymbol:(NSString *)symbol
                     orderId:(NSUInteger)orderId
                       limit:(NSUInteger)limit
-                   timestamp:(NSTimeInterval)timestamp
-                  timeToLive:(NSTimeInterval)timeToLive
-                      result:(nullable ResultBlock)result
+                  timestamp:(NSTimeInterval)timestamp
+                 timeToLive:(NSTimeInterval)timeToLive
+                     result:(nullable ResultBlock)result
 {
     NSParameterAssert(symbol);
     
@@ -768,7 +768,7 @@
                                  result:(nullable ResultBlock)result
 {
     NSMutableDictionary *parameters = [NSMutableDictionary new];
-
+    
     parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
     
     if (timeToLive > 0.0)
@@ -815,7 +815,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary new];
     
     parameters[@"symbol"] = symbol;
-
+    
     if (fromId != NSNotFound)
     {
         parameters[@"fromId"] = @(fromId);
@@ -827,7 +827,7 @@
         
         parameters[@"limit"] = @(canonicalLimit);
     }
-
+    
     parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
     
     if (timeToLive > 0.0)
@@ -856,6 +856,60 @@
              result(nil, error);
          }
      }];
+    
+    sessionManager.APIKey = nil;
+    sessionManager.secretKey = nil;
+}
+
+- (void)withdrawAsset:(NSString *)asset
+              address:(NSString *)address
+               amount:(CGFloat)amount
+                 name:(NSString *)name
+            timestamp:(NSTimeInterval)timestamp
+           timeToLive:(NSTimeInterval)timeToLive
+               result:(nullable ResultBlock)result
+{
+    NSParameterAssert(asset);
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary new];
+    
+    parameters[@"asset"] = asset;
+    
+    NSParameterAssert(address);
+    
+    parameters[@"address"] = address;
+    
+    NSAssert(amount >= 0.0, @"Amount must be greater than or equal to zero");
+    
+    parameters[@"amount"] = @(amount);
+    
+    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
+    
+    if (timeToLive > 0.0)
+    {
+        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
+    }
+    
+    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    sessionManager.APIKey = self.APIKey;
+    sessionManager.secretKey = self.secretKey;
+    
+    [sessionManager POST:@"/wapi/v1/withdraw"
+              parameters:parameters progress:nil
+                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+    {
+        if (result)
+        {
+            result(responseObject, nil);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+    {
+        if (result)
+        {
+            result(nil, error);
+        }
+    }];
     
     sessionManager.APIKey = nil;
     sessionManager.secretKey = nil;
@@ -933,10 +987,10 @@
     
     BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
     sessionManager.APIKey = self.APIKey;
-
+    
     [sessionManager DELETE:@"/api/v1/userDataStream"
-             parameters:parameters
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+                parameters:parameters
+                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          if (result)
          {

@@ -256,24 +256,24 @@
 
 // GET /api/v1/klines
 - (void)klineDataForSymbol:(NSString *)symbol
-                     interval:(Interval)interval
-                       result:(nullable ResultBlock)result
+                  interval:(Interval)interval
+                    result:(nullable ResultBlock)result
 {
     [self klineDataForSymbol:symbol
-                       interval:interval
-                      startTime:-1.0
-                        endTime:-1.0
-                          limit:NSNotFound
-                         result:result];
+                    interval:interval
+                   startTime:-1.0
+                     endTime:-1.0
+                       limit:NSNotFound
+                      result:result];
 }
 
 // GET /api/v1/klines
 - (void)klineDataForSymbol:(NSString *)symbol
-                     interval:(Interval)interval
-                    startTime:(NSTimeInterval)startTime
-                      endTime:(NSTimeInterval)endTime
-                        limit:(NSUInteger)limit
-                       result:(nullable ResultBlock)result
+                  interval:(Interval)interval
+                 startTime:(NSTimeInterval)startTime
+                   endTime:(NSTimeInterval)endTime
+                     limit:(NSUInteger)limit
+                    result:(nullable ResultBlock)result
 {
     NSParameterAssert(symbol);
     
@@ -922,6 +922,61 @@
     sessionManager.secretKey = nil;
     sessionManager.completionQueue = nil;
 }
+- (void)withdrawAsset:(NSString *)asset
+              address:(NSString *)address
+               amount:(CGFloat)amount
+                 name:(NSString *)name
+            timestamp:(NSTimeInterval)timestamp
+           timeToLive:(NSTimeInterval)timeToLive
+               result:(nullable ResultBlock)result
+{
+    NSParameterAssert(asset);
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary new];
+    
+    parameters[@"asset"] = asset;
+    
+    NSParameterAssert(address);
+    
+    parameters[@"address"] = address;
+    
+    NSAssert(amount >= 0.0, @"Amount must be greater than or equal to zero");
+    
+    parameters[@"amount"] = @(amount);
+    
+    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
+    
+    if (timeToLive > 0.0)
+    {
+        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
+    }
+    
+    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    sessionManager.APIKey = self.APIKey;
+    sessionManager.secretKey = self.secretKey;
+    
+    NSError *error;
+    
+    id resultData = [sessionManager syncPOST:@"/wapi/v1/withdraw"
+                                  parameters:parameters
+                                        task:nil
+                                       error:&error];
+    
+    if (result)
+    {
+        if (resultData)
+        {
+            result(resultData, nil);
+        }
+        else
+        {
+            result(nil, error);
+        }
+    }
+    
+    sessionManager.APIKey = nil;
+    sessionManager.secretKey = nil;
+}
 
 #pragma mark - User Stream Endpoint Methods
 
@@ -931,7 +986,7 @@
     BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
     sessionManager.APIKey = self.APIKey;
     sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-
+    
     NSError *error;
     
     id resultData = [sessionManager syncPOST:@"/api/v1/userDataStream"
@@ -967,7 +1022,7 @@
     BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
     sessionManager.APIKey = self.APIKey;
     sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-
+    
     NSError *error;
     
     id resultData = [sessionManager syncPUT:@"/api/v1/userDataStream"
@@ -1003,7 +1058,7 @@
     BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
     sessionManager.APIKey = self.APIKey;
     sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-
+    
     NSError *error;
     
     id resultData = [sessionManager syncDELETE:@"/api/v1/userDataStream"

@@ -352,4 +352,40 @@
     kAsynchronousExpectationTimeout
 }
 
+// POST /wapi/v1/withdraw
+- (void)tesWithdrawAssetAddressAmountNameTimestampTimeToLive
+{
+    id<BNBAccountEndpointProtocol> client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:@"YOUR-SECRET-KEY"];
+    
+    NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
+    
+    [client withdrawAsset:@"BTC"
+                  address:@""
+                   amount:0.0
+                     name:nil
+                timestamp:timestamp
+               timeToLive:5000
+                   result:^(id  _Nullable responseObject, NSError * _Nullable error)
+    {
+        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
+        {
+            DDLogInfo(@"*** %s succeeded ***", __PRETTY_FUNCTION__);
+            
+            NSDictionary *resultJSON = responseObject;
+            
+            DDLogInfo(@"*** Received message %@ success? %@ ***", resultJSON[@"msg"], resultJSON[@"success"] ? @"true" : @"false");
+            
+            [self.expectation fulfill];
+        }
+        else
+        {
+            kJSONResponseSerializerErrorLogging
+            
+            XCTFail(@"Expectation failed with error: %@", error);
+        }
+    }];
+    
+    kAsynchronousExpectationTimeout
+}
+
 @end

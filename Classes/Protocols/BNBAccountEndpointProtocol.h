@@ -28,32 +28,32 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BNBAccountEndpointProtocol <BNBEndpointProtocol>
 
 - (void)createOrderWithSymbol:(NSString *)symbol
-                  side:(OrderSide)side
-                  type:(OrderType)type
-           timeInForce:(TimeInForce)timeInForce
-              quantity:(CGFloat)quantity
-       icebergQuantity:(CGFloat)icebergQuantity
-                 price:(CGFloat)price
-             stopPrice:(CGFloat)stopPrice
-      newClientOrderId:(nullable NSString *)newClientOrderId
-             timestamp:(NSTimeInterval)timestamp
-            timeToLive:(NSTimeInterval)timeToLive
-                result:(nullable ResultBlock)result;
+                         side:(OrderSide)side
+                         type:(OrderType)type
+                  timeInForce:(TimeInForce)timeInForce
+                     quantity:(CGFloat)quantity
+              icebergQuantity:(CGFloat)icebergQuantity
+                        price:(CGFloat)price
+                    stopPrice:(CGFloat)stopPrice
+             newClientOrderId:(nullable NSString *)newClientOrderId
+                    timestamp:(NSTimeInterval)timestamp
+                   timeToLive:(NSTimeInterval)timeToLive
+                       result:(nullable ResultBlock)result;
 
 - (void)queryOrderWithSymbol:(NSString *)symbol
-                orderId:(NSUInteger)orderId
-  originalClientOrderId:(nullable NSString *)originalClientOrderId
-              timestamp:(NSTimeInterval)timestamp
-             timeToLive:(NSTimeInterval)timeToLive
-                 result:(nullable ResultBlock)result;
+                     orderId:(NSUInteger)orderId
+       originalClientOrderId:(nullable NSString *)originalClientOrderId
+                   timestamp:(NSTimeInterval)timestamp
+                  timeToLive:(NSTimeInterval)timeToLive
+                      result:(nullable ResultBlock)result;
 
 - (void)deleteOrderWithSymbol:(NSString *)symbol
-                orderId:(NSUInteger)orderId
-  originalClientOrderId:(nullable NSString *)originalClientOrderId
-       newClientOrderId:(nullable NSString *)newClientOrderId
-              timestamp:(NSTimeInterval)timestamp
-             timeToLive:(NSTimeInterval)timeToLive
-                 result:(nullable ResultBlock)result;
+                      orderId:(NSUInteger)orderId
+        originalClientOrderId:(nullable NSString *)originalClientOrderId
+             newClientOrderId:(nullable NSString *)newClientOrderId
+                    timestamp:(NSTimeInterval)timestamp
+                   timeToLive:(NSTimeInterval)timeToLive
+                       result:(nullable ResultBlock)result;
 
 - (void)openOrdersWithSymbol:(NSString *)symbol
                    timestamp:(NSTimeInterval)timestamp
@@ -77,6 +77,14 @@ NS_ASSUME_NONNULL_BEGIN
                timestamp:(NSTimeInterval)timestamp
               timeToLive:(NSTimeInterval)timeToLive
                   result:(nullable ResultBlock)result;
+
+- (void)withdrawAsset:(NSString *)asset
+              address:(NSString *)address
+               amount:(CGFloat)amount
+                 name:(nullable NSString *)name
+            timestamp:(NSTimeInterval)timestamp
+           timeToLive:(NSTimeInterval)timeToLive
+               result:(nullable ResultBlock)result;
 
 @end
 
