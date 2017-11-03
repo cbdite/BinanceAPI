@@ -21,56 +21,56 @@
 
 #import "BNBEnums.h"
 
-NSString * _Nonnull const SymbolType_toString[SymbolTypeCount] =
+NSString * _Nonnull const SymbolType_toString[BNBSymbolTypeCount] =
 {
-    [Spot] = @"SPOT"
+    [BNBSpot] = @"SPOT"
 };
 
-NSString * _Nonnull const OrderStatus_toString[OrderStatusCount] =
+NSString * _Nonnull const OrderStatus_toString[BNBOrderStatusCount] =
 {
-    [New] = @"NEW",
-    [PartiallyFilled] = @"PARTIALLY_FILLED",
-    [Filled] = @"FILLED",
-    [Canceled] = @"CANCELED",
-    [PendingCancel] = @"PENDING_CANCEL",
-    [Rejected] = @"REJECTED",
-    [Expired] = @"EXPIRED"
+    [BNBNew] = @"NEW",
+    [BNBPartiallyFilled] = @"PARTIALLY_FILLED",
+    [BNBFilled] = @"FILLED",
+    [BNBCanceled] = @"CANCELED",
+    [BNBPendingCancel] = @"PENDING_CANCEL",
+    [BNBRejected] = @"REJECTED",
+    [BNBExpired] = @"EXPIRED"
 };
 
-NSString * _Nonnull const OrderSide_toString[OrderSideCount] =
+NSString * _Nonnull const OrderSide_toString[BNBOrderSideCount] =
 {
-    [Buy] = @"BUY",
-    [Sell] = @"SELL"
+    [BNBBuy] = @"BUY",
+    [BNBSell] = @"SELL"
 };
 
-NSString * _Nonnull const OrderType_toString[OrderTypeCount] =
+NSString * _Nonnull const OrderType_toString[BNBOrderTypeCount] =
 {
-    [Limit] = @"LIMIT",
-    [Market] = @"MARKET"
+    [BNBLimit] = @"LIMIT",
+    [BNBMarket] = @"MARKET"
 };
 
-NSString * _Nonnull const TimeInForce_toString[TimeInForceCount] =
+NSString * _Nonnull const TimeInForce_toString[BNBTimeInForceCount] =
 {
-    [GTC] = @"GTC",
-    [IOC] = @"IOC"
+    [BNBGTC] = @"GTC",
+    [BNBIOC] = @"IOC"
 };
 
-NSString * _Nonnull const Interval_toString[IntervalCount] =
+NSString * _Nonnull const Interval_toString[BNBIntervalCount] =
 {
-    [OneMinute] = @"1m",
-    [ThreeMinutes] = @"3m",
-    [FiveMinutes] = @"5m",
-    [FifteenMinutes] = @"15m",
-    [ThirtyMinutes] = @"30m",
-    [OneHour] = @"1h",
-    [TwoHours] = @"2h",
-    [FourHours] = @"4h",
-    [SixHours] = @"6h",
-    [EightHours] = @"8h",
-    [TwelveHours] = @"12h",
-    [TwentyFourHours] = @"24h",
-    [OneDay] = @"1d",
-    [ThreeDays] = @"3d",
-    [OneWeek] = @"1w",
-    [OneMonth] = @"1M",
+    [BNBOneMinute] = @"1m",
+    [BNBThreeMinutes] = @"3m",
+    [BNBFiveMinutes] = @"5m",
+    [BNBFifteenMinutes] = @"15m",
+    [BNBThirtyMinutes] = @"30m",
+    [BNBOneHour] = @"1h",
+    [BNBTwoHours] = @"2h",
+    [BNBFourHours] = @"4h",
+    [BNBSixHours] = @"6h",
+    [BNBEightHours] = @"8h",
+    [BNBTwelveHours] = @"12h",
+    [BNBTwentyFourHours] = @"24h",
+    [BNBOneDay] = @"1d",
+    [BNBThreeDays] = @"3d",
+    [BNBOneWeek] = @"1w",
+    [BNBOneMonth] = @"1M",
 };

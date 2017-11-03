@@ -28,9 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BNBAccountEndpointProtocol <BNBEndpointProtocol>
 
 - (void)createOrderWithSymbol:(NSString *)symbol
-                         side:(OrderSide)side
-                         type:(OrderType)type
-                  timeInForce:(TimeInForce)timeInForce
+                         side:(BNBOrderSide)side
+                         type:(BNBOrderType)type
+                  timeInForce:(BNBTimeInForce)timeInForce
                      quantity:(CGFloat)quantity
               icebergQuantity:(CGFloat)icebergQuantity
                         price:(CGFloat)price
@@ -85,6 +85,22 @@ NS_ASSUME_NONNULL_BEGIN
             timestamp:(NSTimeInterval)timestamp
            timeToLive:(NSTimeInterval)timeToLive
                result:(nullable ResultBlock)result;
+
+- (void)depositHistoryForAsset:(nullable NSString *)asset
+                 depositStatus:(BNBDepositStatus)depositStatus
+                     startTime:(NSTimeInterval)startTime
+                       endTime:(NSTimeInterval)endTime
+                     timestamp:(NSTimeInterval)timestamp
+                    timeToLive:(NSTimeInterval)timeToLive
+                        result:(nullable ResultBlock)result;
+
+- (void)withdrawHistoryForAsset:(nullable NSString *)asset
+                 withdrawStatus:(BNBWithdrawStatus)withdrawStatus
+                      startTime:(NSTimeInterval)startTime
+                        endTime:(NSTimeInterval)endTime
+                      timestamp:(NSTimeInterval)timestamp
+                     timeToLive:(NSTimeInterval)timeToLive
+                         result:(nullable ResultBlock)result;
 
 @end
 

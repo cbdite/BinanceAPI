@@ -39,9 +39,9 @@
     NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
     
     [client testCreateOrderWithSymbol:@"LTCBTC"
-                                 side:Buy
-                                 type:Limit
-                          timeInForce:GTC
+                                 side:BNBBuy
+                                 type:BNBLimit
+                          timeInForce:BNBGTC
                              quantity:1.0
                       icebergQuantity:0.0
                                 price:0.005
@@ -75,9 +75,9 @@
     
     // BNBETH symbol fails with HTTP status code 400 and Binance error code -1013 "Filter failure: MIN_NOTIONAL"
     [client createOrderWithSymbol:@"LTCBTC"
-                             side:Sell
-                             type:Limit
-                      timeInForce:GTC
+                             side:BNBSell
+                             type:BNBLimit
+                      timeInForce:BNBGTC
                          quantity:1.0
                   icebergQuantity:0.0
                             price:0.1
@@ -350,6 +350,70 @@
              XCTFail(@"Expectation failed with error: %@", error);
          }
      }];
+}
+
+// POST /wapi/v1/getDepositHistory
+- (void)testDepositHistoryForAssetDepositStatusStartTimeEndTimeTimestampTimeToLive
+{
+    id<BNBAccountEndpointProtocol> client = [[BNBSynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:@"YOUR-SECRET-KEY"];
+    
+    NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
+    
+    [client depositHistoryForAsset:@"BTC"
+                     depositStatus:NSNotFound
+                         startTime:-1.0
+                           endTime:-1.0
+                         timestamp:timestamp
+                        timeToLive:5000
+                            result:^(id  _Nullable responseObject, NSError * _Nullable error)
+     {
+         if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
+         {
+             DDLogInfo(@"*** %s succeeded ***", __PRETTY_FUNCTION__);
+             
+             NSDictionary *resultJSON = responseObject;
+             
+             DDLogInfo(@"*** %@ ***", resultJSON);
+         }
+         else
+         {
+             kJSONResponseSerializerErrorLogging
+             
+             XCTFail(@"Expectation failed with error: %@", error);
+         }
+     }];
+}
+
+// POST /wapi/v1/getWithdrawHistory
+- (void)testWithdrawHistoryForAssetDepositStatusStartTimeEndTimeTimestampTimeToLive
+{
+    id<BNBAccountEndpointProtocol> client = [[BNBSynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:@"YOUR-SECRET-KEY"];
+    
+    NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
+    
+    [client withdrawHistoryForAsset:@"BTC"
+                     withdrawStatus:NSNotFound
+                          startTime:-1.0
+                            endTime:-1.0
+                          timestamp:timestamp
+                         timeToLive:5000
+                             result:^(id  _Nullable responseObject, NSError * _Nullable error)
+     {
+         if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
+         {
+             DDLogInfo(@"*** %s succeeded ***", __PRETTY_FUNCTION__);
+             
+             NSDictionary *resultJSON = responseObject;
+             
+             DDLogInfo(@"*** %@ ***", resultJSON);
+         }
+         else
+         {
+             kJSONResponseSerializerErrorLogging
+             
+             XCTFail(@"Expectation failed with error: %@", error);
+         }
+     }];    
 }
 
 @end

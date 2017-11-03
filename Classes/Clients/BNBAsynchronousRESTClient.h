@@ -44,21 +44,21 @@ NS_ASSUME_NONNULL_BEGIN
                               result:(nullable ResultBlock)result;
 
 - (void)klineDataForSymbol:(NSString *)symbol
-                  interval:(Interval)interval
+                  interval:(BNBInterval)interval
                     result:(nullable ResultBlock)result;
 
 - (void)testCreateOrderWithSymbol:(NSString *)symbol
-                  side:(OrderSide)side
-                  type:(OrderType)type
-           timeInForce:(TimeInForce)timeInForce
-              quantity:(CGFloat)quantity
-       icebergQuantity:(CGFloat)icebergQuantity
-                 price:(CGFloat)price
-             stopPrice:(CGFloat)stopPrice
-      newClientOrderId:(nullable NSString *)newClientOrderId
-             timestamp:(NSTimeInterval)timestamp
-            timeToLive:(NSTimeInterval)timeToLive
-                    result:(nullable ResultBlock)result;
+                             side:(BNBOrderSide)side
+                             type:(BNBOrderType)type
+                      timeInForce:(BNBTimeInForce)timeInForce
+                         quantity:(CGFloat)quantity
+                  icebergQuantity:(CGFloat)icebergQuantity
+                            price:(CGFloat)price
+                        stopPrice:(CGFloat)stopPrice
+                 newClientOrderId:(nullable NSString *)newClientOrderId
+                        timestamp:(NSTimeInterval)timestamp
+                       timeToLive:(NSTimeInterval)timeToLive
+                           result:(nullable ResultBlock)result;
 
 @end
 

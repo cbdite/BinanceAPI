@@ -134,7 +134,7 @@
     id<BNBMarketDataEndpointProtocol> client = [BNBAsynchronousRESTClient new];
     
     [client klineDataForSymbol:@"BNBETH"
-                         interval:FifteenMinutes
+                         interval:BNBFifteenMinutes
                         startTime:0.0
                           endTime:0.0
                             limit:10
@@ -211,7 +211,7 @@
     id<BNBMarketDataEndpointProtocol> client = [BNBAsynchronousRESTClient new];
     
     [client priceChangeStatisticsTickerForSymbol:@"BNBETH"
-                                        interval:TwentyFourHours
+                                        interval:BNBTwentyFourHours
                                           result:^(id  _Nullable responseObject, NSError * _Nullable error)
     {
         if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])

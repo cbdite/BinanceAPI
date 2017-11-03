@@ -39,14 +39,14 @@ NS_ASSUME_NONNULL_BEGIN
                               result:(nullable ResultBlock)result;
 
 - (void)klineDataForSymbol:(NSString *)symbol
-                  interval:(Interval)interval
+                  interval:(BNBInterval)interval
                  startTime:(NSTimeInterval)startTime
                    endTime:(NSTimeInterval)endTime
                      limit:(NSUInteger)limit
                     result:(nullable ResultBlock)result;
 
 - (void)priceChangeStatisticsTickerForSymbol:(NSString *)symbol
-                                    interval:(Interval)interval
+                                    interval:(BNBInterval)interval
                                       result:(nullable ResultBlock)result;
 
 - (void)priceTickersResult:(nullable ResultBlock)result;

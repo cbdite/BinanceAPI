@@ -43,13 +43,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)aggregateTradesListForSymbol:(NSString *)symbol
                               result:(nullable ResultBlock)result;
 
-- (void)klineDataForSymbol:(NSString *)symbol interval:(Interval)interval
+- (void)klineDataForSymbol:(NSString *)symbol
+                  interval:(BNBInterval)interval
                     result:(nullable ResultBlock)result;
 
 - (void)testCreateOrderWithSymbol:(NSString *)symbol
-                             side:(OrderSide)side
-                             type:(OrderType)type
-                      timeInForce:(TimeInForce)timeInForce
+                             side:(BNBOrderSide)side
+                             type:(BNBOrderType)type
+                      timeInForce:(BNBTimeInForce)timeInForce
                          quantity:(CGFloat)quantity
                   icebergQuantity:(CGFloat)icebergQuantity
                             price:(CGFloat)price

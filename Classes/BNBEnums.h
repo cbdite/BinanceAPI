@@ -21,74 +21,91 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, SymbolType)
+typedef NS_ENUM(NSUInteger, BNBSymbolType)
 {
-    Spot,
-    SymbolTypeCount
+    BNBSpot,
+    BNBSymbolTypeCount
 };
 
-extern NSString * _Nonnull const SymbolType_toString[SymbolTypeCount];
+extern NSString * _Nonnull const SymbolType_toString[BNBSymbolTypeCount];
 
-typedef NS_ENUM(NSUInteger, OrderStatus)
+typedef NS_ENUM(NSUInteger, BNBOrderStatus)
 {
-    New,
-    PartiallyFilled,
-    Filled,
-    Canceled,
-    PendingCancel,
-    Rejected,
-    Expired,
-    OrderStatusCount
+    BNBNew,
+    BNBPartiallyFilled,
+    BNBFilled,
+    BNBCanceled,
+    BNBPendingCancel,
+    BNBRejected,
+    BNBExpired,
+    BNBOrderStatusCount
 };
 
-extern NSString * _Nonnull const OrderStatus_toString[OrderStatusCount];
+extern NSString * _Nonnull const OrderStatus_toString[BNBOrderStatusCount];
 
-typedef NS_ENUM(NSUInteger, OrderSide)
+typedef NS_ENUM(NSUInteger, BNBOrderSide)
 {
-    Buy,
-    Sell,
-    OrderSideCount
+    BNBBuy,
+    BNBSell,
+    BNBOrderSideCount
 };
 
-extern NSString * _Nonnull const OrderSide_toString[OrderSideCount];
+extern NSString * _Nonnull const OrderSide_toString[BNBOrderSideCount];
 
-typedef NS_ENUM(NSUInteger, OrderType)
+typedef NS_ENUM(NSUInteger, BNBOrderType)
 {
-    Limit,
-    Market,
-    OrderTypeCount
+    BNBLimit,
+    BNBMarket,
+    BNBOrderTypeCount
 };
 
-extern NSString * _Nonnull const OrderType_toString[OrderTypeCount];
+extern NSString * _Nonnull const OrderType_toString[BNBOrderTypeCount];
 
-typedef NS_ENUM(NSUInteger, TimeInForce)
+typedef NS_ENUM(NSUInteger, BNBTimeInForce)
 {
-    GTC, // Good-Til-Canceled
-    IOC, // Immediate-Or-Cancel
-    TimeInForceCount
+    BNBGTC, // Good-Til-Canceled
+    BNBIOC, // Immediate-Or-Cancel
+    BNBTimeInForceCount
 };
 
-extern NSString * _Nonnull const TimeInForce_toString[TimeInForceCount];
+extern NSString * _Nonnull const TimeInForce_toString[BNBTimeInForceCount];
 
-typedef NS_ENUM(NSUInteger, Interval)
+typedef NS_ENUM(NSUInteger, BNBInterval)
 {
-    OneMinute,
-    ThreeMinutes,
-    FiveMinutes,
-    FifteenMinutes,
-    ThirtyMinutes,
-    OneHour,
-    TwoHours,
-    FourHours,
-    SixHours,
-    EightHours,
-    TwelveHours,
-    TwentyFourHours,
-    OneDay,
-    ThreeDays,
-    OneWeek,
-    OneMonth,
-    IntervalCount
+    BNBOneMinute,
+    BNBThreeMinutes,
+    BNBFiveMinutes,
+    BNBFifteenMinutes,
+    BNBThirtyMinutes,
+    BNBOneHour,
+    BNBTwoHours,
+    BNBFourHours,
+    BNBSixHours,
+    BNBEightHours,
+    BNBTwelveHours,
+    BNBTwentyFourHours,
+    BNBOneDay,
+    BNBThreeDays,
+    BNBOneWeek,
+    BNBOneMonth,
+    BNBIntervalCount
 };
 
-extern NSString * _Nonnull const Interval_toString[IntervalCount];
+extern NSString * _Nonnull const Interval_toString[BNBIntervalCount];
+
+typedef NS_ENUM(NSUInteger, BNBDepositStatus)
+{
+    BNBPending,
+    BNBSuccess
+};
+
+typedef NS_ENUM(NSUInteger, BNBWithdrawStatus)
+{
+    BNBEmailSent,
+    BNBCancelled,
+    BNBAwaitingApproval,
+    BNBWithdrawRejected,
+    BNBProcessing,
+    BNBFailure,
+    BNBCompleted
+};

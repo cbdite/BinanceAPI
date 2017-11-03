@@ -96,6 +96,9 @@ static NSString *const BinanceRESTBaseURLString = @"https://www.binance.com";
     [self addSignedEndpointURLPath:@"/api/v3/allOrders"];
     [self addSignedEndpointURLPath:@"/api/v3/account"];
     [self addSignedEndpointURLPath:@"/api/v3/myTrades"];
+    [self addSignedEndpointURLPath:@"/api/v1/withdraw"];
+    [self addSignedEndpointURLPath:@"/api/v1/getDepositHistory"];
+    [self addSignedEndpointURLPath:@"/api/v1/getWithdrawHistory"];
     
     [self addAPIKeyEndpointURLPath:@"/api/v1/userDataStream"];
 }

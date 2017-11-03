@@ -256,7 +256,7 @@
 
 // GET /api/v1/klines
 - (void)klineDataForSymbol:(NSString *)symbol
-                  interval:(Interval)interval
+                  interval:(BNBInterval)interval
                     result:(nullable ResultBlock)result
 {
     [self klineDataForSymbol:symbol
@@ -269,7 +269,7 @@
 
 // GET /api/v1/klines
 - (void)klineDataForSymbol:(NSString *)symbol
-                  interval:(Interval)interval
+                  interval:(BNBInterval)interval
                  startTime:(NSTimeInterval)startTime
                    endTime:(NSTimeInterval)endTime
                      limit:(NSUInteger)limit
@@ -335,7 +335,7 @@
 
 // GET /api/v1/ticker/24hr
 - (void)priceChangeStatisticsTickerForSymbol:(NSString *)symbol
-                                    interval:(Interval)interval
+                                    interval:(BNBInterval)interval
                                       result:(nullable ResultBlock)result
 {
     NSParameterAssert(symbol);
@@ -430,9 +430,9 @@
 
 // POST /api/v3/order/test
 - (void)testCreateOrderWithSymbol:(NSString *)symbol
-                             side:(OrderSide)side
-                             type:(OrderType)type
-                      timeInForce:(TimeInForce)timeInForce
+                             side:(BNBOrderSide)side
+                             type:(BNBOrderType)type
+                      timeInForce:(BNBTimeInForce)timeInForce
                          quantity:(CGFloat)quantity
                   icebergQuantity:(CGFloat)icebergQuantity
                             price:(CGFloat)price
@@ -459,9 +459,9 @@
 
 // POST /api/v3/order
 - (void)createOrderWithSymbol:(NSString *)symbol
-                         side:(OrderSide)side
-                         type:(OrderType)type
-                  timeInForce:(TimeInForce)timeInForce
+                         side:(BNBOrderSide)side
+                         type:(BNBOrderType)type
+                  timeInForce:(BNBTimeInForce)timeInForce
                      quantity:(CGFloat)quantity
               icebergQuantity:(CGFloat)icebergQuantity
                         price:(CGFloat)price
@@ -488,9 +488,9 @@
 
 // POST /api/v3/order
 - (void)createOrderWithSymbol:(NSString *)symbol
-                         side:(OrderSide)side
-                         type:(OrderType)type
-                  timeInForce:(TimeInForce)timeInForce
+                         side:(BNBOrderSide)side
+                         type:(BNBOrderType)type
+                  timeInForce:(BNBTimeInForce)timeInForce
                      quantity:(CGFloat)quantity
               icebergQuantity:(CGFloat)icebergQuantity
                         price:(CGFloat)price
@@ -922,6 +922,8 @@
     sessionManager.secretKey = nil;
     sessionManager.completionQueue = nil;
 }
+
+// POST /wapi/v1/withdraw
 - (void)withdrawAsset:(NSString *)asset
               address:(NSString *)address
                amount:(CGFloat)amount
@@ -958,6 +960,137 @@
     NSError *error;
     
     id resultData = [sessionManager syncPOST:@"/wapi/v1/withdraw"
+                                  parameters:parameters
+                                        task:nil
+                                       error:&error];
+    
+    if (result)
+    {
+        if (resultData)
+        {
+            result(resultData, nil);
+        }
+        else
+        {
+            result(nil, error);
+        }
+    }
+    
+    sessionManager.APIKey = nil;
+    sessionManager.secretKey = nil;
+}
+
+// POST /wapi/v1/getDepositHistory
+- (void)depositHistoryForAsset:(nullable NSString *)asset
+                 depositStatus:(BNBDepositStatus)depositStatus
+                     startTime:(NSTimeInterval)startTime
+                       endTime:(NSTimeInterval)endTime
+                     timestamp:(NSTimeInterval)timestamp
+                    timeToLive:(NSTimeInterval)timeToLive
+                        result:(nullable ResultBlock)result
+{
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary new];
+    
+    if (asset)
+    {
+        parameters[@"asset"] = asset;
+    }
+    
+    if (depositStatus != NSNotFound)
+    {
+        parameters[@"status"] = @(depositStatus);
+    }
+    
+    if (startTime >= 0.0)
+    {
+        parameters[@"startTime"] = @([NSNumber numberWithDouble:startTime].longLongValue);
+    }
+    
+    if (endTime >= 0.0)
+    {
+        parameters[@"endTime"] = @([NSNumber numberWithDouble:endTime].longLongValue);
+    }
+    
+    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
+    
+    if (timeToLive > 0.0)
+    {
+        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
+    }
+    
+    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    sessionManager.APIKey = self.APIKey;
+    sessionManager.secretKey = self.secretKey;
+    
+    NSError *error;
+    
+    id resultData = [sessionManager syncPOST:@"/wapi/v1/getDepositHistory"
+                                  parameters:parameters
+                                        task:nil
+                                       error:&error];
+    
+    if (result)
+    {
+        if (resultData)
+        {
+            result(resultData, nil);
+        }
+        else
+        {
+            result(nil, error);
+        }
+    }
+    
+    sessionManager.APIKey = nil;
+    sessionManager.secretKey = nil;
+}
+
+// POST /wapi/v1/getWithdrawHistory
+- (void)withdrawHistoryForAsset:(nullable NSString *)asset
+                 withdrawStatus:(BNBWithdrawStatus)withdrawStatus
+                      startTime:(NSTimeInterval)startTime
+                        endTime:(NSTimeInterval)endTime
+                      timestamp:(NSTimeInterval)timestamp
+                     timeToLive:(NSTimeInterval)timeToLive
+                         result:(nullable ResultBlock)result
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary new];
+    
+    if (asset)
+    {
+        parameters[@"asset"] = asset;
+    }
+    
+    if (withdrawStatus != NSNotFound)
+    {
+        parameters[@"status"] = @(withdrawStatus);
+    }
+    
+    if (startTime >= 0.0)
+    {
+        parameters[@"startTime"] = @([NSNumber numberWithDouble:startTime].longLongValue);
+    }
+    
+    if (endTime >= 0.0)
+    {
+        parameters[@"endTime"] = @([NSNumber numberWithDouble:endTime].longLongValue);
+    }
+    
+    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
+    
+    if (timeToLive > 0.0)
+    {
+        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
+    }
+    
+    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    sessionManager.APIKey = self.APIKey;
+    sessionManager.secretKey = self.secretKey;
+    
+    NSError *error;
+    
+    id resultData = [sessionManager syncPOST:@"/wapi/v1/getWithdrawHistory"
                                   parameters:parameters
                                         task:nil
                                        error:&error];
