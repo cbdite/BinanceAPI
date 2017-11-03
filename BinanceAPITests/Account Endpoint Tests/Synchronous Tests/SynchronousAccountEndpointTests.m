@@ -328,7 +328,7 @@
     NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
     
     [client withdrawAsset:@"BTC"
-                  address:@"1CXKVbRkGjgrenqR1aGVJuknanx4tchcJL"
+                  address:@""
                    amount:0.0
                      name:nil
                 timestamp:timestamp

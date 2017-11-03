@@ -175,6 +175,37 @@ With the client instantiated, you are ready to fire requests at the API.
                   timeToLive:5000
                       result:^(id  _Nullable responseObject, NSError * _Nullable error){}];
 ```
+#### Withdraw (SIGNED)
+```
+[client withdrawAsset:@"BTC"
+                  address:@""
+                   amount:0.0
+                     name:nil
+                timestamp:[NSDate millisecondTimeIntervalSince1970]
+               timeToLive:5000
+                   result:^(id  _Nullable responseObject, NSError * _Nullable error){}];
+```
+#### Deposit history (SIGNED)
+```
+[client depositHistoryForAsset:@"BTC"
+                     depositStatus:NSNotFound
+                         startTime:-1.0
+                           endTime:-1.0
+                         timestamp:[NSDate millisecondTimeIntervalSince1970]
+                        timeToLive:5000
+                            result:^(id  _Nullable responseObject, NSError * _Nullable error){}];
+```
+
+#### Withdraw history (SIGNED)
+```
+[client withdrawHistoryForAsset:@"BTC"
+                     withdrawStatus:NSNotFound
+                         startTime:-1.0
+                           endTime:-1.0
+                         timestamp:[NSDate millisecondTimeIntervalSince1970]
+                        timeToLive:5000
+                            result:^(id  _Nullable responseObject, NSError * _Nullable error){}];
+```
 
 ### User Stream Endpoints
 
@@ -215,6 +246,6 @@ BNBWebSocketClient *client = [BNBWebSocketClient webSocketClientWithURLString:@"
 Please refer to the respective tests for a more in depth treatment of the [Binance API](https://www.binance.com/restapipub.html) endpoints.
 
 ### ToDo
-* Withdraw/getDepositHistory/getTradeHistory endpoint implementations
 * Refactoring
 * Documenting/Commenting
+* Misc improvements
