@@ -25,8 +25,6 @@
 #import "NSDate+Utilities.h"
 #import "BNBNumberFormatters.h"
 
-#import "TestConstants.h"
-
 @interface AsynchronousAccountEndpointTests : BNBAsynchronousXCTestCase
 
 @end
