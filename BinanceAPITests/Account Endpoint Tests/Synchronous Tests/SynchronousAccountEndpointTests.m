@@ -69,7 +69,7 @@
 // POST /api/v3/order
 - (void)testCreateOrderWithSymbolSideTypeTimeInForceQuantityIcebergQuantityPriceStopPriceNewClientOrderIdTimestampTimeToLive
 {
-    id<BNBAccountEndpointProtocol> client = [[BNBSynchronousRESTClient alloc] initWithAPIKey:kAPIKey secretKey:kSecretKey];
+    id<BNBAccountEndpointProtocol> client = [[BNBSynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:@"YOUR-SECRET-KEY"];
     
     NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
     

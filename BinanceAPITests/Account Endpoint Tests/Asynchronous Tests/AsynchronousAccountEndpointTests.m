@@ -75,7 +75,7 @@
  // POST /api/v3/order
  - (void)testCreateOrderWithSymbolSideTypeTimeInForceQuantityIcebergQuantityPriceStopPriceNewClientOrderIdTimestampTimeToLive
  {
- id<BNBAccountEndpointProtocol> client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:kAPIKey secretKey:kSecretKey];
+ id<BNBAccountEndpointProtocol> client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:@"YOUR-SECRET-KEY"];
  
  NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
  
@@ -393,7 +393,7 @@
 // POST /wapi/v1/getDepositHistory.html
 - (void)testDepositHistoryForAssetDepositStatusStartTimeEndTimeTimestampTimeToLive
 {
-    id<BNBAccountEndpointProtocol> client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:kAPIKey secretKey:kSecretKey];
+    id<BNBAccountEndpointProtocol> client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:@"YOUR-SECRET-KEY"];
     
     NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
     
