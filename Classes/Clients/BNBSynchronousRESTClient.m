@@ -923,7 +923,7 @@
     sessionManager.completionQueue = nil;
 }
 
-// POST /wapi/v1/withdraw
+// POST /wapi/v1/withdraw.html
 - (void)withdrawAsset:(NSString *)asset
               address:(NSString *)address
                amount:(CGFloat)amount
@@ -959,7 +959,7 @@
     
     NSError *error;
     
-    id resultData = [sessionManager syncPOST:@"/wapi/v1/withdraw"
+    id resultData = [sessionManager syncPOST:@"/wapi/v1/withdraw.html"
                                   parameters:parameters
                                         task:nil
                                        error:&error];
@@ -980,7 +980,7 @@
     sessionManager.secretKey = nil;
 }
 
-// POST /wapi/v1/getDepositHistory
+// POST /wapi/v1/getDepositHistory.html
 - (void)depositHistoryForAsset:(nullable NSString *)asset
                  depositStatus:(BNBDepositStatus)depositStatus
                      startTime:(NSTimeInterval)startTime
@@ -1025,7 +1025,7 @@
     
     NSError *error;
     
-    id resultData = [sessionManager syncPOST:@"/wapi/v1/getDepositHistory"
+    id resultData = [sessionManager syncPOST:@"/wapi/v1/getDepositHistory.html"
                                   parameters:parameters
                                         task:nil
                                        error:&error];
@@ -1046,7 +1046,7 @@
     sessionManager.secretKey = nil;
 }
 
-// POST /wapi/v1/getWithdrawHistory
+// POST /wapi/v1/getWithdrawHistory.html
 - (void)withdrawHistoryForAsset:(nullable NSString *)asset
                  withdrawStatus:(BNBWithdrawStatus)withdrawStatus
                       startTime:(NSTimeInterval)startTime
@@ -1090,7 +1090,7 @@
     
     NSError *error;
     
-    id resultData = [sessionManager syncPOST:@"/wapi/v1/getWithdrawHistory"
+    id resultData = [sessionManager syncPOST:@"/wapi/v1/getWithdrawHistory.html"
                                   parameters:parameters
                                         task:nil
                                        error:&error];

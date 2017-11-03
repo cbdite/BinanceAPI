@@ -861,7 +861,7 @@
     sessionManager.secretKey = nil;
 }
 
-// POST /wapi/v1/withdraw
+// POST /wapi/v1/withdraw.html
 - (void)withdrawAsset:(NSString *)asset
               address:(NSString *)address
                amount:(CGFloat)amount
@@ -895,7 +895,7 @@
     sessionManager.APIKey = self.APIKey;
     sessionManager.secretKey = self.secretKey;
     
-    [sessionManager POST:@"/wapi/v1/withdraw"
+    [sessionManager POST:@"/wapi/v1/withdraw.html"
               parameters:parameters
                 progress:nil
                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
@@ -917,7 +917,7 @@
     sessionManager.secretKey = nil;
 }
 
-// POST /wapi/v1/getDepositHistory
+// POST /wapi/v1/getDepositHistory.html
 - (void)depositHistoryForAsset:(nullable NSString *)asset
                  depositStatus:(BNBDepositStatus)depositStatus
                      startTime:(NSTimeInterval)startTime
@@ -955,12 +955,12 @@
     {
         parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
     }
-    
+        
     BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
     sessionManager.APIKey = self.APIKey;
     sessionManager.secretKey = self.secretKey;
     
-    [sessionManager POST:@"/wapi/v1/getDepositHistory"
+    [sessionManager POST:@"/wapi/v1/getDepositHistory.html"
               parameters:parameters
                 progress:nil
                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
@@ -982,7 +982,7 @@
     sessionManager.secretKey = nil;
 }
 
-// POST /wapi/v1/getWithdrawHistory
+// POST /wapi/v1/getWithdrawHistory.html
 - (void)withdrawHistoryForAsset:(nullable NSString *)asset
                  withdrawStatus:(BNBWithdrawStatus)withdrawStatus
                       startTime:(NSTimeInterval)startTime
@@ -1024,7 +1024,7 @@
     sessionManager.APIKey = self.APIKey;
     sessionManager.secretKey = self.secretKey;
     
-    [sessionManager POST:@"/wapi/v1/getWithdrawHistory"
+    [sessionManager POST:@"/wapi/v1/getWithdrawHistory.html"
               parameters:parameters
                 progress:nil
                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)

@@ -320,7 +320,7 @@
      }];    
 }
 
-// POST /wapi/v1/withdraw
+// POST /wapi/v1/withdraw.html
 - (void)tesWithdrawAssetAddressAmountNameTimestampTimeToLive
 {
     id<BNBAccountEndpointProtocol> client = [[BNBSynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:@"YOUR-SECRET-KEY"];
@@ -352,7 +352,7 @@
      }];
 }
 
-// POST /wapi/v1/getDepositHistory
+// POST /wapi/v1/getDepositHistory.html
 - (void)testDepositHistoryForAssetDepositStatusStartTimeEndTimeTimestampTimeToLive
 {
     id<BNBAccountEndpointProtocol> client = [[BNBSynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:@"YOUR-SECRET-KEY"];
@@ -370,10 +370,6 @@
          if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
          {
              DDLogInfo(@"*** %s succeeded ***", __PRETTY_FUNCTION__);
-             
-             NSDictionary *resultJSON = responseObject;
-             
-             DDLogInfo(@"*** %@ ***", resultJSON);
          }
          else
          {
@@ -384,7 +380,7 @@
      }];
 }
 
-// POST /wapi/v1/getWithdrawHistory
+// POST /wapi/v1/getWithdrawHistory.html
 - (void)testWithdrawHistoryForAssetDepositStatusStartTimeEndTimeTimestampTimeToLive
 {
     id<BNBAccountEndpointProtocol> client = [[BNBSynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:@"YOUR-SECRET-KEY"];
@@ -402,10 +398,6 @@
          if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
          {
              DDLogInfo(@"*** %s succeeded ***", __PRETTY_FUNCTION__);
-             
-             NSDictionary *resultJSON = responseObject;
-             
-             DDLogInfo(@"*** %@ ***", resultJSON);
          }
          else
          {
