@@ -144,43 +144,63 @@ static NSString *const BinanceRESTBaseURLString = @"https://www.binance.com";
     
     NSString *URLPath = mutableRequest.URL.path;
     
-    if ([self.signedEndpointURLPaths containsObject:URLPath])
+    if ([self.signedEndpointURLPaths containsObject:URLPath] || [self.APIKeyEndpointURLPaths containsObject:URLPath])
     {
         [mutableRequest setValue:self.APIKey forHTTPHeaderField:@"X-MBX-APIKEY"];
         
-        NSString *HTTPMethod = mutableRequest.HTTPMethod;
-        
-        if ([HTTPMethod isEqualToString:@"GET"] || [HTTPMethod isEqualToString:@"DELETE"])
+        if ([self.signedEndpointURLPaths containsObject:URLPath])
         {
-            NSString *queryString = mutableRequest.URL.query;
-            
-            NSString *HMACString = [BNBUtilities HMACStringForKey:self.secretKey dataString:queryString];
-            
-            NSURLComponents *URLComponents = [NSURLComponents componentsWithURL:mutableRequest.URL resolvingAgainstBaseURL:NO];
-            
-            NSURLQueryItem *queryItem = [NSURLQueryItem queryItemWithName:@"signature" value:HMACString];
-            
-            URLComponents.queryItems = [URLComponents.queryItems arrayByAddingObject:queryItem];
-            
-            mutableRequest.URL = URLComponents.URL;
-        }
-        else if ([HTTPMethod isEqualToString:@"POST"] || [HTTPMethod isEqualToString:@"PUT"])
-        {
-            NSString *HTTPBodyString = [[NSString alloc] initWithData:mutableRequest.HTTPBody encoding:NSUTF8StringEncoding];
-            
-            NSString *HMACString = [BNBUtilities HMACStringForKey:self.secretKey dataString:HTTPBodyString];
-            
-            NSString *signatureHTTPBodyString = [HTTPBodyString stringByAppendingFormat:@"&signature=%@", HMACString];
-            
-            mutableRequest.HTTPBody = [signatureHTTPBodyString dataUsingEncoding:NSUTF8StringEncoding];
+            // wapi endpoints don't accept parameters in request body for POST and PUT requests
+            if ([URLPath containsString:@"wapi"])
+            {
+                [self appendHMACStringToQueryStringForMutableURLRequest:mutableRequest];
+            }
+            else
+            {
+                
+                NSString *HTTPMethod = mutableRequest.HTTPMethod;
+                
+                if ([HTTPMethod isEqualToString:@"GET"] || [HTTPMethod isEqualToString:@"DELETE"])
+                {
+                    [self appendHMACStringToQueryStringForMutableURLRequest:mutableRequest];
+                }
+                else if ([HTTPMethod isEqualToString:@"POST"] || [HTTPMethod isEqualToString:@"PUT"])
+                {
+                    [self appendHMACStringToHTTPBodyForMutableURLRequest:mutableRequest];
+                }
+            }
         }
     }
-    else if ([self.APIKeyEndpointURLPaths containsObject:URLPath])
-    {
-        [mutableRequest setValue:self.APIKey forHTTPHeaderField:@"X-MBX-APIKEY"];
-    }
-    
+
     return [super dataTaskWithRequest:mutableRequest uploadProgress:uploadProgressBlock downloadProgress:downloadProgressBlock completionHandler:completionHandler];
+}
+
+#pragma mark - Utility Methods
+
+- (void)appendHMACStringToQueryStringForMutableURLRequest:(NSMutableURLRequest *)mutableRequest
+{
+    NSString *queryString = mutableRequest.URL.query;
+    
+    NSString *HMACString = [BNBUtilities HMACStringForKey:self.secretKey dataString:queryString];
+    
+    NSURLComponents *URLComponents = [NSURLComponents componentsWithURL:mutableRequest.URL resolvingAgainstBaseURL:NO];
+    
+    NSURLQueryItem *queryItem = [NSURLQueryItem queryItemWithName:@"signature" value:HMACString];
+    
+    URLComponents.queryItems = [URLComponents.queryItems arrayByAddingObject:queryItem];
+    
+    mutableRequest.URL = URLComponents.URL;
+}
+
+- (void)appendHMACStringToHTTPBodyForMutableURLRequest:(NSMutableURLRequest *)mutableRequest
+{
+    NSString *HTTPBodyString = [[NSString alloc] initWithData:mutableRequest.HTTPBody encoding:NSUTF8StringEncoding];
+    
+    NSString *HMACString = [BNBUtilities HMACStringForKey:self.secretKey dataString:HTTPBodyString];
+    
+    NSString *signatureHTTPBodyString = [HTTPBodyString stringByAppendingFormat:@"&signature=%@", HMACString];
+    
+    mutableRequest.HTTPBody = [signatureHTTPBodyString dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end
