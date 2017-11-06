@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B50584C1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50584B1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.m */; };
 		1B627F0B1FA9F22200E44A24 /* BNBJSONResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */; };
 		1B627F0D1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */; };
 		1B627F0F1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0E1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m */; };
@@ -31,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B50584A1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBHTTPRequestSerializer.h; sourceTree = "<group>"; };
+		1B50584B1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBHTTPRequestSerializer.m; sourceTree = "<group>"; };
 		1B627F091FA9F22200E44A24 /* BNBJSONResponseSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBJSONResponseSerializer.h; sourceTree = "<group>"; };
 		1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBJSONResponseSerializer.m; sourceTree = "<group>"; };
 		1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynchronousMarketDataEndpointTests.m; sourceTree = "<group>"; };
@@ -91,6 +94,8 @@
 			children = (
 				1B627F091FA9F22200E44A24 /* BNBJSONResponseSerializer.h */,
 				1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */,
+				1B50584A1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.h */,
+				1B50584B1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.m */,
 			);
 			path = Serializers;
 			sourceTree = "<group>";
@@ -452,6 +457,7 @@
 				1B67208B1FA78773007D86BA /* BNBEnums.m in Sources */,
 				1B627F151FAA170D00E44A24 /* WebSocketEndpointTests.m in Sources */,
 				1B895B201FA3A924005D6169 /* BNBAsynchronousRESTClient.m in Sources */,
+				1B50584C1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.m in Sources */,
 				1B8BCFB01FAA2E1700EDA14F /* AsynchronousUserStreamEndpointTests.m in Sources */,
 				1B9B3D981FA4B708004693D5 /* AsynchronousMarketDataEndpointTests.m in Sources */,
 				1B895B281FA49CD2005D6169 /* BNBXCTestCase.m in Sources */,

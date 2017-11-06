@@ -1,4 +1,4 @@
-// BNBJSONResponseSerializer.h
+// BNBHTTPRequestSerializer.h
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,10 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <AFNetworking/AFURLResponseSerialization.h>
+#import <AFNetworking/AFURLRequestSerialization.h>
 
-extern NSString * const BNBJSONResponseSerializerFailingURLResponseObjectErrorKey;
-
-@interface BNBJSONResponseSerializer : AFJSONResponseSerializer
+@interface BNBHTTPRequestSerializer : AFHTTPRequestSerializer
 
 @end

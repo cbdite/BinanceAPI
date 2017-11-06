@@ -21,6 +21,7 @@
 
 #import "BNBHTTPSessionManager.h"
 
+#import "BNBHTTPRequestSerializer.h"
 #import "BNBJSONResponseSerializer.h"
 #import "BNBUtilities.h"
 
@@ -55,6 +56,8 @@ static NSString *const BinanceRESTBaseURLString = @"https://www.binance.com";
     dispatch_once(&onceToken, ^{
         sharedInstance = [[BNBHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:BinanceRESTBaseURLString] sessionConfiguration:nil];
 
+        sharedInstance.requestSerializer = [BNBHTTPRequestSerializer serializer];
+        
         NSString *userAgent = [sharedInstance.requestSerializer valueForHTTPHeaderField:@"User-Agent"];
         
         // Ensure compatibility with targets that don't contain a main bundle
@@ -157,7 +160,6 @@ static NSString *const BinanceRESTBaseURLString = @"https://www.binance.com";
             }
             else
             {
-                
                 NSString *HTTPMethod = mutableRequest.HTTPMethod;
                 
                 if ([HTTPMethod isEqualToString:@"GET"] || [HTTPMethod isEqualToString:@"DELETE"])
