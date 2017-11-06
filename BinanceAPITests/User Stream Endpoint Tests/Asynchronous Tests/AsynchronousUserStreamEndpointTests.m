@@ -32,7 +32,7 @@
 // POST /api/v3/order/test
 - (void)testCreateUserStream
 {
-    id<BNBUserStreamEndpointProtocol> client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:nil];
+    id<BNBUserStreamEndpointProtocol> client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:kAPIKey secretKey:nil];
     
     [client createUserStream:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
@@ -60,7 +60,7 @@
 // PUT /api/v3/order/test
 - (void)testUpdateUserStreamForListenKey
 {
-    id<BNBUserStreamEndpointProtocol> client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:nil];
+    id<BNBUserStreamEndpointProtocol> client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:kAPIKey secretKey:nil];
     
     [client updateUserStreamForListenKey:@""
                                   result:^(id  _Nullable responseObject, NSError * _Nullable error)
@@ -85,7 +85,7 @@
 // DELETE /api/v3/order/test
 - (void)testDeleteUserStreamForListenKey
 {
-    id<BNBUserStreamEndpointProtocol> client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:nil];
+    id<BNBUserStreamEndpointProtocol> client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:kAPIKey secretKey:nil];
     
     [client deleteUserStreamForListenKey:@""
                                   result:^(id  _Nullable responseObject, NSError * _Nullable error)

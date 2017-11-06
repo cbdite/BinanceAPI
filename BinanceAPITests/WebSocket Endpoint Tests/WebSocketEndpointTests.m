@@ -59,7 +59,7 @@
 
 - (void)testUserDataWebSocketEndpoint
 {
-    id<BNBUserStreamEndpointProtocol> client = [[BNBSynchronousRESTClient alloc] initWithAPIKey:@"YOUR-API-KEY" secretKey:nil];
+    id<BNBUserStreamEndpointProtocol> client = [[BNBSynchronousRESTClient alloc] initWithAPIKey:kAPIKey secretKey:nil];
     
     [client createUserStream:^(id  _Nullable responseObject, NSError * _Nullable error)
     {

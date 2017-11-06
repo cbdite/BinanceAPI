@@ -1,4 +1,4 @@
-// BNBXCTestCase.h
+// BNBTestConstants.h
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,22 +19,5 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <XCTest/XCTest.h>
-
-#import <CocoaLumberjack/CocoaLumberjack.h>
-
-#import "BNBJSONResponseSerializer.h"
-#import "BNBTestConstants.h"
-
-static const DDLogLevel ddLogLevel = DDLogLevelInfo;
-
-#define kJSONResponseSerializerErrorLogging id responseObject = error.userInfo[BNBJSONResponseSerializerFailingURLResponseObjectErrorKey];\
-                                            if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])\
-                                            {\
-                                                NSDictionary *responseJSON = responseObject;\
-                                                DDLogError(@"*** %s failed with\nBinance error code: %@\nBinance error message: %@ ***", __PRETTY_FUNCTION__, responseJSON[@"code"], responseJSON[@"msg"]);\
-                                            }
-
-@interface BNBXCTestCase : XCTestCase
-
-@end
+#define kAPIKey @"YOUR-API-KEY"
+#define kSecretKey @"YOUR-SECRET-KEY"

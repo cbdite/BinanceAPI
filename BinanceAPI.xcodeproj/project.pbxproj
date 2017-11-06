@@ -34,6 +34,7 @@
 /* Begin PBXFileReference section */
 		1B50584A1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBHTTPRequestSerializer.h; sourceTree = "<group>"; };
 		1B50584B1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBHTTPRequestSerializer.m; sourceTree = "<group>"; };
+		1B50584E1FB0ED9F00167D1F /* BNBTestConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBTestConstants.h; sourceTree = "<group>"; };
 		1B627F091FA9F22200E44A24 /* BNBJSONResponseSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBJSONResponseSerializer.h; sourceTree = "<group>"; };
 		1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBJSONResponseSerializer.m; sourceTree = "<group>"; };
 		1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynchronousMarketDataEndpointTests.m; sourceTree = "<group>"; };
@@ -139,6 +140,7 @@
 		1B895B061FA21EB2005D6169 /* BinanceAPITests */ = {
 			isa = PBXGroup;
 			children = (
+				1B50584E1FB0ED9F00167D1F /* BNBTestConstants.h */,
 				1B67208E1FA8BAA0007D86BA /* BNBNumberFormatters.h */,
 				1B67208F1FA8BAA0007D86BA /* BNBNumberFormatters.m */,
 				1B895B261FA49CD2005D6169 /* BNBXCTestCase.h */,
