@@ -28,14 +28,14 @@
 - (instancetype)initWithSymbol:(NSString *)symbol
                        orderId:(NSUInteger)orderId
          originalClientOrderId:(nullable NSString *)originalClientOrderId
-          updatedClientOrderId:(nullable NSString *)updatedClientOrderId
+          clientOrderId:(nullable NSString *)clientOrderId
 {
     if (self = [super init])
     {
         self.symbol = symbol;
         self.orderId = orderId;
         self.originalClientOrderId = originalClientOrderId;
-        self.updatedClientOrderId = updatedClientOrderId;
+        self.clientOrderId = clientOrderId;
     }
     
     return self;
@@ -71,9 +71,9 @@
             requestParameters[@"origClientOrderId"] = self.originalClientOrderId;
         }
         
-        if (self.updatedClientOrderId)
+        if (self.clientOrderId)
         {
-            requestParameters[@"newClientOrderId"] = self.updatedClientOrderId;
+            requestParameters[@"newClientOrderId"] = self.clientOrderId;
         }
     }
     

@@ -1,4 +1,4 @@
-// BNBDeleteOrderRequest.h
+// BNBCheckServerTimeRequest.m
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,27 +19,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "BNBCheckServerTimeRequest.h"
 
-#import "BNBEndpointRequestProtocol.h"
+@implementation BNBCheckServerTimeRequest
 
-NS_ASSUME_NONNULL_BEGIN
+#pragma mark - BNBEndpointRequestProtocol Methods
 
-@interface BNBDeleteOrderRequest : NSObject <BNBEndpointRequestProtocol>
+- (NSString *)URLPathString
+{
+    return @"/api/v1/time";
+}
 
-@property (copy, nonatomic) NSString *symbol;
+- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+{
+    return nil;
+}
 
-@property (assign, nonatomic) NSUInteger orderId;
+- (BOOL)requiresAPIKey
+{
+    return NO;
+}
 
-@property (nullable, copy, nonatomic) NSString *originalClientOrderId;
-
-@property (nullable, copy, nonatomic) NSString *clientOrderId;
-
-- (instancetype)initWithSymbol:(NSString *)symbol
-                       orderId:(NSUInteger)orderId
-         originalClientOrderId:(nullable NSString *)originalClientOrderId
-          clientOrderId:(nullable NSString *)clientOrderId;
+- (BOOL)requiresSecretKey
+{
+    return NO;
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

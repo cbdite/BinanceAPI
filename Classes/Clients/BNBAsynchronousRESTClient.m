@@ -24,6 +24,13 @@
 #import "BNBHTTPSessionManager.h"
 #import "BNBUtilities.h"
 
+#import "BNBTestConnectivityRequest.h"
+#import "BNBCheckServerTimeRequest.h"
+
+#import "BNBCreateUserStreamRequest.h"
+#import "BNBUpdateUserStreamRequest.h"
+#import "BNBDeleteUserStreamRequest.h"
+
 #import "BNBTestCreateOrderRequest.h"
 #import "BNBCreateOrderRequest.h"
 #import "BNBQueryOrderRequest.h"
@@ -65,49 +72,25 @@
 // GET /api/v1/ping
 - (void)testConnectivity:(nullable ResultBlock)result
 {
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    id<BNBEndpointRequestProtocol> request = [BNBTestConnectivityRequest new];
     
-    [sessionManager GET:@"/api/v1/ping"
-             parameters:nil
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // GET /api/v1/time
 - (void)checkServerTime:(nullable ResultBlock)result
 {
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    id<BNBEndpointRequestProtocol> request = [BNBCheckServerTimeRequest new];
     
-    [sessionManager GET:@"/api/v1/time"
-             parameters:nil
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 #pragma mark - Market Data Endpoint Methods
@@ -485,7 +468,7 @@
 - (void)deleteOrderWithSymbol:(NSString *)symbol
                       orderId:(NSUInteger)orderId
         originalClientOrderId:(nullable NSString *)originalClientOrderId
-         updatedClientOrderId:(nullable NSString *)updatedClientOrderId
+         clientOrderId:(nullable NSString *)clientOrderId
                     timestamp:(NSTimeInterval)timestamp
                    timeToLive:(NSTimeInterval)timeToLive
                        result:(nullable ResultBlock)result
@@ -493,7 +476,7 @@
     id<BNBEndpointRequestProtocol> request = [[BNBDeleteOrderRequest alloc] initWithSymbol:symbol
                                                                                    orderId:orderId
                                                                      originalClientOrderId:originalClientOrderId
-                                                                          updatedClientOrderId:updatedClientOrderId];
+                                                                             clientOrderId:clientOrderId];
     
     [self performRequest:request
           withHTTPMethod:BNBDELETE
@@ -632,6 +615,44 @@
                   result:result];
 }
 
+#pragma mark - User Stream Endpoint Methods
+
+// POST /api/v1/userDataStream
+- (void)createUserStream:(nullable ResultBlock)result
+{
+    id<BNBEndpointRequestProtocol> request = [BNBCreateUserStreamRequest new];
+    
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
+}
+
+// PUT /api/v1/userDataStream
+- (void)updateUserStreamForListenKey:(NSString *)listenKey result:(nullable ResultBlock)result
+{
+    id<BNBEndpointRequestProtocol> request = [[BNBUpdateUserStreamRequest alloc] initWithListenKey:listenKey];
+    
+    [self performRequest:request
+          withHTTPMethod:BNBPUT
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
+}
+
+// DELETE /api/v1/userDataStream
+- (void)deleteUserStreamForListenKey:(NSString *)listenKey result:(nullable ResultBlock)result
+{
+    id<BNBEndpointRequestProtocol> request = [[BNBDeleteUserStreamRequest alloc] initWithListenKey:listenKey];
+    
+    [self performRequest:request
+          withHTTPMethod:BNBDELETE
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
+}
+
 - (void)performRequest:(id<BNBEndpointRequestProtocol>)request
         withHTTPMethod:(BNBHTTPMethod)HTTPMethod
              timestamp:(NSTimeInterval)timestamp
@@ -651,7 +672,10 @@
         parameters = [NSMutableDictionary new];
     }
     
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
+    if (timestamp > 0.0)
+    {
+        parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
+    }
     
     if (timeToLive > 0.0)
     {
@@ -724,7 +748,22 @@
             
         case BNBPUT:
         {
-            
+            [sessionManager PUT:[request URLPathString]
+                     parameters:parameters
+                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+             {
+                 if (result)
+                 {
+                     result(responseObject, nil);
+                 }
+                 
+             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+             {
+                 if (result)
+                 {
+                     result(nil, error);
+                 }
+             }];
         }
             break;
             
@@ -733,124 +772,31 @@
             [sessionManager DELETE:[request URLPathString]
                         parameters:parameters
                            success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-            {
-                if (result)
-                {
-                    result(responseObject, nil);
-                }
-                
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-            {
-                if (result)
-                {
-                    result(nil, error);
-                }
-            }];
+             {
+                 if (result)
+                 {
+                     result(responseObject, nil);
+                 }
+                 
+             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+             {
+                 if (result)
+                 {
+                     result(nil, error);
+                 }
+             }];
         }
             break;
             
         default:
-            #warning FIX
+#warning FIX
             [NSException raise:@"" format:@""];
-
+            
             break;
     }
     
     sessionManager.APIKey = nil;
     sessionManager.secretKey = nil;
-}
-
-#pragma mark - User Stream Endpoint Methods
-
-// POST /api/v1/userDataStream
-- (void)createUserStream:(nullable ResultBlock)result
-{
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    
-    [sessionManager POST:@"/api/v1/userDataStream"
-              parameters:nil
-                progress:nil
-                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
-}
-
-// PUT /api/v1/userDataStream
-- (void)updateUserStreamForListenKey:(NSString *)listenKey result:(nullable ResultBlock)result
-{
-    NSParameterAssert(listenKey);
-    
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"listenKey"] = listenKey;
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    
-    [sessionManager PUT:@"/api/v1/userDataStream"
-             parameters:parameters
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
-}
-
-// DELETE /api/v1/userDataStream
-- (void)deleteUserStreamForListenKey:(NSString *)listenKey result:(nullable ResultBlock)result
-{
-    NSParameterAssert(listenKey);
-    
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"listenKey"] = listenKey;
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    
-    [sessionManager DELETE:@"/api/v1/userDataStream"
-                parameters:parameters
-                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
 }
 
 @end

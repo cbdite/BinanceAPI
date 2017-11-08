@@ -22,7 +22,6 @@
 #import <Foundation/Foundation.h>
 
 #import "BNBEndpointRequestProtocol.h"
-#import "BNBEnums.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

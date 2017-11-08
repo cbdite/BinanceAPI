@@ -1,4 +1,4 @@
-// BNBDeleteOrderRequest.h
+// BNBCreateUserStreamRequest.h
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,20 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BNBDeleteOrderRequest : NSObject <BNBEndpointRequestProtocol>
-
-@property (copy, nonatomic) NSString *symbol;
-
-@property (assign, nonatomic) NSUInteger orderId;
-
-@property (nullable, copy, nonatomic) NSString *originalClientOrderId;
-
-@property (nullable, copy, nonatomic) NSString *clientOrderId;
-
-- (instancetype)initWithSymbol:(NSString *)symbol
-                       orderId:(NSUInteger)orderId
-         originalClientOrderId:(nullable NSString *)originalClientOrderId
-          clientOrderId:(nullable NSString *)clientOrderId;
+@interface BNBCreateUserStreamRequest : NSObject <BNBEndpointRequestProtocol>
 
 @end
 

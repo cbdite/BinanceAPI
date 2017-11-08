@@ -1,4 +1,4 @@
-// BNBDeleteOrderRequest.h
+// BNBDeleteUserStreamRequest.m
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,27 +19,53 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "BNBDeleteUserStreamRequest.h"
 
-#import "BNBEndpointRequestProtocol.h"
+@implementation BNBDeleteUserStreamRequest
 
-NS_ASSUME_NONNULL_BEGIN
+#pragma mark - Initialization
 
-@interface BNBDeleteOrderRequest : NSObject <BNBEndpointRequestProtocol>
+- (instancetype)initWithListenKey:(NSString *)listenKey
+{
+    if (self = [super init])
+    {
+        self.listenKey = listenKey;
+    }
+    
+    return self;
+}
 
-@property (copy, nonatomic) NSString *symbol;
+#pragma mark - BNBEndpointRequestProtocol Methods
 
-@property (assign, nonatomic) NSUInteger orderId;
+- (NSString *)URLPathString
+{
+    return @"/api/v1/userDataStream";
+}
 
-@property (nullable, copy, nonatomic) NSString *originalClientOrderId;
+- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+{
+    NSMutableDictionary *requestParameters;
+    
+    if (HTTPMethod == BNBDELETE)
+    {
+        requestParameters = [NSMutableDictionary new];
+        
+        NSParameterAssert(self.listenKey);
+        
+        requestParameters[@"listenKey"] = self.listenKey;
+    }
+    
+    return requestParameters;
+}
 
-@property (nullable, copy, nonatomic) NSString *clientOrderId;
+- (BOOL)requiresAPIKey
+{
+    return YES;
+}
 
-- (instancetype)initWithSymbol:(NSString *)symbol
-                       orderId:(NSUInteger)orderId
-         originalClientOrderId:(nullable NSString *)originalClientOrderId
-          clientOrderId:(nullable NSString *)clientOrderId;
+- (BOOL)requiresSecretKey
+{
+    return NO;
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

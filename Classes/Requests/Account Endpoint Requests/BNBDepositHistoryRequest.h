@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) NSTimeInterval endTime;
 
 - (instancetype)initWithAsset:(nullable NSString *)asset
-               depositStatus:(BNBDepositStatus)depositStatus
+                depositStatus:(BNBDepositStatus)depositStatus
                     startTime:(NSTimeInterval)startTime
                       endTime:(NSTimeInterval)endTime;
 

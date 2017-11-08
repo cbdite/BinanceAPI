@@ -19,6 +19,11 @@
 		1B50586F1FB3676E00167D1F /* BNBQueryOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50586E1FB3676E00167D1F /* BNBQueryOrderRequest.m */; };
 		1B5058721FB3691500167D1F /* BNBCreateOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058711FB3691500167D1F /* BNBCreateOrderRequest.m */; };
 		1B5058751FB36C4300167D1F /* BNBTestCreateOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058741FB36C4300167D1F /* BNBTestCreateOrderRequest.m */; };
+		1B5058781FB3992100167D1F /* BNBCreateUserStreamRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058771FB3992100167D1F /* BNBCreateUserStreamRequest.m */; };
+		1B50587B1FB39C4E00167D1F /* BNBUpdateUserStreamRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50587A1FB39C4E00167D1F /* BNBUpdateUserStreamRequest.m */; };
+		1B50587E1FB3A00F00167D1F /* BNBDeleteUserStreamRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50587D1FB3A00F00167D1F /* BNBDeleteUserStreamRequest.m */; };
+		1B5058811FB3A1D100167D1F /* BNBTestConnectivityRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058801FB3A1D100167D1F /* BNBTestConnectivityRequest.m */; };
+		1B5058841FB3A3D100167D1F /* BNBCheckServerTimeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058831FB3A3D100167D1F /* BNBCheckServerTimeRequest.m */; };
 		1B627F0B1FA9F22200E44A24 /* BNBJSONResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */; };
 		1B627F0D1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */; };
 		1B627F0F1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0E1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m */; };
@@ -69,6 +74,16 @@
 		1B5058711FB3691500167D1F /* BNBCreateOrderRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBCreateOrderRequest.m; sourceTree = "<group>"; };
 		1B5058731FB36C4300167D1F /* BNBTestCreateOrderRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBTestCreateOrderRequest.h; sourceTree = "<group>"; };
 		1B5058741FB36C4300167D1F /* BNBTestCreateOrderRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBTestCreateOrderRequest.m; sourceTree = "<group>"; };
+		1B5058761FB3992100167D1F /* BNBCreateUserStreamRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBCreateUserStreamRequest.h; sourceTree = "<group>"; };
+		1B5058771FB3992100167D1F /* BNBCreateUserStreamRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBCreateUserStreamRequest.m; sourceTree = "<group>"; };
+		1B5058791FB39C4E00167D1F /* BNBUpdateUserStreamRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBUpdateUserStreamRequest.h; sourceTree = "<group>"; };
+		1B50587A1FB39C4E00167D1F /* BNBUpdateUserStreamRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBUpdateUserStreamRequest.m; sourceTree = "<group>"; };
+		1B50587C1FB3A00F00167D1F /* BNBDeleteUserStreamRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBDeleteUserStreamRequest.h; sourceTree = "<group>"; };
+		1B50587D1FB3A00F00167D1F /* BNBDeleteUserStreamRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBDeleteUserStreamRequest.m; sourceTree = "<group>"; };
+		1B50587F1FB3A1D100167D1F /* BNBTestConnectivityRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBTestConnectivityRequest.h; sourceTree = "<group>"; };
+		1B5058801FB3A1D100167D1F /* BNBTestConnectivityRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBTestConnectivityRequest.m; sourceTree = "<group>"; };
+		1B5058821FB3A3D100167D1F /* BNBCheckServerTimeRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBCheckServerTimeRequest.h; sourceTree = "<group>"; };
+		1B5058831FB3A3D100167D1F /* BNBCheckServerTimeRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBCheckServerTimeRequest.m; sourceTree = "<group>"; };
 		1B627F091FA9F22200E44A24 /* BNBJSONResponseSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBJSONResponseSerializer.h; sourceTree = "<group>"; };
 		1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBJSONResponseSerializer.m; sourceTree = "<group>"; };
 		1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynchronousMarketDataEndpointTests.m; sourceTree = "<group>"; };
@@ -138,6 +153,10 @@
 		1B5058541FB21BBE00167D1F /* General Endpoint Requests */ = {
 			isa = PBXGroup;
 			children = (
+				1B50587F1FB3A1D100167D1F /* BNBTestConnectivityRequest.h */,
+				1B5058801FB3A1D100167D1F /* BNBTestConnectivityRequest.m */,
+				1B5058821FB3A3D100167D1F /* BNBCheckServerTimeRequest.h */,
+				1B5058831FB3A3D100167D1F /* BNBCheckServerTimeRequest.m */,
 			);
 			path = "General Endpoint Requests";
 			sourceTree = "<group>";
@@ -181,6 +200,12 @@
 		1B5058571FB21BE900167D1F /* User Stream Endpoint Requests */ = {
 			isa = PBXGroup;
 			children = (
+				1B5058761FB3992100167D1F /* BNBCreateUserStreamRequest.h */,
+				1B5058771FB3992100167D1F /* BNBCreateUserStreamRequest.m */,
+				1B5058791FB39C4E00167D1F /* BNBUpdateUserStreamRequest.h */,
+				1B50587A1FB39C4E00167D1F /* BNBUpdateUserStreamRequest.m */,
+				1B50587C1FB3A00F00167D1F /* BNBDeleteUserStreamRequest.h */,
+				1B50587D1FB3A00F00167D1F /* BNBDeleteUserStreamRequest.m */,
 			);
 			path = "User Stream Endpoint Requests";
 			sourceTree = "<group>";
@@ -546,8 +571,11 @@
 				1B627F0D1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m in Sources */,
 				1B895B101FA36128005D6169 /* BNBHTTPSessionManager.m in Sources */,
 				1B50586C1FB3636800167D1F /* BNBDeleteOrderRequest.m in Sources */,
+				1B5058811FB3A1D100167D1F /* BNBTestConnectivityRequest.m in Sources */,
+				1B50587E1FB3A00F00167D1F /* BNBDeleteUserStreamRequest.m in Sources */,
 				1B6720891FA7641A007D86BA /* BNBUtilities.m in Sources */,
 				1B627F0B1FA9F22200E44A24 /* BNBJSONResponseSerializer.m in Sources */,
+				1B5058781FB3992100167D1F /* BNBCreateUserStreamRequest.m in Sources */,
 				1B5058721FB3691500167D1F /* BNBCreateOrderRequest.m in Sources */,
 				1B8BCFB21FAA326A00EDA14F /* SynchronousUserStreamEndpointTests.m in Sources */,
 				1B627F121FAA0B3300E44A24 /* BNBWebSocketClient.m in Sources */,
@@ -568,6 +596,8 @@
 				1B9B3D981FA4B708004693D5 /* AsynchronousMarketDataEndpointTests.m in Sources */,
 				1B50585D1FB354C200167D1F /* BNBWithdrawRequest.m in Sources */,
 				1B895B281FA49CD2005D6169 /* BNBXCTestCase.m in Sources */,
+				1B5058841FB3A3D100167D1F /* BNBCheckServerTimeRequest.m in Sources */,
+				1B50587B1FB39C4E00167D1F /* BNBUpdateUserStreamRequest.m in Sources */,
 				1B6720901FA8BAA0007D86BA /* BNBNumberFormatters.m in Sources */,
 				1BCE02D71FA759FC00CDDF31 /* NSDate+Utilities.m in Sources */,
 				1B5058691FB361C100167D1F /* BNBOpenOrdersRequest.m in Sources */,
