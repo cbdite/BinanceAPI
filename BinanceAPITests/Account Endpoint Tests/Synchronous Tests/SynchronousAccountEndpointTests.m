@@ -66,45 +66,45 @@
 
 #warning Uncommenting the following test will result in an order being added to the order book
 /*
-// POST /api/v3/order
-- (void)testCreateOrderWithSymbolSideTypeTimeInForceQuantityIcebergQuantityPriceStopPriceNewClientOrderIdTimestampTimeToLive
-{
-    id<BNBAccountEndpointProtocol> client = [[BNBSynchronousRESTClient alloc] initWithAPIKey:kAPIKey secretKey:kSecretKey];
-    
-    NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
-    
-    // BNBETH symbol fails with HTTP status code 400 and Binance error code -1013 "Filter failure: MIN_NOTIONAL"
-    [client createOrderWithSymbol:@"LTCBTC"
-                             side:BNBSell
-                             type:BNBLimit
-                      timeInForce:BNBGTC
-                         quantity:1.0
-                  icebergQuantity:0.0
-                            price:0.1
-                        stopPrice:0.0
-                 newClientOrderId:nil
-                        timestamp:timestamp
-                       timeToLive:5000.0
-                           result:^(id  _Nullable responseObject, NSError * _Nullable error)
-     {
-         if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
-         {
-             DDLogInfo(@"*** %s succeeded ***", __PRETTY_FUNCTION__);
-             
-             NSDictionary *resultJSON = responseObject;
-             
-             // Invoking stringValue property on NSNumber
-             DDLogInfo(@"*** Successfully added %@ order with order id %@ client order id %@ to order book. Order was transacted at %@ ms ***", resultJSON[@"symbol"], resultJSON[@"orderId"], resultJSON[@"clientOrderId"], resultJSON[@"transactTime"]);
-         }
-         else
-         {
-             kJSONResponseSerializerErrorLogging
-             
-             XCTFail(@"Expectation failed with error: %@", error);
-         }
-     }];
-}
-*/
+ // POST /api/v3/order
+ - (void)testCreateOrderWithSymbolSideTypeTimeInForceQuantityIcebergQuantityPriceStopPriceNewClientOrderIdTimestampTimeToLive
+ {
+ id<BNBAccountEndpointProtocol> client = [[BNBSynchronousRESTClient alloc] initWithAPIKey:kAPIKey secretKey:kSecretKey];
+ 
+ NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
+ 
+ // BNBETH symbol fails with HTTP status code 400 and Binance error code -1013 "Filter failure: MIN_NOTIONAL"
+ [client createOrderWithSymbol:@"LTCBTC"
+ side:BNBSell
+ type:BNBLimit
+ timeInForce:BNBGTC
+ quantity:1.0
+ icebergQuantity:0.0
+ price:0.1
+ stopPrice:0.0
+ newClientOrderId:nil
+ timestamp:timestamp
+ timeToLive:5000.0
+ result:^(id  _Nullable responseObject, NSError * _Nullable error)
+ {
+ if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
+ {
+ DDLogInfo(@"*** %s succeeded ***", __PRETTY_FUNCTION__);
+ 
+ NSDictionary *resultJSON = responseObject;
+ 
+ // Invoking stringValue property on NSNumber
+ DDLogInfo(@"*** Successfully added %@ order with order id %@ client order id %@ to order book. Order was transacted at %@ ms ***", resultJSON[@"symbol"], resultJSON[@"orderId"], resultJSON[@"clientOrderId"], resultJSON[@"transactTime"]);
+ }
+ else
+ {
+ kJSONResponseSerializerErrorLogging
+ 
+ XCTFail(@"Expectation failed with error: %@", error);
+ }
+ }];
+ }
+ */
 
 // GET /api/v3/order
 - (void)testQueryOrderWithSymbolOrderIdOriginalClientOrderIdTimestampTimeToLive
@@ -147,7 +147,7 @@
     [client deleteOrderWithSymbol:@"LTCBTC"
                           orderId:0
             originalClientOrderId:nil
-                 newClientOrderId:nil
+                    clientOrderId:nil
                         timestamp:timestamp
                        timeToLive:5000
                            result:^(id  _Nullable responseObject, NSError * _Nullable error)

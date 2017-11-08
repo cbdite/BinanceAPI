@@ -645,7 +645,7 @@
 - (void)deleteOrderWithSymbol:(NSString *)symbol
                       orderId:(NSUInteger)orderId
         originalClientOrderId:(nullable NSString *)originalClientOrderId
-             newClientOrderId:(nullable NSString *)newClientOrderId
+             updatedClientOrderId:(nullable NSString *)updatedClientOrderId
                     timestamp:(NSTimeInterval)timestamp
                    timeToLive:(NSTimeInterval)timeToLive
                        result:(nullable ResultBlock)result
@@ -667,9 +667,9 @@
         parameters[@"origClientOrderId"] = originalClientOrderId;
     }
     
-    if (newClientOrderId)
+    if (updatedClientOrderId)
     {
-        parameters[@"newClientOrderId"] = newClientOrderId;
+        parameters[@"newClientOrderId"] = updatedClientOrderId;
     }
     
     parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);

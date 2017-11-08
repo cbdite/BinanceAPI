@@ -1,4 +1,4 @@
-// BNBXCTestCase.m
+// BNBTestCreateOrderRequest.h
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,24 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BNBXCTestCase.h"
+#import "BNBCreateOrderRequest.h"
 
-@implementation BNBXCTestCase
-
-- (void)setUp
-{
-    [super setUp];
-    
-    self.continueAfterFailure = YES;
-    
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-}
-
-- (void)tearDown
-{
-    [DDLog removeAllLoggers];
-    
-    [super tearDown];
-}
+@interface BNBTestCreateOrderRequest : BNBCreateOrderRequest
 
 @end

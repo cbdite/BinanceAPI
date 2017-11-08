@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		1B50584C1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50584B1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.m */; };
+		1B5058531FB1C17800167D1F /* BNBWithdrawHistoryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058521FB1C17800167D1F /* BNBWithdrawHistoryRequest.m */; };
+		1B50585A1FB3509900167D1F /* BNBDepositHistoryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058591FB3509900167D1F /* BNBDepositHistoryRequest.m */; };
+		1B50585D1FB354C200167D1F /* BNBWithdrawRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50585C1FB354C200167D1F /* BNBWithdrawRequest.m */; };
+		1B5058601FB3581900167D1F /* BNBTradesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50585F1FB3581900167D1F /* BNBTradesRequest.m */; };
+		1B5058631FB35C0000167D1F /* BNBAccountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058621FB35C0000167D1F /* BNBAccountRequest.m */; };
+		1B5058661FB35F8400167D1F /* BNBAllOrdersRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058651FB35F8400167D1F /* BNBAllOrdersRequest.m */; };
+		1B5058691FB361C100167D1F /* BNBOpenOrdersRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058681FB361C100167D1F /* BNBOpenOrdersRequest.m */; };
+		1B50586C1FB3636800167D1F /* BNBDeleteOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50586B1FB3636800167D1F /* BNBDeleteOrderRequest.m */; };
+		1B50586F1FB3676E00167D1F /* BNBQueryOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50586E1FB3676E00167D1F /* BNBQueryOrderRequest.m */; };
+		1B5058721FB3691500167D1F /* BNBCreateOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058711FB3691500167D1F /* BNBCreateOrderRequest.m */; };
+		1B5058751FB36C4300167D1F /* BNBTestCreateOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058741FB36C4300167D1F /* BNBTestCreateOrderRequest.m */; };
 		1B627F0B1FA9F22200E44A24 /* BNBJSONResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */; };
 		1B627F0D1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */; };
 		1B627F0F1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0E1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m */; };
@@ -35,6 +46,29 @@
 		1B50584A1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBHTTPRequestSerializer.h; sourceTree = "<group>"; };
 		1B50584B1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBHTTPRequestSerializer.m; sourceTree = "<group>"; };
 		1B50584E1FB0ED9F00167D1F /* BNBTestConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBTestConstants.h; sourceTree = "<group>"; };
+		1B50584F1FB1BB0200167D1F /* BNBEndpointRequestProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBEndpointRequestProtocol.h; sourceTree = "<group>"; };
+		1B5058511FB1C17800167D1F /* BNBWithdrawHistoryRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBWithdrawHistoryRequest.h; sourceTree = "<group>"; };
+		1B5058521FB1C17800167D1F /* BNBWithdrawHistoryRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBWithdrawHistoryRequest.m; sourceTree = "<group>"; };
+		1B5058581FB3509900167D1F /* BNBDepositHistoryRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBDepositHistoryRequest.h; sourceTree = "<group>"; };
+		1B5058591FB3509900167D1F /* BNBDepositHistoryRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBDepositHistoryRequest.m; sourceTree = "<group>"; };
+		1B50585B1FB354C200167D1F /* BNBWithdrawRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBWithdrawRequest.h; sourceTree = "<group>"; };
+		1B50585C1FB354C200167D1F /* BNBWithdrawRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBWithdrawRequest.m; sourceTree = "<group>"; };
+		1B50585E1FB3581900167D1F /* BNBTradesRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBTradesRequest.h; sourceTree = "<group>"; };
+		1B50585F1FB3581900167D1F /* BNBTradesRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBTradesRequest.m; sourceTree = "<group>"; };
+		1B5058611FB35C0000167D1F /* BNBAccountRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBAccountRequest.h; sourceTree = "<group>"; };
+		1B5058621FB35C0000167D1F /* BNBAccountRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBAccountRequest.m; sourceTree = "<group>"; };
+		1B5058641FB35F8400167D1F /* BNBAllOrdersRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBAllOrdersRequest.h; sourceTree = "<group>"; };
+		1B5058651FB35F8400167D1F /* BNBAllOrdersRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBAllOrdersRequest.m; sourceTree = "<group>"; };
+		1B5058671FB361C100167D1F /* BNBOpenOrdersRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBOpenOrdersRequest.h; sourceTree = "<group>"; };
+		1B5058681FB361C100167D1F /* BNBOpenOrdersRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBOpenOrdersRequest.m; sourceTree = "<group>"; };
+		1B50586A1FB3636800167D1F /* BNBDeleteOrderRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBDeleteOrderRequest.h; sourceTree = "<group>"; };
+		1B50586B1FB3636800167D1F /* BNBDeleteOrderRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBDeleteOrderRequest.m; sourceTree = "<group>"; };
+		1B50586D1FB3676E00167D1F /* BNBQueryOrderRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBQueryOrderRequest.h; sourceTree = "<group>"; };
+		1B50586E1FB3676E00167D1F /* BNBQueryOrderRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBQueryOrderRequest.m; sourceTree = "<group>"; };
+		1B5058701FB3691500167D1F /* BNBCreateOrderRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBCreateOrderRequest.h; sourceTree = "<group>"; };
+		1B5058711FB3691500167D1F /* BNBCreateOrderRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBCreateOrderRequest.m; sourceTree = "<group>"; };
+		1B5058731FB36C4300167D1F /* BNBTestCreateOrderRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBTestCreateOrderRequest.h; sourceTree = "<group>"; };
+		1B5058741FB36C4300167D1F /* BNBTestCreateOrderRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBTestCreateOrderRequest.m; sourceTree = "<group>"; };
 		1B627F091FA9F22200E44A24 /* BNBJSONResponseSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBJSONResponseSerializer.h; sourceTree = "<group>"; };
 		1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBJSONResponseSerializer.m; sourceTree = "<group>"; };
 		1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynchronousMarketDataEndpointTests.m; sourceTree = "<group>"; };
@@ -90,6 +124,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B5058501FB1C09900167D1F /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				1B5058541FB21BBE00167D1F /* General Endpoint Requests */,
+				1B5058551FB21BCA00167D1F /* Market Data Endpoint Requests */,
+				1B5058561FB21BDC00167D1F /* Account Endpoint Requests */,
+				1B5058571FB21BE900167D1F /* User Stream Endpoint Requests */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		1B5058541FB21BBE00167D1F /* General Endpoint Requests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "General Endpoint Requests";
+			sourceTree = "<group>";
+		};
+		1B5058551FB21BCA00167D1F /* Market Data Endpoint Requests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Market Data Endpoint Requests";
+			sourceTree = "<group>";
+		};
+		1B5058561FB21BDC00167D1F /* Account Endpoint Requests */ = {
+			isa = PBXGroup;
+			children = (
+				1B5058731FB36C4300167D1F /* BNBTestCreateOrderRequest.h */,
+				1B5058741FB36C4300167D1F /* BNBTestCreateOrderRequest.m */,
+				1B5058701FB3691500167D1F /* BNBCreateOrderRequest.h */,
+				1B5058711FB3691500167D1F /* BNBCreateOrderRequest.m */,
+				1B50586D1FB3676E00167D1F /* BNBQueryOrderRequest.h */,
+				1B50586E1FB3676E00167D1F /* BNBQueryOrderRequest.m */,
+				1B50586A1FB3636800167D1F /* BNBDeleteOrderRequest.h */,
+				1B50586B1FB3636800167D1F /* BNBDeleteOrderRequest.m */,
+				1B5058671FB361C100167D1F /* BNBOpenOrdersRequest.h */,
+				1B5058681FB361C100167D1F /* BNBOpenOrdersRequest.m */,
+				1B5058641FB35F8400167D1F /* BNBAllOrdersRequest.h */,
+				1B5058651FB35F8400167D1F /* BNBAllOrdersRequest.m */,
+				1B5058611FB35C0000167D1F /* BNBAccountRequest.h */,
+				1B5058621FB35C0000167D1F /* BNBAccountRequest.m */,
+				1B50585E1FB3581900167D1F /* BNBTradesRequest.h */,
+				1B50585F1FB3581900167D1F /* BNBTradesRequest.m */,
+				1B50585B1FB354C200167D1F /* BNBWithdrawRequest.h */,
+				1B50585C1FB354C200167D1F /* BNBWithdrawRequest.m */,
+				1B5058581FB3509900167D1F /* BNBDepositHistoryRequest.h */,
+				1B5058591FB3509900167D1F /* BNBDepositHistoryRequest.m */,
+				1B5058511FB1C17800167D1F /* BNBWithdrawHistoryRequest.h */,
+				1B5058521FB1C17800167D1F /* BNBWithdrawHistoryRequest.m */,
+			);
+			path = "Account Endpoint Requests";
+			sourceTree = "<group>";
+		};
+		1B5058571FB21BE900167D1F /* User Stream Endpoint Requests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "User Stream Endpoint Requests";
+			sourceTree = "<group>";
+		};
 		1B627F081FA9F1D300E44A24 /* Serializers */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +263,7 @@
 				1B895B141FA366EB005D6169 /* Clients */,
 				1B67208D1FA8988E007D86BA /* NSURLSession */,
 				1B895B211FA3A92F005D6169 /* Protocols */,
+				1B5058501FB1C09900167D1F /* Requests */,
 				1B627F081FA9F1D300E44A24 /* Serializers */,
 			);
 			path = Classes;
@@ -203,6 +299,7 @@
 				1B895B231FA3A9EE005D6169 /* BNBMarketDataEndpointProtocol.h */,
 				1B895B241FA3AA03005D6169 /* BNBAccountEndpointProtocol.h */,
 				1B8BCFAB1FAA2C5A00EDA14F /* BNBUserStreamEndpointProtocol.h */,
+				1B50584F1FB1BB0200167D1F /* BNBEndpointRequestProtocol.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -445,16 +542,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B895B131FA36599005D6169 /* AsynchronousGeneralEndpointTests.m in Sources */,
+				1B5058751FB36C4300167D1F /* BNBTestCreateOrderRequest.m in Sources */,
 				1B627F0D1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m in Sources */,
 				1B895B101FA36128005D6169 /* BNBHTTPSessionManager.m in Sources */,
+				1B50586C1FB3636800167D1F /* BNBDeleteOrderRequest.m in Sources */,
 				1B6720891FA7641A007D86BA /* BNBUtilities.m in Sources */,
 				1B627F0B1FA9F22200E44A24 /* BNBJSONResponseSerializer.m in Sources */,
+				1B5058721FB3691500167D1F /* BNBCreateOrderRequest.m in Sources */,
 				1B8BCFB21FAA326A00EDA14F /* SynchronousUserStreamEndpointTests.m in Sources */,
 				1B627F121FAA0B3300E44A24 /* BNBWebSocketClient.m in Sources */,
+				1B50586F1FB3676E00167D1F /* BNBQueryOrderRequest.m in Sources */,
+				1B50585A1FB3509900167D1F /* BNBDepositHistoryRequest.m in Sources */,
 				1B895B191FA37E8B005D6169 /* BNBAsynchronousXCTestCase.m in Sources */,
 				1B895B1D1FA3A90E005D6169 /* BNBSynchronousRESTClient.m in Sources */,
 				1BCE02D31FA748A300CDDF31 /* AsynchronousAccountEndpointTests.m in Sources */,
 				1B627F0F1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m in Sources */,
+				1B5058631FB35C0000167D1F /* BNBAccountRequest.m in Sources */,
+				1B5058531FB1C17800167D1F /* BNBWithdrawHistoryRequest.m in Sources */,
 				1B9B3D961FA4A2C3004693D5 /* SynchronousGeneralEndpointTests.m in Sources */,
 				1B67208B1FA78773007D86BA /* BNBEnums.m in Sources */,
 				1B627F151FAA170D00E44A24 /* WebSocketEndpointTests.m in Sources */,
@@ -462,9 +566,13 @@
 				1B50584C1FB0DB3F00167D1F /* BNBHTTPRequestSerializer.m in Sources */,
 				1B8BCFB01FAA2E1700EDA14F /* AsynchronousUserStreamEndpointTests.m in Sources */,
 				1B9B3D981FA4B708004693D5 /* AsynchronousMarketDataEndpointTests.m in Sources */,
+				1B50585D1FB354C200167D1F /* BNBWithdrawRequest.m in Sources */,
 				1B895B281FA49CD2005D6169 /* BNBXCTestCase.m in Sources */,
 				1B6720901FA8BAA0007D86BA /* BNBNumberFormatters.m in Sources */,
 				1BCE02D71FA759FC00CDDF31 /* NSDate+Utilities.m in Sources */,
+				1B5058691FB361C100167D1F /* BNBOpenOrdersRequest.m in Sources */,
+				1B5058601FB3581900167D1F /* BNBTradesRequest.m in Sources */,
+				1B5058661FB35F8400167D1F /* BNBAllOrdersRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

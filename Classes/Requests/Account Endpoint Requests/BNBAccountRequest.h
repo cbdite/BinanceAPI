@@ -1,4 +1,4 @@
-// BNBXCTestCase.m
+// BNBAccountRequest.h
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,24 +19,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BNBXCTestCase.h"
+#import <Foundation/Foundation.h>
 
-@implementation BNBXCTestCase
+#import "BNBEndpointRequestProtocol.h"
+#import "BNBEnums.h"
 
-- (void)setUp
-{
-    [super setUp];
-    
-    self.continueAfterFailure = YES;
-    
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-}
+NS_ASSUME_NONNULL_BEGIN
 
-- (void)tearDown
-{
-    [DDLog removeAllLoggers];
-    
-    [super tearDown];
-}
+@interface BNBAccountRequest : NSObject <BNBEndpointRequestProtocol>
 
 @end
+
+NS_ASSUME_NONNULL_END

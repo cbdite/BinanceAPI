@@ -1,4 +1,4 @@
-// BNBXCTestCase.m
+// BNBDeleteOrderRequest.h
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,24 +19,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BNBXCTestCase.h"
+#import <Foundation/Foundation.h>
 
-@implementation BNBXCTestCase
+#import "BNBEndpointRequestProtocol.h"
+#import "BNBEnums.h"
 
-- (void)setUp
-{
-    [super setUp];
-    
-    self.continueAfterFailure = YES;
-    
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-}
+NS_ASSUME_NONNULL_BEGIN
 
-- (void)tearDown
-{
-    [DDLog removeAllLoggers];
-    
-    [super tearDown];
-}
+@interface BNBDeleteOrderRequest : NSObject <BNBEndpointRequestProtocol>
+
+@property (copy, nonatomic) NSString *symbol;
+
+@property (assign, nonatomic) NSUInteger orderId;
+
+@property (nullable, copy, nonatomic) NSString *originalClientOrderId;
+
+@property (nullable, copy, nonatomic) NSString *updatedClientOrderId;
+
+- (instancetype)initWithSymbol:(NSString *)symbol
+                       orderId:(NSUInteger)orderId
+         originalClientOrderId:(nullable NSString *)originalClientOrderId
+              updatedClientOrderId:(nullable NSString *)updatedClientOrderId;
 
 @end
+
+NS_ASSUME_NONNULL_END

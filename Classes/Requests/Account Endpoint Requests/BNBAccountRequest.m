@@ -1,4 +1,4 @@
-// BNBXCTestCase.m
+// BNBAccountRequest.m
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,24 +19,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BNBXCTestCase.h"
+#import "BNBAccountRequest.h"
 
-@implementation BNBXCTestCase
+@implementation BNBAccountRequest
 
-- (void)setUp
+#pragma mark - BNBEndpointRequestProtocol Methods
+
+- (NSString *)URLPathString
 {
-    [super setUp];
-    
-    self.continueAfterFailure = YES;
-    
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    return @"/api/v3/account";
 }
 
-- (void)tearDown
+- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
 {
-    [DDLog removeAllLoggers];
-    
-    [super tearDown];
+    return nil;
+}
+
+- (BOOL)requiresAPIKey
+{
+    return YES;
+}
+
+- (BOOL)requiresSecretKey
+{
+    return YES;
 }
 
 @end

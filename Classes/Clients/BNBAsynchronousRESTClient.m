@@ -24,6 +24,18 @@
 #import "BNBHTTPSessionManager.h"
 #import "BNBUtilities.h"
 
+#import "BNBTestCreateOrderRequest.h"
+#import "BNBCreateOrderRequest.h"
+#import "BNBQueryOrderRequest.h"
+#import "BNBDeleteOrderRequest.h"
+#import "BNBOpenOrdersRequest.h"
+#import "BNBAllOrdersRequest.h"
+#import "BNBAccountRequest.h"
+#import "BNBTradesRequest.h"
+#import "BNBWithdrawRequest.h"
+#import "BNBDepositHistoryRequest.h"
+#import "BNBWithdrawHistoryRequest.h"
+
 @interface BNBAsynchronousRESTClient ()
 
 @property (readwrite, copy, nonatomic) NSString *APIKey;
@@ -397,24 +409,26 @@
                   icebergQuantity:(CGFloat)icebergQuantity
                             price:(CGFloat)price
                         stopPrice:(CGFloat)stopPrice
-                 newClientOrderId:(nullable NSString *)newClientOrderId
+                    clientOrderId:(nullable NSString *)clientOrderId
                         timestamp:(NSTimeInterval)timestamp
                        timeToLive:(NSTimeInterval)timeToLive
                            result:(nullable ResultBlock)result
 {
-    [self createOrderWithSymbol:symbol
-                           side:side
-                           type:type
-                    timeInForce:timeInForce
-                       quantity:quantity
-                icebergQuantity:icebergQuantity
-                          price:price
-                      stopPrice:stopPrice
-               newClientOrderId:newClientOrderId
-                      timestamp:timestamp
-                     timeToLive:timeToLive
-                         result:result
-                      URLString:@"/api/v3/order/test"];
+    id<BNBEndpointRequestProtocol> request = [[BNBTestCreateOrderRequest alloc] initWithSymbol:symbol
+                                                                                          side:side
+                                                                                          type:type
+                                                                                   timeInForce:timeInForce
+                                                                                      quantity:quantity
+                                                                               icebergQuantity:icebergQuantity
+                                                                                         price:price
+                                                                                     stopPrice:stopPrice
+                                                                                 clientOrderId:clientOrderId];
+    
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // POST /api/v3/order
@@ -426,115 +440,26 @@
               icebergQuantity:(CGFloat)icebergQuantity
                         price:(CGFloat)price
                     stopPrice:(CGFloat)stopPrice
-             newClientOrderId:(nullable NSString *)newClientOrderId
+             clientOrderId:(nullable NSString *)clientOrderId
                     timestamp:(NSTimeInterval)timestamp
                    timeToLive:(NSTimeInterval)timeToLive
                        result:(nullable ResultBlock)result
 {
-    [self createOrderWithSymbol:symbol
-                           side:side
-                           type:type
-                    timeInForce:timeInForce
-                       quantity:quantity
-                icebergQuantity:icebergQuantity
-                          price:price
-                      stopPrice:stopPrice
-               newClientOrderId:newClientOrderId
-                      timestamp:timestamp
-                     timeToLive:timeToLive
-                         result:result
-                      URLString:@"api/v3/order"];
-}
-
-// POST /api/v3/order
-- (void)createOrderWithSymbol:(NSString *)symbol
-                         side:(BNBOrderSide)side
-                         type:(BNBOrderType)type
-                  timeInForce:(BNBTimeInForce)timeInForce
-                     quantity:(CGFloat)quantity
-              icebergQuantity:(CGFloat)icebergQuantity
-                        price:(CGFloat)price
-                    stopPrice:(CGFloat)stopPrice
-             newClientOrderId:(nullable NSString *)newClientOrderId
-                    timestamp:(NSTimeInterval)timestamp
-                   timeToLive:(NSTimeInterval)timeToLive
-                       result:(nullable ResultBlock)result
-                    URLString:(NSString *)URLString
-{
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBCreateOrderRequest alloc] initWithSymbol:symbol
+                                                                                      side:side
+                                                                                      type:type
+                                                                               timeInForce:timeInForce
+                                                                                  quantity:quantity
+                                                                           icebergQuantity:icebergQuantity
+                                                                                     price:price
+                                                                                 stopPrice:stopPrice
+                                                                             clientOrderId:clientOrderId];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    NSString *sideString = OrderSide_toString[side];
-    
-    NSParameterAssert(sideString);
-    
-    parameters[@"side"] = sideString;
-    
-    NSString *typeString = OrderType_toString[type];
-    
-    NSParameterAssert(typeString);
-    
-    parameters[@"type"] = typeString;
-    
-    NSString *timeInForceString = TimeInForce_toString[timeInForce];
-    
-    NSParameterAssert(timeInForceString);
-    
-    parameters[@"timeInForce"] = timeInForceString;
-    
-    parameters[@"quantity"] = @(quantity);
-    
-    if (icebergQuantity > 0.0)
-    {
-        parameters[@"icebergQuantity"] = @(icebergQuantity);
-    }
-    
-    parameters[@"price"] = @(price);
-    
-    if (stopPrice > 0.0)
-    {
-        parameters[@"stopPrice"] = @(stopPrice);
-    }
-    
-    if (newClientOrderId)
-    {
-        parameters[@"newClientOrderId"] = newClientOrderId;
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    [sessionManager POST:URLString
-              parameters:parameters
-                progress:nil
-                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // GET /api/v3/order
@@ -545,117 +470,36 @@
                   timeToLive:(NSTimeInterval)timeToLive
                       result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBQueryOrderRequest alloc] initWithSymbol:symbol
+                                                                                  orderId:orderId
+                                                                    originalClientOrderId:originalClientOrderId];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (orderId != NSNotFound)
-    {
-        parameters[@"orderId"] = @(orderId);
-    }
-    else
-    {
-        NSParameterAssert(originalClientOrderId);
-        
-        parameters[@"origClientOrderId"] = originalClientOrderId;
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    [sessionManager GET:@"/api/v3/order"
-             parameters:parameters
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // DELETE /api/v3/order
 - (void)deleteOrderWithSymbol:(NSString *)symbol
                       orderId:(NSUInteger)orderId
         originalClientOrderId:(nullable NSString *)originalClientOrderId
-             newClientOrderId:(nullable NSString *)newClientOrderId
+         updatedClientOrderId:(nullable NSString *)updatedClientOrderId
                     timestamp:(NSTimeInterval)timestamp
                    timeToLive:(NSTimeInterval)timeToLive
                        result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBDeleteOrderRequest alloc] initWithSymbol:symbol
+                                                                                   orderId:orderId
+                                                                     originalClientOrderId:originalClientOrderId
+                                                                          updatedClientOrderId:updatedClientOrderId];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (orderId != NSNotFound)
-    {
-        parameters[@"orderId"] = @(orderId);
-    }
-    else
-    {
-        NSParameterAssert(originalClientOrderId);
-        
-        parameters[@"origClientOrderId"] = originalClientOrderId;
-    }
-    
-    if (newClientOrderId)
-    {
-        parameters[@"newClientOrderId"] = newClientOrderId;
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    [sessionManager DELETE:@"/api/v3/order"
-                parameters:parameters
-                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBDELETE
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // GET /api/v3/openOrders
@@ -664,43 +508,13 @@
                   timeToLive:(NSTimeInterval)timeToLive
                       result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBOpenOrdersRequest alloc] initWithSymbol:symbol];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    [sessionManager GET:@"/api/v3/openOrders"
-             parameters:parameters
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // GET /api/v3/allOrders
@@ -711,55 +525,15 @@
                  timeToLive:(NSTimeInterval)timeToLive
                      result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBAllOrdersRequest alloc] initWithSymbol:symbol
+                                                                                 orderId:orderId
+                                                                                   limit:limit];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (orderId != NSNotFound)
-    {
-        parameters[@"orderId"] = @(orderId);
-    }
-    
-    if (limit != NSNotFound)
-    {
-        NSUInteger canonicalLimit = MIN(limit, 500);
-        
-        parameters[@"limit"] = @(canonicalLimit);
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    [sessionManager GET:@"/api/v3/allOrders"
-             parameters:parameters
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // GET /api/v3/account
@@ -767,39 +541,13 @@
                              timeToLive:(NSTimeInterval)timeToLive
                                  result:(nullable ResultBlock)result
 {
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
+    id<BNBEndpointRequestProtocol> request = [BNBAccountRequest new];
     
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    [sessionManager GET:@"/api/v3/account"
-             parameters:parameters
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // GET /api/v3/myTrades
@@ -810,55 +558,15 @@
               timeToLive:(NSTimeInterval)timeToLive
                   result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBTradesRequest alloc] initWithSymbol:symbol
+                                                                               fromId:fromId
+                                                                                limit:limit];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (fromId != NSNotFound)
-    {
-        parameters[@"fromId"] = @(fromId);
-    }
-    
-    if (limit != NSNotFound)
-    {
-        NSUInteger canonicalLimit = MIN(limit, 500);
-        
-        parameters[@"limit"] = @(canonicalLimit);
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    [sessionManager GET:@"/api/v3/myTrades"
-             parameters:parameters
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // POST /wapi/v1/withdraw.html
@@ -870,51 +578,16 @@
            timeToLive:(NSTimeInterval)timeToLive
                result:(nullable ResultBlock)result
 {
-    NSParameterAssert(asset);
+    id<BNBEndpointRequestProtocol> request = [[BNBWithdrawRequest alloc] initWithAsset:asset
+                                                                               address:address
+                                                                                amount:amount
+                                                                                  name:name];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"asset"] = asset;
-    
-    NSParameterAssert(address);
-    
-    parameters[@"address"] = address;
-    
-    NSAssert(amount >= 0.0, @"Amount must be greater than or equal to zero");
-    
-    parameters[@"amount"] = @(amount);
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    [sessionManager POST:@"/wapi/v1/withdraw.html"
-              parameters:parameters
-                progress:nil
-                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // POST /wapi/v1/getDepositHistory.html
@@ -926,60 +599,16 @@
                     timeToLive:(NSTimeInterval)timeToLive
                         result:(nullable ResultBlock)result
 {
+    id<BNBEndpointRequestProtocol> request = [[BNBDepositHistoryRequest alloc] initWithAsset:asset
+                                                                               depositStatus:depositStatus
+                                                                                   startTime:startTime
+                                                                                     endTime:endTime];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    if (asset)
-    {
-        parameters[@"asset"] = asset;
-    }
-    
-    if (depositStatus != NSNotFound)
-    {
-        parameters[@"status"] = @(depositStatus);
-    }
-    
-    if (startTime >= 0.0)
-    {
-        parameters[@"startTime"] = @([NSNumber numberWithDouble:startTime].longLongValue);
-    }
-    
-    if (endTime >= 0.0)
-    {
-        parameters[@"endTime"] = @([NSNumber numberWithDouble:endTime].longLongValue);
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-        
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    [sessionManager POST:@"/wapi/v1/getDepositHistory.html"
-              parameters:parameters
-                progress:nil
-                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // POST /wapi/v1/getWithdrawHistory.html
@@ -991,26 +620,35 @@
                      timeToLive:(NSTimeInterval)timeToLive
                          result:(nullable ResultBlock)result
 {
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
+    id<BNBEndpointRequestProtocol> request = [[BNBWithdrawHistoryRequest alloc] initWithAsset:asset
+                                                                               withdrawStatus:withdrawStatus
+                                                                                    startTime:startTime
+                                                                                      endTime:endTime];
     
-    if (asset)
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
+}
+
+- (void)performRequest:(id<BNBEndpointRequestProtocol>)request
+        withHTTPMethod:(BNBHTTPMethod)HTTPMethod
+             timestamp:(NSTimeInterval)timestamp
+            timeToLive:(NSTimeInterval)timeToLive
+                result:(nullable ResultBlock)result
+{
+    NSMutableDictionary *parameters;
+    
+    NSDictionary *requestParameters = [request requestParametersForHTTPMethod:HTTPMethod];
+    
+    if (requestParameters)
     {
-        parameters[@"asset"] = asset;
+        parameters = [requestParameters mutableCopy];
     }
-    
-    if (withdrawStatus != NSNotFound)
+    else
     {
-        parameters[@"status"] = @(withdrawStatus);
-    }
-    
-    if (startTime >= 0.0)
-    {
-        parameters[@"startTime"] = @([NSNumber numberWithDouble:startTime].longLongValue);
-    }
-    
-    if (endTime >= 0.0)
-    {
-        parameters[@"endTime"] = @([NSNumber numberWithDouble:endTime].longLongValue);
+        parameters = [NSMutableDictionary new];
     }
     
     parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
@@ -1021,26 +659,102 @@
     }
     
     BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
     
-    [sessionManager POST:@"/wapi/v1/getWithdrawHistory.html"
-              parameters:parameters
-                progress:nil
-                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
+    if ([request respondsToSelector:@selector(requiresAPIKey)])
+    {
+        if ([request requiresAPIKey])
+        {
+            sessionManager.APIKey = self.APIKey;
+        }
+    }
+    
+    if ([request respondsToSelector:@selector(requiresSecretKey)])
+    {
+        if ([request requiresSecretKey])
+        {
+            sessionManager.secretKey = self.secretKey;
+        }
+    }
+    
+    switch (HTTPMethod)
+    {
+        case BNBPOST:
+        {
+            [sessionManager POST:[request URLPathString]
+                      parameters:parameters
+                        progress:nil
+                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+             {
+                 if (result)
+                 {
+                     result(responseObject, nil);
+                 }
+                 
+             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+             {
+                 if (result)
+                 {
+                     result(nil, error);
+                 }
+             }];
+        }
+            break;
+            
+        case BNBGET:
+        {
+            [sessionManager GET:[request URLPathString]
+                     parameters:parameters
+                       progress:nil
+                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+             {
+                 if (result)
+                 {
+                     result(responseObject, nil);
+                 }
+                 
+             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+             {
+                 if (result)
+                 {
+                     result(nil, error);
+                 }
+             }];
+        }
+            break;
+            
+        case BNBPUT:
+        {
+            
+        }
+            break;
+            
+        case BNBDELETE:
+        {
+            [sessionManager DELETE:[request URLPathString]
+                        parameters:parameters
+                           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+            {
+                if (result)
+                {
+                    result(responseObject, nil);
+                }
+                
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+            {
+                if (result)
+                {
+                    result(nil, error);
+                }
+            }];
+        }
+            break;
+            
+        default:
+            #warning FIX
+            [NSException raise:@"" format:@""];
+
+            break;
+    }
     
     sessionManager.APIKey = nil;
     sessionManager.secretKey = nil;

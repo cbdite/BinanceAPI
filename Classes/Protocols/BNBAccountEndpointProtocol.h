@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
               icebergQuantity:(CGFloat)icebergQuantity
                         price:(CGFloat)price
                     stopPrice:(CGFloat)stopPrice
-             newClientOrderId:(nullable NSString *)newClientOrderId
+             clientOrderId:(nullable NSString *)clientOrderId
                     timestamp:(NSTimeInterval)timestamp
                    timeToLive:(NSTimeInterval)timeToLive
                        result:(nullable ResultBlock)result;
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)deleteOrderWithSymbol:(NSString *)symbol
                       orderId:(NSUInteger)orderId
         originalClientOrderId:(nullable NSString *)originalClientOrderId
-             newClientOrderId:(nullable NSString *)newClientOrderId
+         clientOrderId:(nullable NSString *)clientOrderId
                     timestamp:(NSTimeInterval)timestamp
                    timeToLive:(NSTimeInterval)timeToLive
                        result:(nullable ResultBlock)result;

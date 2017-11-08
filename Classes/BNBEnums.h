@@ -109,3 +109,11 @@ typedef NS_ENUM(NSUInteger, BNBWithdrawStatus)
     BNBFailure,
     BNBCompleted
 };
+
+typedef NS_ENUM(NSUInteger, BNBHTTPMethod)
+{
+    BNBPOST,
+    BNBGET,
+    BNBPUT,
+    BNBDELETE
+};

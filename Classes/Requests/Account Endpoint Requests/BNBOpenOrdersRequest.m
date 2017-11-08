@@ -1,4 +1,4 @@
-// BNBXCTestCase.m
+// BNBOpenOrdersRequest.m
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,24 +19,53 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BNBXCTestCase.h"
+#import "BNBOpenOrdersRequest.h"
 
-@implementation BNBXCTestCase
+@implementation BNBOpenOrdersRequest
 
-- (void)setUp
+#pragma mark - Initialization
+
+- (instancetype)initWithSymbol:(NSString *)symbol
 {
-    [super setUp];
+    if (self = [super init])
+    {
+        self.symbol = symbol;
+    }
     
-    self.continueAfterFailure = YES;
-    
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    return self;
 }
 
-- (void)tearDown
+#pragma mark - BNBEndpointRequestProtocol Methods
+
+- (NSString *)URLPathString
 {
-    [DDLog removeAllLoggers];
+    return @"/api/v3/openOrders";
+}
+
+- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+{
+    NSMutableDictionary *requestParameters;
     
-    [super tearDown];
+    if (HTTPMethod == BNBGET)
+    {
+        requestParameters = [NSMutableDictionary new];
+        
+        NSParameterAssert(self.symbol);
+        
+        requestParameters[@"symbol"] = self.symbol;
+    }
+    
+    return requestParameters;
+}
+
+- (BOOL)requiresAPIKey
+{
+    return YES;
+}
+
+- (BOOL)requiresSecretKey
+{
+    return YES;
 }
 
 @end

@@ -46,7 +46,7 @@
                       icebergQuantity:0.0
                                 price:0.005
                             stopPrice:0.0
-                     newClientOrderId:nil
+                        clientOrderId:nil
                             timestamp:timestamp
                            timeToLive:5000.0
                                result:^(id  _Nullable responseObject, NSError * _Nullable error)
@@ -159,7 +159,7 @@
     [client deleteOrderWithSymbol:@"LTCBTC"
                           orderId:0
             originalClientOrderId:nil
-                 newClientOrderId:nil
+                    clientOrderId:nil
                         timestamp:timestamp
                        timeToLive:5000
                            result:^(id  _Nullable responseObject, NSError * _Nullable error)
@@ -429,11 +429,11 @@
     
     [client withdrawHistoryForAsset:@"BTC"
                      withdrawStatus:NSNotFound
-                         startTime:-1.0
-                           endTime:-1.0
-                         timestamp:timestamp
-                        timeToLive:5000
-                            result:^(id  _Nullable responseObject, NSError * _Nullable error)
+                          startTime:-1.0
+                            endTime:-1.0
+                          timestamp:timestamp
+                         timeToLive:5000
+                             result:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
          if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
          {

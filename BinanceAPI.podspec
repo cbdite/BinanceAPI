@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name     = 'BinanceAPI'
-  s.version  = '0.0.2'
+  s.version  = '0.0.3'
   s.license  = 'MIT'
   s.summary  = 'An Objective-C based implementation of the Binance API for iOS and macOS.'
-  s.homepage = 'https://github.com/cbdite/BinanceAPI'
+  s.homepage = 'https://cocoapods.org/pods/BinanceAPI'
   s.author  = 'Chris Dite'
   s.source   = { :git => 'https://github.com/cbdite/BinanceAPI.git', :tag => s.version }
   s.requires_arc = true

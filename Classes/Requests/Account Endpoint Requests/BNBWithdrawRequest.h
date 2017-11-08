@@ -1,4 +1,4 @@
-// BNBXCTestCase.m
+// BNBWithdrawRequest.h
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,24 +19,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BNBXCTestCase.h"
+#import <Foundation/Foundation.h>
 
-@implementation BNBXCTestCase
+#import "BNBEndpointRequestProtocol.h"
+#import "BNBEnums.h"
 
-- (void)setUp
-{
-    [super setUp];
-    
-    self.continueAfterFailure = YES;
-    
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-}
+NS_ASSUME_NONNULL_BEGIN
 
-- (void)tearDown
-{
-    [DDLog removeAllLoggers];
-    
-    [super tearDown];
-}
+@interface BNBWithdrawRequest : NSObject <BNBEndpointRequestProtocol>
+
+@property (copy, nonatomic) NSString *asset;
+
+@property (copy, nonatomic) NSString *address;
+
+@property (assign, nonatomic) CGFloat amount;
+
+@property (nullable, copy, nonatomic) NSString *name;
+
+- (instancetype)initWithAsset:(NSString *)asset
+                      address:(NSString *)address
+                       amount:(CGFloat)amount
+                         name:(nullable NSString *)name;
 
 @end
+
+NS_ASSUME_NONNULL_END

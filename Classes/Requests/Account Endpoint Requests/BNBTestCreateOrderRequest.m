@@ -1,4 +1,4 @@
-// BNBXCTestCase.m
+// BNBTestCreateOrderRequest.m
 // Copyright (c) 2017 Chris Dite
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,24 +19,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BNBXCTestCase.h"
+#import "BNBTestCreateOrderRequest.h"
 
-@implementation BNBXCTestCase
+@implementation BNBTestCreateOrderRequest
 
-- (void)setUp
+#pragma mark - BNBEndpointRequestProtocol Methods
+
+- (NSString *)URLPathString
 {
-    [super setUp];
-    
-    self.continueAfterFailure = YES;
-    
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-}
-
-- (void)tearDown
-{
-    [DDLog removeAllLoggers];
-    
-    [super tearDown];
+    return @"/api/v3/order/test";
 }
 
 @end
