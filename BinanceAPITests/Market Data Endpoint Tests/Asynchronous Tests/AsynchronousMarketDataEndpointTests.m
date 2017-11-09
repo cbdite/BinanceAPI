@@ -135,8 +135,8 @@
     
     [client klineDataForSymbol:@"BNBETH"
                          interval:BNBFifteenMinutes
-                        startTime:0.0
-                          endTime:0.0
+                        startTime:-1.0
+                          endTime:-1.0
                             limit:10
                            result:^(id  _Nullable responseObject, NSError * _Nullable error)
     {

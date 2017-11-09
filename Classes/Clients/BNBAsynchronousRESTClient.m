@@ -27,6 +27,13 @@
 #import "BNBTestConnectivityRequest.h"
 #import "BNBCheckServerTimeRequest.h"
 
+#import "BNBOrderBookRequest.h"
+#import "BNBAggregateTradesListRequest.h"
+#import "BNBKlineDataRequest.h"
+#import "BNBPriceChangeStatisticsTickerRequest.h"
+#import "BNBPriceTickersRequest.h"
+#import "BNBOrderBookTickersRequest.h"
+
 #import "BNBCreateUserStreamRequest.h"
 #import "BNBUpdateUserStreamRequest.h"
 #import "BNBDeleteUserStreamRequest.h"
@@ -109,38 +116,14 @@
                      limit:(NSUInteger)limit
                     result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBOrderBookRequest alloc] initWithSymbol:symbol
+                                                                                   limit:limit];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (limit != NSNotFound)
-    {
-        NSUInteger canonicalLimit = MIN(limit, 100);
-        
-        parameters[@"limit"] = @(canonicalLimit);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    
-    [sessionManager GET:@"/api/v1/depth"
-             parameters:parameters
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // GET /api/v1/aggTrades
@@ -163,70 +146,17 @@
                                limit:(NSUInteger)limit
                               result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBAggregateTradesListRequest alloc] initWithSymbol:symbol
+                                                                                            fromId:fromId
+                                                                                         startTime:startTime
+                                                                                           endTime:endTime
+                                                                                             limit:limit];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (fromId != NSNotFound)
-    {
-        parameters[@"fromId"] = @(fromId);
-    }
-    
-    if (startTime >= 0.0)
-    {
-        parameters[@"startTime"] = @([NSNumber numberWithDouble:startTime].longLongValue);
-    }
-    
-    if (endTime >= 0.0)
-    {
-        parameters[@"endTime"] = @([NSNumber numberWithDouble:endTime].longLongValue);
-    }
-    
-    if (startTime >= 0.0 && endTime >= 0.0)
-    {
-        NSTimeInterval timeInterval = endTime - startTime;
-        
-        CGFloat hours = timeInterval/3600.0;
-        
-        if (hours >= 24.0)
-        {
-            @throw
-            [NSException exceptionWithName:@"Invalid time interval"
-                                    reason:@"The time interval defined by startTime/endTime must be less than 24 hours"
-                                  userInfo:nil];
-        }
-    }
-    else
-    {
-        if (limit != NSNotFound)
-        {
-            NSUInteger canonicalLimit = MIN(limit, 500);
-            
-            parameters[@"limit"] = @(canonicalLimit);
-        }
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    
-    [sessionManager GET:@"/api/v1/aggTrades"
-             parameters:parameters
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // GET /api/v1/klines
@@ -250,53 +180,17 @@
                      limit:(NSUInteger)limit
                     result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBKlineDataRequest alloc] initWithSymbol:symbol
+                                                                                interval:interval
+                                                                               startTime:startTime
+                                                                                 endTime:endTime
+                                                                                   limit:limit];
     
-    NSString *intervalString = Interval_toString[interval];
-    
-    NSParameterAssert(intervalString);
-    
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    parameters[@"interval"] = intervalString;
-    
-    if (startTime >= 0.0)
-    {
-        parameters[@"startTime"] = @([NSNumber numberWithDouble:startTime].longLongValue);
-    }
-    
-    if (endTime >= 0.0)
-    {
-        parameters[@"endTime"] = @([NSNumber numberWithDouble:endTime].longLongValue);
-    }
-    
-    if (limit != NSNotFound)
-    {
-        NSUInteger canonicalLimit = MIN(limit, 500);
-        
-        parameters[@"limit"] = @(canonicalLimit);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    
-    [sessionManager GET:@"/api/v1/klines"
-             parameters:parameters
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 /*
@@ -308,77 +202,38 @@
                                     interval:(BNBInterval)interval
                                       result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBPriceChangeStatisticsTickerRequest alloc] initWithSymbol:symbol
+                                                                                                  interval:interval];
     
-    NSDictionary *parameters = @{@"symbol": symbol};
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    
-    [sessionManager GET:@"/api/v1/ticker/24hr"
-             parameters:parameters
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // GET /api/v1/ticker/allPrices
 - (void)priceTickersResult:(nullable ResultBlock)result
 {
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    id<BNBEndpointRequestProtocol> request = [BNBPriceTickersRequest new];
     
-    [sessionManager GET:@"/api/v1/ticker/allPrices"
-             parameters:nil
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // GET /api/v1/ticker/allBookTickers
 - (void)orderBookTickersResult:(nullable ResultBlock)result
 {
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    id<BNBEndpointRequestProtocol> request = [BNBOrderBookTickersRequest new];
     
-    [sessionManager GET:@"/api/v1/ticker/allBookTickers"
-             parameters:nil
-               progress:nil
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (result)
-         {
-             result(responseObject, nil);
-         }
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (result)
-         {
-             result(nil, error);
-         }
-     }];
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 #pragma mark - Account Endpoint Methods
@@ -423,7 +278,7 @@
               icebergQuantity:(CGFloat)icebergQuantity
                         price:(CGFloat)price
                     stopPrice:(CGFloat)stopPrice
-             clientOrderId:(nullable NSString *)clientOrderId
+                clientOrderId:(nullable NSString *)clientOrderId
                     timestamp:(NSTimeInterval)timestamp
                    timeToLive:(NSTimeInterval)timeToLive
                        result:(nullable ResultBlock)result
@@ -468,7 +323,7 @@
 - (void)deleteOrderWithSymbol:(NSString *)symbol
                       orderId:(NSUInteger)orderId
         originalClientOrderId:(nullable NSString *)originalClientOrderId
-         clientOrderId:(nullable NSString *)clientOrderId
+                clientOrderId:(nullable NSString *)clientOrderId
                     timestamp:(NSTimeInterval)timestamp
                    timeToLive:(NSTimeInterval)timeToLive
                        result:(nullable ResultBlock)result

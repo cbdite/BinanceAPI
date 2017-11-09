@@ -24,6 +24,12 @@
 		1B50587E1FB3A00F00167D1F /* BNBDeleteUserStreamRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50587D1FB3A00F00167D1F /* BNBDeleteUserStreamRequest.m */; };
 		1B5058811FB3A1D100167D1F /* BNBTestConnectivityRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058801FB3A1D100167D1F /* BNBTestConnectivityRequest.m */; };
 		1B5058841FB3A3D100167D1F /* BNBCheckServerTimeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058831FB3A3D100167D1F /* BNBCheckServerTimeRequest.m */; };
+		1B5058871FB45E0F00167D1F /* BNBOrderBookTickersRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058861FB45E0F00167D1F /* BNBOrderBookTickersRequest.m */; };
+		1B50588A1FB45F0B00167D1F /* BNBPriceTickersRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058891FB45F0B00167D1F /* BNBPriceTickersRequest.m */; };
+		1B5058901FB4601400167D1F /* BNBPriceChangeStatisticsTickerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50588F1FB4601400167D1F /* BNBPriceChangeStatisticsTickerRequest.m */; };
+		1B5058931FB4617800167D1F /* BNBKlineDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058921FB4617800167D1F /* BNBKlineDataRequest.m */; };
+		1B5058961FB463A700167D1F /* BNBAggregateTradesListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058951FB463A700167D1F /* BNBAggregateTradesListRequest.m */; };
+		1B5058991FB464BC00167D1F /* BNBOrderBookRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5058981FB464BC00167D1F /* BNBOrderBookRequest.m */; };
 		1B627F0B1FA9F22200E44A24 /* BNBJSONResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */; };
 		1B627F0D1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */; };
 		1B627F0F1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B627F0E1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m */; };
@@ -84,6 +90,18 @@
 		1B5058801FB3A1D100167D1F /* BNBTestConnectivityRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBTestConnectivityRequest.m; sourceTree = "<group>"; };
 		1B5058821FB3A3D100167D1F /* BNBCheckServerTimeRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBCheckServerTimeRequest.h; sourceTree = "<group>"; };
 		1B5058831FB3A3D100167D1F /* BNBCheckServerTimeRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBCheckServerTimeRequest.m; sourceTree = "<group>"; };
+		1B5058851FB45E0F00167D1F /* BNBOrderBookTickersRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBOrderBookTickersRequest.h; sourceTree = "<group>"; };
+		1B5058861FB45E0F00167D1F /* BNBOrderBookTickersRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBOrderBookTickersRequest.m; sourceTree = "<group>"; };
+		1B5058881FB45F0B00167D1F /* BNBPriceTickersRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBPriceTickersRequest.h; sourceTree = "<group>"; };
+		1B5058891FB45F0B00167D1F /* BNBPriceTickersRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBPriceTickersRequest.m; sourceTree = "<group>"; };
+		1B50588E1FB4601400167D1F /* BNBPriceChangeStatisticsTickerRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBPriceChangeStatisticsTickerRequest.h; sourceTree = "<group>"; };
+		1B50588F1FB4601400167D1F /* BNBPriceChangeStatisticsTickerRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBPriceChangeStatisticsTickerRequest.m; sourceTree = "<group>"; };
+		1B5058911FB4617800167D1F /* BNBKlineDataRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBKlineDataRequest.h; sourceTree = "<group>"; };
+		1B5058921FB4617800167D1F /* BNBKlineDataRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBKlineDataRequest.m; sourceTree = "<group>"; };
+		1B5058941FB463A700167D1F /* BNBAggregateTradesListRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBAggregateTradesListRequest.h; sourceTree = "<group>"; };
+		1B5058951FB463A700167D1F /* BNBAggregateTradesListRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBAggregateTradesListRequest.m; sourceTree = "<group>"; };
+		1B5058971FB464BC00167D1F /* BNBOrderBookRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBOrderBookRequest.h; sourceTree = "<group>"; };
+		1B5058981FB464BC00167D1F /* BNBOrderBookRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBOrderBookRequest.m; sourceTree = "<group>"; };
 		1B627F091FA9F22200E44A24 /* BNBJSONResponseSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNBJSONResponseSerializer.h; sourceTree = "<group>"; };
 		1B627F0A1FA9F22200E44A24 /* BNBJSONResponseSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNBJSONResponseSerializer.m; sourceTree = "<group>"; };
 		1B627F0C1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynchronousMarketDataEndpointTests.m; sourceTree = "<group>"; };
@@ -164,6 +182,18 @@
 		1B5058551FB21BCA00167D1F /* Market Data Endpoint Requests */ = {
 			isa = PBXGroup;
 			children = (
+				1B5058971FB464BC00167D1F /* BNBOrderBookRequest.h */,
+				1B5058981FB464BC00167D1F /* BNBOrderBookRequest.m */,
+				1B5058941FB463A700167D1F /* BNBAggregateTradesListRequest.h */,
+				1B5058951FB463A700167D1F /* BNBAggregateTradesListRequest.m */,
+				1B5058911FB4617800167D1F /* BNBKlineDataRequest.h */,
+				1B5058921FB4617800167D1F /* BNBKlineDataRequest.m */,
+				1B50588E1FB4601400167D1F /* BNBPriceChangeStatisticsTickerRequest.h */,
+				1B50588F1FB4601400167D1F /* BNBPriceChangeStatisticsTickerRequest.m */,
+				1B5058881FB45F0B00167D1F /* BNBPriceTickersRequest.h */,
+				1B5058891FB45F0B00167D1F /* BNBPriceTickersRequest.m */,
+				1B5058851FB45E0F00167D1F /* BNBOrderBookTickersRequest.h */,
+				1B5058861FB45E0F00167D1F /* BNBOrderBookTickersRequest.m */,
 			);
 			path = "Market Data Endpoint Requests";
 			sourceTree = "<group>";
@@ -571,6 +601,7 @@
 				1B627F0D1FAA028400E44A24 /* SynchronousMarketDataEndpointTests.m in Sources */,
 				1B895B101FA36128005D6169 /* BNBHTTPSessionManager.m in Sources */,
 				1B50586C1FB3636800167D1F /* BNBDeleteOrderRequest.m in Sources */,
+				1B5058961FB463A700167D1F /* BNBAggregateTradesListRequest.m in Sources */,
 				1B5058811FB3A1D100167D1F /* BNBTestConnectivityRequest.m in Sources */,
 				1B50587E1FB3A00F00167D1F /* BNBDeleteUserStreamRequest.m in Sources */,
 				1B6720891FA7641A007D86BA /* BNBUtilities.m in Sources */,
@@ -583,6 +614,7 @@
 				1B50585A1FB3509900167D1F /* BNBDepositHistoryRequest.m in Sources */,
 				1B895B191FA37E8B005D6169 /* BNBAsynchronousXCTestCase.m in Sources */,
 				1B895B1D1FA3A90E005D6169 /* BNBSynchronousRESTClient.m in Sources */,
+				1B5058931FB4617800167D1F /* BNBKlineDataRequest.m in Sources */,
 				1BCE02D31FA748A300CDDF31 /* AsynchronousAccountEndpointTests.m in Sources */,
 				1B627F0F1FAA02B100E44A24 /* SynchronousAccountEndpointTests.m in Sources */,
 				1B5058631FB35C0000167D1F /* BNBAccountRequest.m in Sources */,
@@ -596,9 +628,13 @@
 				1B9B3D981FA4B708004693D5 /* AsynchronousMarketDataEndpointTests.m in Sources */,
 				1B50585D1FB354C200167D1F /* BNBWithdrawRequest.m in Sources */,
 				1B895B281FA49CD2005D6169 /* BNBXCTestCase.m in Sources */,
+				1B5058871FB45E0F00167D1F /* BNBOrderBookTickersRequest.m in Sources */,
 				1B5058841FB3A3D100167D1F /* BNBCheckServerTimeRequest.m in Sources */,
+				1B5058991FB464BC00167D1F /* BNBOrderBookRequest.m in Sources */,
 				1B50587B1FB39C4E00167D1F /* BNBUpdateUserStreamRequest.m in Sources */,
+				1B50588A1FB45F0B00167D1F /* BNBPriceTickersRequest.m in Sources */,
 				1B6720901FA8BAA0007D86BA /* BNBNumberFormatters.m in Sources */,
+				1B5058901FB4601400167D1F /* BNBPriceChangeStatisticsTickerRequest.m in Sources */,
 				1BCE02D71FA759FC00CDDF31 /* NSDate+Utilities.m in Sources */,
 				1B5058691FB361C100167D1F /* BNBOpenOrdersRequest.m in Sources */,
 				1B5058601FB3581900167D1F /* BNBTradesRequest.m in Sources */,
