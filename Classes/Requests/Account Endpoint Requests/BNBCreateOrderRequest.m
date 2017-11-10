@@ -58,54 +58,49 @@
     return @"/api/v3/order";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBPOST)
+    NSParameterAssert(self.symbol);
+    
+    requestParameters[@"symbol"] = self.symbol;
+    
+    NSString *sideString = OrderSide_toString[self.side];
+    
+    NSParameterAssert(sideString);
+    
+    requestParameters[@"side"] = sideString;
+    
+    NSString *typeString = OrderType_toString[self.type];
+    
+    NSParameterAssert(typeString);
+    
+    requestParameters[@"type"] = typeString;
+    
+    NSString *timeInForceString = TimeInForce_toString[self.timeInForce];
+    
+    NSParameterAssert(timeInForceString);
+    
+    requestParameters[@"timeInForce"] = timeInForceString;
+    
+    requestParameters[@"quantity"] = @(self.quantity);
+    
+    if (self.icebergQuantity > 0.0)
     {
-        requestParameters = [NSMutableDictionary new];
-        
-        NSParameterAssert(self.symbol);
-        
-        requestParameters[@"symbol"] = self.symbol;
-        
-        NSString *sideString = OrderSide_toString[self.side];
-        
-        NSParameterAssert(sideString);
-        
-        requestParameters[@"side"] = sideString;
-        
-        NSString *typeString = OrderType_toString[self.type];
-        
-        NSParameterAssert(typeString);
-        
-        requestParameters[@"type"] = typeString;
-        
-        NSString *timeInForceString = TimeInForce_toString[self.timeInForce];
-        
-        NSParameterAssert(timeInForceString);
-        
-        requestParameters[@"timeInForce"] = timeInForceString;
-        
-        requestParameters[@"quantity"] = @(self.quantity);
-        
-        if (self.icebergQuantity > 0.0)
-        {
-            requestParameters[@"icebergQuantity"] = @(self.icebergQuantity);
-        }
-        
-        requestParameters[@"price"] = @(self.price);
-        
-        if (self.stopPrice > 0.0)
-        {
-            requestParameters[@"stopPrice"] = @(self.stopPrice);
-        }
-        
-        if (self.clientOrderId)
-        {
-            requestParameters[@"newClientOrderId"] = self.clientOrderId;
-        }
+        requestParameters[@"icebergQuantity"] = @(self.icebergQuantity);
+    }
+    
+    requestParameters[@"price"] = @(self.price);
+    
+    if (self.stopPrice > 0.0)
+    {
+        requestParameters[@"stopPrice"] = @(self.stopPrice);
+    }
+    
+    if (self.clientOrderId)
+    {
+        requestParameters[@"newClientOrderId"] = self.clientOrderId;
     }
     
     return requestParameters;
@@ -116,7 +111,7 @@
     return YES;
 }
 
-- (BOOL)requiresSecretKey
+- (BOOL)requiresSigning
 {
     return YES;
 }

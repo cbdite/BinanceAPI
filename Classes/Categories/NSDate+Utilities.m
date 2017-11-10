@@ -30,7 +30,7 @@
 
 + (NSTimeInterval)millisecondTimeIntervalSince1970
 {
-    return round([self timeIntervalSince1970]) * 1000.0;
+    return floor([self timeIntervalSince1970]) * 1000.0;
 }
 
 @end

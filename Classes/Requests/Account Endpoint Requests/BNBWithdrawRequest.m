@@ -48,26 +48,21 @@
     return @"/wapi/v1/withdraw.html";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBPOST)
-    {
-        requestParameters = [NSMutableDictionary new];
-        
-        NSParameterAssert(self.asset);
-        
-        requestParameters[@"asset"] = self.asset;
-        
-        NSParameterAssert(self.address);
-        
-        requestParameters[@"address"] = self.address;
-        
-        NSAssert(self.amount >= 0.0, @"Amount must be greater than or equal to zero");
-        
-        requestParameters[@"amount"] = @(self.amount);
-    }
+    NSParameterAssert(self.asset);
+    
+    requestParameters[@"asset"] = self.asset;
+    
+    NSParameterAssert(self.address);
+    
+    requestParameters[@"address"] = self.address;
+    
+    NSAssert(self.amount >= 0.0, @"Amount must be greater than or equal to zero");
+    
+    requestParameters[@"amount"] = @(self.amount);
     
     return requestParameters;
 }
@@ -77,7 +72,7 @@
     return YES;
 }
 
-- (BOOL)requiresSecretKey
+- (BOOL)requiresSigning
 {
     return YES;
 }

@@ -22,7 +22,6 @@
 #import "BNBAsynchronousRESTClient.h"
 
 #import "BNBHTTPSessionManager.h"
-#import "BNBUtilities.h"
 
 #import "BNBTestConnectivityRequest.h"
 #import "BNBCheckServerTimeRequest.h"
@@ -516,11 +515,9 @@
 {
     NSMutableDictionary *parameters;
     
-    NSDictionary *requestParameters = [request requestParametersForHTTPMethod:HTTPMethod];
-    
-    if (requestParameters)
+    if ([request respondsToSelector:@selector(requestParameters)])
     {
-        parameters = [requestParameters mutableCopy];
+        parameters = [[request requestParameters] mutableCopy];
     }
     else
     {
@@ -547,9 +544,9 @@
         }
     }
     
-    if ([request respondsToSelector:@selector(requiresSecretKey)])
+    if ([request respondsToSelector:@selector(requiresSigning)])
     {
-        if ([request requiresSecretKey])
+        if ([request requiresSigning])
         {
             sessionManager.secretKey = self.secretKey;
         }
@@ -644,8 +641,10 @@
             break;
             
         default:
-#warning FIX
-            [NSException raise:@"" format:@""];
+            @throw
+            [NSException exceptionWithName:@"Unsupported HTTP method"
+                                    reason:@"The HTTP method must be one of BNBPOST, BNBGET, BNBPUT or BNBDELETE"
+                                  userInfo:nil];
             
             break;
     }

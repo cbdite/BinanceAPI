@@ -29,13 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)URLPathString;
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod;
-
 @optional
+
+- (NSDictionary *)requestParameters;
 
 - (BOOL)requiresAPIKey;
 
-- (BOOL)requiresSecretKey;
+- (BOOL)requiresSigning;
 
 @end
 

@@ -46,28 +46,23 @@
     return @"/api/v3/order";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBGET)
+    NSParameterAssert(self.symbol);
+    
+    requestParameters[@"symbol"] = self.symbol;
+    
+    if (self.orderId != NSNotFound)
     {
-        requestParameters = [NSMutableDictionary new];
+        requestParameters[@"orderId"] = @(self.orderId);
+    }
+    else
+    {
+        NSParameterAssert(self.originalClientOrderId);
         
-        NSParameterAssert(self.symbol);
-        
-        requestParameters[@"symbol"] = self.symbol;
-        
-        if (self.orderId != NSNotFound)
-        {
-            requestParameters[@"orderId"] = @(self.orderId);
-        }
-        else
-        {
-            NSParameterAssert(self.originalClientOrderId);
-            
-            requestParameters[@"origClientOrderId"] = self.originalClientOrderId;
-        }
+        requestParameters[@"origClientOrderId"] = self.originalClientOrderId;
     }
     
     return requestParameters;
@@ -78,7 +73,7 @@
     return YES;
 }
 
-- (BOOL)requiresSecretKey
+- (BOOL)requiresSigning
 {
     return YES;
 }

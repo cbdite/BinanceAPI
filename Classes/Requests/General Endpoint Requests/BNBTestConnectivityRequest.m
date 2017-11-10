@@ -30,19 +30,4 @@
     return @"/api/v1/ping";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
-{
-    return nil;
-}
-
-- (BOOL)requiresAPIKey
-{
-    return NO;
-}
-
-- (BOOL)requiresSecretKey
-{
-    return NO;
-}
-
 @end

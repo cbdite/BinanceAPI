@@ -30,19 +30,4 @@
     return @"/api/v1/ticker/allBookTickers";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
-{
-    return nil;
-}
-
-- (BOOL)requiresAPIKey
-{
-    return YES;
-}
-
-- (BOOL)requiresSecretKey
-{
-    return YES;
-}
-
 @end

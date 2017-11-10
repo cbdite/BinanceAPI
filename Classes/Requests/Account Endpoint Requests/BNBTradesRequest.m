@@ -46,29 +46,24 @@
     return @"/api/v3/myTrades";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBGET)
+    NSParameterAssert(self.symbol);
+    
+    requestParameters[@"symbol"] = self.symbol;
+    
+    if (self.fromId != NSNotFound)
     {
-        requestParameters = [NSMutableDictionary new];
+        requestParameters[@"fromId"] = @(self.fromId);
+    }
+    
+    if (self.limit != NSNotFound)
+    {
+        NSUInteger canonicalLimit = MIN(self.limit, 500);
         
-        NSParameterAssert(self.symbol);
-        
-        requestParameters[@"symbol"] = self.symbol;
-        
-        if (self.fromId != NSNotFound)
-        {
-            requestParameters[@"fromId"] = @(self.fromId);
-        }
-        
-        if (self.limit != NSNotFound)
-        {
-            NSUInteger canonicalLimit = MIN(self.limit, 500);
-            
-            requestParameters[@"limit"] = @(canonicalLimit);
-        }
+        requestParameters[@"limit"] = @(canonicalLimit);
     }
     
     return requestParameters;
@@ -79,7 +74,7 @@
     return YES;
 }
 
-- (BOOL)requiresSecretKey
+- (BOOL)requiresSigning
 {
     return YES;
 }

@@ -42,18 +42,13 @@
     return @"/api/v3/openOrders";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBGET)
-    {
-        requestParameters = [NSMutableDictionary new];
-        
-        NSParameterAssert(self.symbol);
-        
-        requestParameters[@"symbol"] = self.symbol;
-    }
+    NSParameterAssert(self.symbol);
+    
+    requestParameters[@"symbol"] = self.symbol;
     
     return requestParameters;
 }
@@ -63,7 +58,7 @@
     return YES;
 }
 
-- (BOOL)requiresSecretKey
+- (BOOL)requiresSigning
 {
     return YES;
 }

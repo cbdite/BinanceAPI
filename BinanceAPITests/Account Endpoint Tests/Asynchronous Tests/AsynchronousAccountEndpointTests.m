@@ -37,7 +37,7 @@
     BNBAsynchronousRESTClient *client = [[BNBAsynchronousRESTClient alloc] initWithAPIKey:kAPIKey secretKey:kSecretKey];
     
     NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
-    
+
     [client testCreateOrderWithSymbol:@"LTCBTC"
                                  side:BNBBuy
                                  type:BNBLimit
@@ -48,7 +48,7 @@
                             stopPrice:0.0
                         clientOrderId:nil
                             timestamp:timestamp
-                           timeToLive:5000.0
+                           timeToLive:10000.0
                                result:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
          if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
@@ -125,7 +125,7 @@
                          orderId:0
            originalClientOrderId:nil
                        timestamp:timestamp
-                      timeToLive:5000
+                      timeToLive:5000.0
                           result:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
          if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
@@ -161,7 +161,7 @@
             originalClientOrderId:nil
                     clientOrderId:nil
                         timestamp:timestamp
-                       timeToLive:5000
+                       timeToLive:5000.0
                            result:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
          if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
@@ -194,7 +194,7 @@
     
     [client openOrdersWithSymbol:@"LTCBTC"
                        timestamp:timestamp
-                      timeToLive:5000
+                      timeToLive:5000.0
                           result:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
          if (responseObject && [responseObject isKindOfClass:[NSArray class]])
@@ -232,7 +232,7 @@
                         orderId:0
                           limit:10
                       timestamp:timestamp
-                     timeToLive:5000
+                     timeToLive:5000.0
                          result:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
          if (responseObject && [responseObject isKindOfClass:[NSArray class]])
@@ -267,7 +267,7 @@
     NSTimeInterval timestamp = [NSDate millisecondTimeIntervalSince1970];
     
     [client accountInformationWithTimestamp:timestamp
-                                 timeToLive:5000
+                                 timeToLive:5000.0
                                      result:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
          if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
@@ -325,7 +325,7 @@
                       fromId:NSNotFound
                        limit:10
                    timestamp:timestamp
-                  timeToLive:5000
+                  timeToLive:5000.0
                       result:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
          if (responseObject && [responseObject isKindOfClass:[NSArray class]])
@@ -364,7 +364,7 @@
                    amount:0.0
                      name:nil
                 timestamp:timestamp
-               timeToLive:5000
+               timeToLive:5000.0
                    result:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
          if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
@@ -400,7 +400,7 @@
                          startTime:-1.0
                            endTime:-1.0
                          timestamp:timestamp
-                        timeToLive:5000
+                        timeToLive:5000.0
                             result:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
          if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])
@@ -432,7 +432,7 @@
                           startTime:-1.0
                             endTime:-1.0
                           timestamp:timestamp
-                         timeToLive:5000
+                         timeToLive:5000.0
                              result:^(id  _Nullable responseObject, NSError * _Nullable error)
      {
          if (responseObject && [responseObject isKindOfClass:[NSDictionary class]])

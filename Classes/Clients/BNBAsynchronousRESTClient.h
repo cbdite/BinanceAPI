@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
                   icebergQuantity:(CGFloat)icebergQuantity
                             price:(CGFloat)price
                         stopPrice:(CGFloat)stopPrice
-                 clientOrderId:(nullable NSString *)clientOrderId
+                    clientOrderId:(nullable NSString *)clientOrderId
                         timestamp:(NSTimeInterval)timestamp
                        timeToLive:(NSTimeInterval)timeToLive
                            result:(nullable ResultBlock)result;

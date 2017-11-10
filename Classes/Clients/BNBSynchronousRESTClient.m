@@ -24,6 +24,32 @@
 #import "BNBHTTPSessionManager.h"
 #import "AFHTTPSessionManager+Synchronous.h"
 
+#import "BNBTestConnectivityRequest.h"
+#import "BNBCheckServerTimeRequest.h"
+
+#import "BNBOrderBookRequest.h"
+#import "BNBAggregateTradesListRequest.h"
+#import "BNBKlineDataRequest.h"
+#import "BNBPriceChangeStatisticsTickerRequest.h"
+#import "BNBPriceTickersRequest.h"
+#import "BNBOrderBookTickersRequest.h"
+
+#import "BNBCreateUserStreamRequest.h"
+#import "BNBUpdateUserStreamRequest.h"
+#import "BNBDeleteUserStreamRequest.h"
+
+#import "BNBTestCreateOrderRequest.h"
+#import "BNBCreateOrderRequest.h"
+#import "BNBQueryOrderRequest.h"
+#import "BNBDeleteOrderRequest.h"
+#import "BNBOpenOrdersRequest.h"
+#import "BNBAllOrdersRequest.h"
+#import "BNBAccountRequest.h"
+#import "BNBTradesRequest.h"
+#import "BNBWithdrawRequest.h"
+#import "BNBDepositHistoryRequest.h"
+#import "BNBWithdrawHistoryRequest.h"
+
 @interface BNBSynchronousRESTClient ()
 
 @property (readwrite, copy, nonatomic) NSString *APIKey;
@@ -51,61 +77,27 @@
 #pragma mark - General Endpoint Methods
 
 // GET /api/v1/ping
-- (void)testConnectivity:(nullable void (^)(id _Nullable responseObject, NSError * _Nullable error))result
+- (void)testConnectivity:(nullable ResultBlock)result
 {
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    id<BNBEndpointRequestProtocol> request = [BNBTestConnectivityRequest new];
     
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v1/ping"
-                                 parameters:nil
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // GET /api/v1/time
-- (void)checkServerTime:(nullable void (^)(id _Nullable responseObject, NSError * _Nullable error))result
+- (void)checkServerTime:(nullable ResultBlock)result
 {
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    id<BNBEndpointRequestProtocol> request = [BNBCheckServerTimeRequest new];
     
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v1/time"
-                                 parameters:nil
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 #pragma mark - Market Data Endpoint Methods
@@ -124,43 +116,14 @@
                      limit:(NSUInteger)limit
                     result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBOrderBookRequest alloc] initWithSymbol:symbol
+                                                                                   limit:limit];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (limit != NSNotFound)
-    {
-        NSUInteger canonicalLimit = MIN(limit, 100);
-        
-        parameters[@"limit"] = @(canonicalLimit);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v1/depth"
-                                 parameters:parameters
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // GET /api/v1/aggTrades
@@ -183,75 +146,17 @@
                                limit:(NSUInteger)limit
                               result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBAggregateTradesListRequest alloc] initWithSymbol:symbol
+                                                                                            fromId:fromId
+                                                                                         startTime:startTime
+                                                                                           endTime:endTime
+                                                                                             limit:limit];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (fromId != NSNotFound)
-    {
-        parameters[@"fromId"] = @(fromId);
-    }
-    
-    if (startTime >= 0.0)
-    {
-        parameters[@"startTime"] = @([NSNumber numberWithDouble:startTime].longLongValue);
-    }
-    
-    if (endTime >= 0.0)
-    {
-        parameters[@"endTime"] = @([NSNumber numberWithDouble:endTime].longLongValue);
-    }
-    
-    if (startTime >= 0.0 && endTime >= 0.0)
-    {
-        NSTimeInterval timeInterval = endTime - startTime;
-        
-        CGFloat hours = timeInterval/3600.0;
-        
-        if (hours >= 24.0)
-        {
-            @throw
-            [NSException exceptionWithName:@"Invalid time interval"
-                                    reason:@"The time interval defined by startTime/endTime must be less than 24 hours"
-                                  userInfo:nil];
-        }
-    }
-    else
-    {
-        if (limit != NSNotFound)
-        {
-            NSUInteger canonicalLimit = MIN(limit, 500);
-            
-            parameters[@"limit"] = @(canonicalLimit);
-        }
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v1/aggTrades"
-                                 parameters:parameters
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // GET /api/v1/klines
@@ -275,58 +180,17 @@
                      limit:(NSUInteger)limit
                     result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBKlineDataRequest alloc] initWithSymbol:symbol
+                                                                                interval:interval
+                                                                               startTime:startTime
+                                                                                 endTime:endTime
+                                                                                   limit:limit];
     
-    NSString *intervalString = Interval_toString[interval];
-    
-    NSParameterAssert(intervalString);
-    
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    parameters[@"interval"] = intervalString;
-    
-    if (startTime >= 0.0)
-    {
-        parameters[@"startTime"] = @([NSNumber numberWithDouble:startTime].longLongValue);
-    }
-    
-    if (endTime >= 0.0)
-    {
-        parameters[@"endTime"] = @([NSNumber numberWithDouble:endTime].longLongValue);
-    }
-    
-    if (limit != NSNotFound)
-    {
-        NSUInteger canonicalLimit = MIN(limit, 500);
-        
-        parameters[@"limit"] = @(canonicalLimit);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v1/klines"
-                                 parameters:parameters
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 /*
@@ -338,92 +202,38 @@
                                     interval:(BNBInterval)interval
                                       result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBPriceChangeStatisticsTickerRequest alloc] initWithSymbol:symbol
+                                                                                                  interval:interval];
     
-    NSDictionary *parameters = @{@"symbol": symbol};
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v1/ticker/24hr"
-                                 parameters:parameters
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // GET /api/v1/ticker/allPrices
 - (void)priceTickersResult:(nullable ResultBlock)result
 {
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    id<BNBEndpointRequestProtocol> request = [BNBPriceTickersRequest new];
     
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v1/ticker/allPrices"
-                                 parameters:nil
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // GET /api/v1/ticker/allBookTickers
 - (void)orderBookTickersResult:(nullable ResultBlock)result
 {
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
+    id<BNBEndpointRequestProtocol> request = [BNBOrderBookTickersRequest new];
     
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v1/ticker/allBookTickers"
-                                 parameters:nil
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 #pragma mark - Account Endpoint Methods
@@ -437,24 +247,26 @@
                   icebergQuantity:(CGFloat)icebergQuantity
                             price:(CGFloat)price
                         stopPrice:(CGFloat)stopPrice
-                 newClientOrderId:(nullable NSString *)newClientOrderId
+                    clientOrderId:(nullable NSString *)clientOrderId
                         timestamp:(NSTimeInterval)timestamp
                        timeToLive:(NSTimeInterval)timeToLive
                            result:(nullable ResultBlock)result
 {
-    [self createOrderWithSymbol:symbol
-                           side:side
-                           type:type
-                    timeInForce:timeInForce
-                       quantity:quantity
-                icebergQuantity:icebergQuantity
-                          price:price
-                      stopPrice:stopPrice
-               newClientOrderId:newClientOrderId
-                      timestamp:timestamp
-                     timeToLive:timeToLive
-                         result:result
-                      URLString:@"/api/v3/order/test"];
+    id<BNBEndpointRequestProtocol> request = [[BNBTestCreateOrderRequest alloc] initWithSymbol:symbol
+                                                                                          side:side
+                                                                                          type:type
+                                                                                   timeInForce:timeInForce
+                                                                                      quantity:quantity
+                                                                               icebergQuantity:icebergQuantity
+                                                                                         price:price
+                                                                                     stopPrice:stopPrice
+                                                                                 clientOrderId:clientOrderId];
+    
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // POST /api/v3/order
@@ -466,118 +278,26 @@
               icebergQuantity:(CGFloat)icebergQuantity
                         price:(CGFloat)price
                     stopPrice:(CGFloat)stopPrice
-             newClientOrderId:(nullable NSString *)newClientOrderId
+                clientOrderId:(nullable NSString *)clientOrderId
                     timestamp:(NSTimeInterval)timestamp
                    timeToLive:(NSTimeInterval)timeToLive
                        result:(nullable ResultBlock)result
 {
-    [self createOrderWithSymbol:symbol
-                           side:side
-                           type:type
-                    timeInForce:timeInForce
-                       quantity:quantity
-                icebergQuantity:icebergQuantity
-                          price:price
-                      stopPrice:stopPrice
-               newClientOrderId:newClientOrderId
-                      timestamp:timestamp
-                     timeToLive:timeToLive
-                         result:result
-                      URLString:@"api/v3/order"];
-}
-
-// POST /api/v3/order
-- (void)createOrderWithSymbol:(NSString *)symbol
-                         side:(BNBOrderSide)side
-                         type:(BNBOrderType)type
-                  timeInForce:(BNBTimeInForce)timeInForce
-                     quantity:(CGFloat)quantity
-              icebergQuantity:(CGFloat)icebergQuantity
-                        price:(CGFloat)price
-                    stopPrice:(CGFloat)stopPrice
-             newClientOrderId:(nullable NSString *)newClientOrderId
-                    timestamp:(NSTimeInterval)timestamp
-                   timeToLive:(NSTimeInterval)timeToLive
-                       result:(nullable ResultBlock)result
-                    URLString:(NSString *)URLString
-{
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBCreateOrderRequest alloc] initWithSymbol:symbol
+                                                                                      side:side
+                                                                                      type:type
+                                                                               timeInForce:timeInForce
+                                                                                  quantity:quantity
+                                                                           icebergQuantity:icebergQuantity
+                                                                                     price:price
+                                                                                 stopPrice:stopPrice
+                                                                             clientOrderId:clientOrderId];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    NSString *sideString = OrderSide_toString[side];
-    
-    NSParameterAssert(sideString);
-    
-    parameters[@"side"] = sideString;
-    
-    NSString *typeString = OrderType_toString[type];
-    
-    NSParameterAssert(typeString);
-    
-    parameters[@"type"] = typeString;
-    
-    NSString *timeInForceString = TimeInForce_toString[timeInForce];
-    
-    NSParameterAssert(timeInForceString);
-    
-    parameters[@"timeInForce"] = timeInForceString;
-    
-    parameters[@"quantity"] = @(quantity);
-    
-    if (icebergQuantity > 0.0)
-    {
-        parameters[@"icebergQuantity"] = @(icebergQuantity);
-    }
-    
-    parameters[@"price"] = @(price);
-    
-    if (stopPrice > 0.0)
-    {
-        parameters[@"stopPrice"] = @(stopPrice);
-    }
-    
-    if (newClientOrderId)
-    {
-        parameters[@"newClientOrderId"] = newClientOrderId;
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncPOST:URLString
-                                  parameters:parameters
-                                        task:nil
-                                       error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // GET /api/v3/order
@@ -588,124 +308,36 @@
                   timeToLive:(NSTimeInterval)timeToLive
                       result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBQueryOrderRequest alloc] initWithSymbol:symbol
+                                                                                  orderId:orderId
+                                                                    originalClientOrderId:originalClientOrderId];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (orderId != NSNotFound)
-    {
-        parameters[@"orderId"] = @(orderId);
-    }
-    else
-    {
-        NSParameterAssert(originalClientOrderId);
-        
-        parameters[@"origClientOrderId"] = originalClientOrderId;
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v3/order"
-                                 parameters:parameters
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // DELETE /api/v3/order
 - (void)deleteOrderWithSymbol:(NSString *)symbol
                       orderId:(NSUInteger)orderId
         originalClientOrderId:(nullable NSString *)originalClientOrderId
-             updatedClientOrderId:(nullable NSString *)updatedClientOrderId
+                clientOrderId:(nullable NSString *)clientOrderId
                     timestamp:(NSTimeInterval)timestamp
                    timeToLive:(NSTimeInterval)timeToLive
                        result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBDeleteOrderRequest alloc] initWithSymbol:symbol
+                                                                                   orderId:orderId
+                                                                     originalClientOrderId:originalClientOrderId
+                                                                             clientOrderId:clientOrderId];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (orderId != NSNotFound)
-    {
-        parameters[@"orderId"] = @(orderId);
-    }
-    else
-    {
-        NSParameterAssert(originalClientOrderId);
-        
-        parameters[@"origClientOrderId"] = originalClientOrderId;
-    }
-    
-    if (updatedClientOrderId)
-    {
-        parameters[@"newClientOrderId"] = updatedClientOrderId;
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncDELETE:@"/api/v3/order"
-                                    parameters:parameters
-                                          task:nil
-                                         error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBDELETE
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // GET /api/v3/openOrders
@@ -714,46 +346,13 @@
                   timeToLive:(NSTimeInterval)timeToLive
                       result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBOpenOrdersRequest alloc] initWithSymbol:symbol];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v3/openOrders"
-                                 parameters:parameters
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // GET /api/v3/allOrders
@@ -764,58 +363,15 @@
                  timeToLive:(NSTimeInterval)timeToLive
                      result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBAllOrdersRequest alloc] initWithSymbol:symbol
+                                                                                 orderId:orderId
+                                                                                   limit:limit];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (orderId != NSNotFound)
-    {
-        parameters[@"orderId"] = @(orderId);
-    }
-    
-    if (limit != NSNotFound)
-    {
-        NSUInteger canonicalLimit = MIN(limit, 500);
-        
-        parameters[@"limit"] = @(canonicalLimit);
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v3/allOrders"
-                                 parameters:parameters
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // GET /api/v3/account
@@ -823,42 +379,13 @@
                              timeToLive:(NSTimeInterval)timeToLive
                                  result:(nullable ResultBlock)result
 {
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
+    id<BNBEndpointRequestProtocol> request = [BNBAccountRequest new];
     
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v3/account"
-                                 parameters:parameters
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // GET /api/v3/myTrades
@@ -869,58 +396,15 @@
               timeToLive:(NSTimeInterval)timeToLive
                   result:(nullable ResultBlock)result
 {
-    NSParameterAssert(symbol);
+    id<BNBEndpointRequestProtocol> request = [[BNBTradesRequest alloc] initWithSymbol:symbol
+                                                                               fromId:fromId
+                                                                                limit:limit];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"symbol"] = symbol;
-    
-    if (fromId != NSNotFound)
-    {
-        parameters[@"fromId"] = @(fromId);
-    }
-    
-    if (limit != NSNotFound)
-    {
-        NSUInteger canonicalLimit = MIN(limit, 500);
-        
-        parameters[@"limit"] = @(canonicalLimit);
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncGET:@"/api/v3/myTrades"
-                                 parameters:parameters
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBGET
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // POST /wapi/v1/withdraw.html
@@ -932,52 +416,16 @@
            timeToLive:(NSTimeInterval)timeToLive
                result:(nullable ResultBlock)result
 {
-    NSParameterAssert(asset);
+    id<BNBEndpointRequestProtocol> request = [[BNBWithdrawRequest alloc] initWithAsset:asset
+                                                                               address:address
+                                                                                amount:amount
+                                                                                  name:name];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"asset"] = asset;
-    
-    NSParameterAssert(address);
-    
-    parameters[@"address"] = address;
-    
-    NSAssert(amount >= 0.0, @"Amount must be greater than or equal to zero");
-    
-    parameters[@"amount"] = @(amount);
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncPOST:@"/wapi/v1/withdraw.html"
-                                  parameters:parameters
-                                        task:nil
-                                       error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // POST /wapi/v1/getDepositHistory.html
@@ -989,61 +437,16 @@
                     timeToLive:(NSTimeInterval)timeToLive
                         result:(nullable ResultBlock)result
 {
+    id<BNBEndpointRequestProtocol> request = [[BNBDepositHistoryRequest alloc] initWithAsset:asset
+                                                                               depositStatus:depositStatus
+                                                                                   startTime:startTime
+                                                                                     endTime:endTime];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    if (asset)
-    {
-        parameters[@"asset"] = asset;
-    }
-    
-    if (depositStatus != NSNotFound)
-    {
-        parameters[@"status"] = @(depositStatus);
-    }
-    
-    if (startTime >= 0.0)
-    {
-        parameters[@"startTime"] = @([NSNumber numberWithDouble:startTime].longLongValue);
-    }
-    
-    if (endTime >= 0.0)
-    {
-        parameters[@"endTime"] = @([NSNumber numberWithDouble:endTime].longLongValue);
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncPOST:@"/wapi/v1/getDepositHistory.html"
-                                  parameters:parameters
-                                        task:nil
-                                       error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 // POST /wapi/v1/getWithdrawHistory.html
@@ -1055,60 +458,16 @@
                      timeToLive:(NSTimeInterval)timeToLive
                          result:(nullable ResultBlock)result
 {
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
+    id<BNBEndpointRequestProtocol> request = [[BNBWithdrawHistoryRequest alloc] initWithAsset:asset
+                                                                               withdrawStatus:withdrawStatus
+                                                                                    startTime:startTime
+                                                                                      endTime:endTime];
     
-    if (asset)
-    {
-        parameters[@"asset"] = asset;
-    }
-    
-    if (withdrawStatus != NSNotFound)
-    {
-        parameters[@"status"] = @(withdrawStatus);
-    }
-    
-    if (startTime >= 0.0)
-    {
-        parameters[@"startTime"] = @([NSNumber numberWithDouble:startTime].longLongValue);
-    }
-    
-    if (endTime >= 0.0)
-    {
-        parameters[@"endTime"] = @([NSNumber numberWithDouble:endTime].longLongValue);
-    }
-    
-    parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
-    
-    if (timeToLive > 0.0)
-    {
-        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
-    }
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.secretKey = self.secretKey;
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncPOST:@"/wapi/v1/getWithdrawHistory.html"
-                                  parameters:parameters
-                                        task:nil
-                                       error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.secretKey = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:timestamp
+              timeToLive:timeToLive
+                  result:result];
 }
 
 #pragma mark - User Stream Endpoint Methods
@@ -1116,103 +475,193 @@
 // POST /api/v1/userDataStream
 - (void)createUserStream:(nullable ResultBlock)result
 {
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
+    id<BNBEndpointRequestProtocol> request = [BNBCreateUserStreamRequest new];
     
-    NSError *error;
-    
-    id resultData = [sessionManager syncPOST:@"/api/v1/userDataStream"
-                                  parameters:nil
-                                        task:nil
-                                       error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBPOST
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // PUT /api/v1/userDataStream
 - (void)updateUserStreamForListenKey:(NSString *)listenKey result:(nullable ResultBlock)result
 {
-    NSParameterAssert(listenKey);
+    id<BNBEndpointRequestProtocol> request = [[BNBUpdateUserStreamRequest alloc] initWithListenKey:listenKey];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    
-    parameters[@"listenKey"] = listenKey;
-    
-    BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
-    
-    NSError *error;
-    
-    id resultData = [sessionManager syncPUT:@"/api/v1/userDataStream"
-                                 parameters:parameters
-                                       task:nil
-                                      error:&error];
-    
-    if (result)
-    {
-        if (resultData)
-        {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
-        }
-    }
-    
-    sessionManager.APIKey = nil;
-    sessionManager.completionQueue = nil;
+    [self performRequest:request
+          withHTTPMethod:BNBPUT
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
 }
 
 // DELETE /api/v1/userDataStream
 - (void)deleteUserStreamForListenKey:(NSString *)listenKey result:(nullable ResultBlock)result
 {
-    NSParameterAssert(listenKey);
+    id<BNBEndpointRequestProtocol> request = [[BNBDeleteUserStreamRequest alloc] initWithListenKey:listenKey];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
+    [self performRequest:request
+          withHTTPMethod:BNBDELETE
+               timestamp:-1.0
+              timeToLive:-1.0
+                  result:result];
+}
+
+- (void)performRequest:(id<BNBEndpointRequestProtocol>)request
+        withHTTPMethod:(BNBHTTPMethod)HTTPMethod
+             timestamp:(NSTimeInterval)timestamp
+            timeToLive:(NSTimeInterval)timeToLive
+                result:(nullable ResultBlock)result
+{
+    NSMutableDictionary *parameters;
     
-    parameters[@"listenKey"] = listenKey;
+    if ([request respondsToSelector:@selector(requestParameters)])
+    {
+        parameters = [[request requestParameters] mutableCopy];
+    }
+    else
+    {
+        parameters = [NSMutableDictionary new];
+    }
+    
+    if (timestamp > 0.0)
+    {
+        parameters[@"timestamp"] = @([NSNumber numberWithDouble:timestamp].longLongValue);
+    }
+    
+    if (timeToLive > 0.0)
+    {
+        parameters[@"recvWindow"] = @([NSNumber numberWithDouble:timeToLive].longLongValue);
+    }
     
     BNBHTTPSessionManager *sessionManager = [BNBHTTPSessionManager sharedHTTPSessionManager];
-    sessionManager.APIKey = self.APIKey;
-    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
     
-    NSError *error;
-    
-    id resultData = [sessionManager syncDELETE:@"/api/v1/userDataStream"
-                                    parameters:parameters
-                                          task:nil
-                                         error:&error];
-    
-    if (result)
+    if ([request respondsToSelector:@selector(requiresAPIKey)])
     {
-        if (resultData)
+        if ([request requiresAPIKey])
         {
-            result(resultData, nil);
-        }
-        else
-        {
-            result(nil, error);
+            sessionManager.APIKey = self.APIKey;
         }
     }
     
+    if ([request respondsToSelector:@selector(requiresSigning)])
+    {
+        if ([request requiresSigning])
+        {
+            sessionManager.secretKey = self.secretKey;
+        }
+    }
+    
+    sessionManager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
+    
+    switch (HTTPMethod)
+    {
+        case BNBPOST:
+        {
+            NSError *error;
+            
+            id resultData = [sessionManager syncPOST:[request URLPathString]
+                                          parameters:parameters
+                                                task:nil
+                                               error:&error];
+            
+            if (result)
+            {
+                if (resultData)
+                {
+                    result(resultData, nil);
+                }
+                else
+                {
+                    result(nil, error);
+                }
+            }
+        }
+            break;
+            
+        case BNBGET:
+        {
+            NSError *error;
+
+            id resultData = [sessionManager syncGET:[request URLPathString]
+                                         parameters:parameters
+                                               task:nil
+                                              error:&error];
+            
+            if (result)
+            {
+                if (resultData)
+                {
+                    result(resultData, nil);
+                }
+                else
+                {
+                    result(nil, error);
+                }
+            }
+        }
+            break;
+            
+        case BNBPUT:
+        {
+            NSError *error;
+
+            id resultData = [sessionManager syncPUT:[request URLPathString]
+                                         parameters:parameters
+                                               task:nil
+                                              error:&error];
+            
+            if (result)
+            {
+                if (resultData)
+                {
+                    result(resultData, nil);
+                }
+                else
+                {
+                    result(nil, error);
+                }
+            }
+        }
+            break;
+            
+        case BNBDELETE:
+        {
+            NSError *error;
+
+            id resultData = [sessionManager syncDELETE:[request URLPathString]
+                                            parameters:parameters
+                                                  task:nil
+                                                 error:&error];
+            
+            if (result)
+            {
+                if (resultData)
+                {
+                    result(resultData, nil);
+                }
+                else
+                {
+                    result(nil, error);
+                }
+            }
+        }
+            break;
+            
+        default:
+            @throw
+            [NSException exceptionWithName:@"Unsupported HTTP method"
+                                    reason:@"The HTTP method must be one of BNBPOST, BNBGET, BNBPUT or BNBDELETE"
+                                  userInfo:nil];
+            
+            break;
+    }
+    
     sessionManager.APIKey = nil;
+    sessionManager.secretKey = nil;
     sessionManager.completionQueue = nil;
 }
 
 @end
+

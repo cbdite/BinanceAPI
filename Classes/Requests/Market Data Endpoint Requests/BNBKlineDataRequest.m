@@ -50,52 +50,37 @@
     return @"/api/v1/klines";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBGET)
+    NSParameterAssert(self.symbol);
+    
+    NSString *intervalString = Interval_toString[self.interval];
+    
+    NSParameterAssert(intervalString);
+    
+    requestParameters[@"symbol"] = self.symbol;
+    requestParameters[@"interval"] = intervalString;
+    
+    if (self.startTime >= 0.0)
     {
-        requestParameters = [NSMutableDictionary new];
+        requestParameters[@"startTime"] = @([NSNumber numberWithDouble:self.startTime].longLongValue);
+    }
+    
+    if (self.endTime >= 0.0)
+    {
+        requestParameters[@"endTime"] = @([NSNumber numberWithDouble:self.endTime].longLongValue);
+    }
+    
+    if (self.limit != NSNotFound)
+    {
+        NSUInteger canonicalLimit = MIN(self.limit, 500);
         
-        NSParameterAssert(self.symbol);
-        
-        NSString *intervalString = Interval_toString[self.interval];
-        
-        NSParameterAssert(intervalString);
-        
-        requestParameters[@"symbol"] = self.symbol;
-        requestParameters[@"interval"] = intervalString;
-        
-        if (self.startTime >= 0.0)
-        {
-            requestParameters[@"startTime"] = @([NSNumber numberWithDouble:self.startTime].longLongValue);
-        }
-        
-        if (self.endTime >= 0.0)
-        {
-            requestParameters[@"endTime"] = @([NSNumber numberWithDouble:self.endTime].longLongValue);
-        }
-        
-        if (self.limit != NSNotFound)
-        {
-            NSUInteger canonicalLimit = MIN(self.limit, 500);
-            
-            requestParameters[@"limit"] = @(canonicalLimit);
-        }
+        requestParameters[@"limit"] = @(canonicalLimit);
     }
     
     return requestParameters;
-}
-
-- (BOOL)requiresAPIKey
-{
-    return YES;
-}
-
-- (BOOL)requiresSecretKey
-{
-    return YES;
 }
 
 @end

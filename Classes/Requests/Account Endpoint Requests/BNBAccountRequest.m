@@ -30,17 +30,12 @@
     return @"/api/v3/account";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
-{
-    return nil;
-}
-
 - (BOOL)requiresAPIKey
 {
     return YES;
 }
 
-- (BOOL)requiresSecretKey
+- (BOOL)requiresSigning
 {
     return YES;
 }

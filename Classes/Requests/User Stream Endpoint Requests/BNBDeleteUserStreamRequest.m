@@ -42,18 +42,13 @@
     return @"/api/v1/userDataStream";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBDELETE)
-    {
-        requestParameters = [NSMutableDictionary new];
-        
-        NSParameterAssert(self.listenKey);
-        
-        requestParameters[@"listenKey"] = self.listenKey;
-    }
+    NSParameterAssert(self.listenKey);
+    
+    requestParameters[@"listenKey"] = self.listenKey;
     
     return requestParameters;
 }
@@ -61,11 +56,6 @@
 - (BOOL)requiresAPIKey
 {
     return YES;
-}
-
-- (BOOL)requiresSecretKey
-{
-    return NO;
 }
 
 @end

@@ -26,7 +26,7 @@
 #pragma mark - Initialization
 
 - (instancetype)initWithSymbol:(NSString *)symbol
-                 limit:(NSUInteger)limit
+                         limit:(NSUInteger)limit
 {
     if (self = [super init])
     {
@@ -44,37 +44,22 @@
     return @"/api/v1/depth";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBGET)
+    NSParameterAssert(self.symbol);
+    
+    requestParameters[@"symbol"] = self.symbol;
+    
+    if (self.limit != NSNotFound)
     {
-        requestParameters = [NSMutableDictionary new];
+        NSUInteger canonicalLimit = MIN(self.limit, 100);
         
-        NSParameterAssert(self.symbol);
-        
-        requestParameters[@"symbol"] = self.symbol;
-        
-        if (self.limit != NSNotFound)
-        {
-            NSUInteger canonicalLimit = MIN(self.limit, 100);
-            
-            requestParameters[@"limit"] = @(canonicalLimit);
-        }
+        requestParameters[@"limit"] = @(canonicalLimit);
     }
     
     return requestParameters;
-}
-
-- (BOOL)requiresAPIKey
-{
-    return YES;
-}
-
-- (BOOL)requiresSecretKey
-{
-    return YES;
 }
 
 @end

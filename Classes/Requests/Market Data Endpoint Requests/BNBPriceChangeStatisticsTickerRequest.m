@@ -44,30 +44,15 @@
     return @"/api/v1/ticker/24hr";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBGET)
-    {
-        requestParameters = [NSMutableDictionary new];
-        
-        NSParameterAssert(self.symbol);
-        
-        requestParameters[@"symbol"] = self.symbol;
-    }
+    NSParameterAssert(self.symbol);
+    
+    requestParameters[@"symbol"] = self.symbol;
     
     return requestParameters;
-}
-
-- (BOOL)requiresAPIKey
-{
-    return YES;
-}
-
-- (BOOL)requiresSecretKey
-{
-    return YES;
 }
 
 @end

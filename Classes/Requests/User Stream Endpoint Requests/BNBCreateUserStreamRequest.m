@@ -30,19 +30,9 @@
     return @"/api/v1/userDataStream";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
-{
-    return nil;
-}
-
 - (BOOL)requiresAPIKey
 {
     return YES;
-}
-
-- (BOOL)requiresSecretKey
-{
-    return NO;
 }
 
 @end

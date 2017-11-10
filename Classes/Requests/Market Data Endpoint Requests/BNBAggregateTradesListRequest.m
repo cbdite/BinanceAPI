@@ -50,69 +50,54 @@
     return @"/api/v1/aggTrades";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBGET)
+    NSParameterAssert(self.symbol);
+    
+    requestParameters[@"symbol"] = self.symbol;
+    
+    if (self.fromId != NSNotFound)
     {
-        requestParameters = [NSMutableDictionary new];
+        requestParameters[@"fromId"] = @(self.fromId);
+    }
+    
+    if (self.startTime >= 0.0)
+    {
+        requestParameters[@"startTime"] = @([NSNumber numberWithDouble:self.startTime].longLongValue);
+    }
+    
+    if (self.endTime >= 0.0)
+    {
+        requestParameters[@"endTime"] = @([NSNumber numberWithDouble:self.endTime].longLongValue);
+    }
+    
+    if (self.startTime >= 0.0 && self.endTime >= 0.0)
+    {
+        NSTimeInterval timeInterval = self.endTime - self.startTime;
         
-        NSParameterAssert(self.symbol);
+        CGFloat hours = timeInterval/3600.0;
         
-        requestParameters[@"symbol"] = self.symbol;
-        
-        if (self.fromId != NSNotFound)
+        if (hours >= 24.0)
         {
-            requestParameters[@"fromId"] = @(self.fromId);
+            @throw
+            [NSException exceptionWithName:@"Invalid time interval"
+                                    reason:@"The time interval defined by startTime/endTime must be less than 24 hours"
+                                  userInfo:nil];
         }
-        
-        if (self.startTime >= 0.0)
+    }
+    else
+    {
+        if (self.limit != NSNotFound)
         {
-            requestParameters[@"startTime"] = @([NSNumber numberWithDouble:self.startTime].longLongValue);
-        }
-        
-        if (self.endTime >= 0.0)
-        {
-            requestParameters[@"endTime"] = @([NSNumber numberWithDouble:self.endTime].longLongValue);
-        }
-        
-        if (self.startTime >= 0.0 && self.endTime >= 0.0)
-        {
-            NSTimeInterval timeInterval = self.endTime - self.startTime;
+            NSUInteger canonicalLimit = MIN(self.limit, 500);
             
-            CGFloat hours = timeInterval/3600.0;
-            
-            if (hours >= 24.0)
-            {
-                @throw
-                [NSException exceptionWithName:@"Invalid time interval"
-                                        reason:@"The time interval defined by startTime/endTime must be less than 24 hours"
-                                      userInfo:nil];
-            }
-        }
-        else
-        {
-            if (self.limit != NSNotFound)
-            {
-                NSUInteger canonicalLimit = MIN(self.limit, 500);
-                
-                requestParameters[@"limit"] = @(canonicalLimit);
-            }
+            requestParameters[@"limit"] = @(canonicalLimit);
         }
     }
     
     return requestParameters;
-}
-
-- (BOOL)requiresAPIKey
-{
-    return YES;
-}
-
-- (BOOL)requiresSecretKey
-{
-    return YES;
 }
 
 @end

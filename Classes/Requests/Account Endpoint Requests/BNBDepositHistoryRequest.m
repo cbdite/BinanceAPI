@@ -48,33 +48,28 @@
     return @"/wapi/v1/getDepositHistory.html";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBPOST)
+    if (self.asset)
     {
-        requestParameters = [NSMutableDictionary new];
-        
-        if (self.asset)
-        {
-            requestParameters[@"asset"] = self.asset;
-        }
-        
-        if (self.depositStatus != NSNotFound)
-        {
-            requestParameters[@"status"] = @(self.depositStatus);
-        }
-        
-        if (self.startTime >= 0.0)
-        {
-            requestParameters[@"startTime"] = @([NSNumber numberWithDouble:self.startTime].longLongValue);
-        }
-        
-        if (self.endTime >= 0.0)
-        {
-            requestParameters[@"endTime"] = @([NSNumber numberWithDouble:self.endTime].longLongValue);
-        }
+        requestParameters[@"asset"] = self.asset;
+    }
+    
+    if (self.depositStatus != NSNotFound)
+    {
+        requestParameters[@"status"] = @(self.depositStatus);
+    }
+    
+    if (self.startTime >= 0.0)
+    {
+        requestParameters[@"startTime"] = @([NSNumber numberWithDouble:self.startTime].longLongValue);
+    }
+    
+    if (self.endTime >= 0.0)
+    {
+        requestParameters[@"endTime"] = @([NSNumber numberWithDouble:self.endTime].longLongValue);
     }
     
     return requestParameters;
@@ -85,7 +80,7 @@
     return YES;
 }
 
-- (BOOL)requiresSecretKey
+- (BOOL)requiresSigning
 {
     return YES;
 }

@@ -28,7 +28,7 @@
 - (instancetype)initWithSymbol:(NSString *)symbol
                        orderId:(NSUInteger)orderId
          originalClientOrderId:(nullable NSString *)originalClientOrderId
-          clientOrderId:(nullable NSString *)clientOrderId
+                 clientOrderId:(nullable NSString *)clientOrderId
 {
     if (self = [super init])
     {
@@ -48,33 +48,28 @@
     return @"/api/v3/order";
 }
 
-- (nullable NSDictionary *)requestParametersForHTTPMethod:(BNBHTTPMethod)HTTPMethod
+- (NSDictionary *)requestParameters
 {
-    NSMutableDictionary *requestParameters;
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
     
-    if (HTTPMethod == BNBDELETE)
+    NSParameterAssert(self.symbol);
+    
+    requestParameters[@"symbol"] = self.symbol;
+    
+    if (self.orderId != NSNotFound)
     {
-        requestParameters = [NSMutableDictionary new];
+        requestParameters[@"orderId"] = @(self.orderId);
+    }
+    else
+    {
+        NSParameterAssert(self.originalClientOrderId);
         
-        NSParameterAssert(self.symbol);
-        
-        requestParameters[@"symbol"] = self.symbol;
-        
-        if (self.orderId != NSNotFound)
-        {
-            requestParameters[@"orderId"] = @(self.orderId);
-        }
-        else
-        {
-            NSParameterAssert(self.originalClientOrderId);
-            
-            requestParameters[@"origClientOrderId"] = self.originalClientOrderId;
-        }
-        
-        if (self.clientOrderId)
-        {
-            requestParameters[@"newClientOrderId"] = self.clientOrderId;
-        }
+        requestParameters[@"origClientOrderId"] = self.originalClientOrderId;
+    }
+    
+    if (self.clientOrderId)
+    {
+        requestParameters[@"newClientOrderId"] = self.clientOrderId;
     }
     
     return requestParameters;
@@ -85,7 +80,7 @@
     return YES;
 }
 
-- (BOOL)requiresSecretKey
+- (BOOL)requiresSigning
 {
     return YES;
 }
